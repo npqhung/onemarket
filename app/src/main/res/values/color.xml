@@ -7,4 +7,8 @@
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
 
+    <color name="bg_divider">#F00E38</color>
+    <color name="footer_background">#15A2D1</color>
+
+
 </resources>

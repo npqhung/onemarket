@@ -1,10 +1,12 @@
-package com.onesys.onemarket;
+package com.onesys.onemarket.view;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.onesys.onemarket.R;
 
 public class StoreFragment extends Fragment {
 	
