@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- slide menu -->
     <color name="list_item_title">#fff</color>
     <color name="list_background">#303030</color>
     <color name="list_background_pressed">#992416</color>
@@ -7,8 +9,9 @@
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
 
+    <!-- footer menu -->
     <color name="bg_divider">#F00E38</color>
-    <color name="footer_background">#15A2D1</color>
+    <color name="footer_background">#ffffff</color>
 
 
 </resources>
