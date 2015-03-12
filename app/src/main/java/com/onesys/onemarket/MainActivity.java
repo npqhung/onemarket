@@ -28,6 +28,7 @@ import com.onesys.onemarket.view.GameFragment;
 import com.onesys.onemarket.view.HomeFragment;
 import com.onesys.onemarket.view.LaptopFragment;
 import com.onesys.onemarket.view.PhoneFragment;
+import com.onesys.onemarket.view.ProductDetailFragment;
 import com.onesys.onemarket.view.SearchFragment;
 import com.onesys.onemarket.view.StoreFragment;
 import com.onesys.onemarket.view.TabletFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends FragmentActivity
     public static final int CART_VIEW = 8;
     public static final int PROMOTION_VIEW = 9;
     public static final int MORE_VIEW = 10;
+    public static final int PRODUCT_DETAIL_VIEW = 10;
 
     public static final int STORE_VIEW = 0;
     public static final int PHONE_VIEW = 1;
@@ -244,6 +246,8 @@ public class MainActivity extends FragmentActivity
                 setTitle(R.string.str_footer_search);
             }else if(position == CART_VIEW){
                 setTitle(R.string.str_footer_cart);
+            }else if(position == PRODUCT_DETAIL_VIEW){
+                setTitle(R.string.str_product_detail);
             }else { // drawer views
                 mDrawerList.setItemChecked(position, true);
                 mDrawerList.setSelection(position);

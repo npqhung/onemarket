@@ -26,7 +26,15 @@ public class ProductAdapter extends BaseAdapter {
 //            R.drawable.temp_phone5, R.drawable.temp_phone6
 //    };
 
-    public ArrayList<ProductData> productList = new ArrayList<ProductData>();
+    private ArrayList<ProductData> productList;
+
+    public ArrayList<ProductData> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ArrayList<ProductData> productList) {
+        this.productList = productList;
+    }
 
     // Constructor
     public ProductAdapter(Context c, ArrayList<ProductData> productList){
@@ -71,12 +79,12 @@ public class ProductAdapter extends BaseAdapter {
 
             // set value into textview
             TextView textView = (TextView) gridView
-                    .findViewById(R.id.grid_item_product_price);
+                    .findViewById(R.id.gridlist_item_product_price);
             textView.setText(productList.get(position).getPrice());
 
             // set image based on selected text
             ImageView imageView = (ImageView) gridView
-                    .findViewById(R.id.grid_item_product_image);
+                    .findViewById(R.id.gridlist_item_product_image);
 
             imageView.setImageResource(productList.get(position).getImageId());
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

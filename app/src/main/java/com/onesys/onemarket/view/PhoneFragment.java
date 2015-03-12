@@ -2,16 +2,19 @@ package com.onesys.onemarket.view;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.utils.BaseFragment;
+import com.onesys.onemarket.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -36,9 +39,32 @@ public class PhoneFragment extends Fragment {
     }
 
     private void initGridView(View view) {
-        GridView gridView = (GridView) view.findViewById(R.id.gv_phone);
+        final GridView gridView = (GridView) view.findViewById(R.id.gv_phone);
 
         gridView.setAdapter(new ProductAdapter(view.getContext(),buildProductList()));
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                //show product_detail view
+                ProductData product = (ProductData)gridView.getAdapter().getItem(position);
+                showProductDetailView(product);
+            }
+        });
+    }
+
+    private void showProductDetailView(ProductData product){
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.PRODUCT_STRING,product);
+
+        ProductDetailFragment productDetailFragment = new ProductDetailFragment();
+        productDetailFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, productDetailFragment).commit();
     }
 
     private ArrayList<ProductData> buildProductList(){

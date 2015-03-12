@@ -35,4 +35,6 @@
     <string name="str_footer_search">Search</string>
     <string name="str_footer_cart">Cart</string>
 
+    <string name="str_product_detail">Product Detail</string>
+
 </resources>

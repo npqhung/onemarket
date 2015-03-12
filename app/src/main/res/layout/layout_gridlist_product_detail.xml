@@ -5,7 +5,7 @@
     android:padding="5dp" >
 
     <ImageView
-        android:id="@+id/grid_item_product_image"
+        android:id="@+id/gridlist_item_product_image"
         android:layout_width="50px"
         android:layout_height="50px"
         android:layout_marginRight="10px"
@@ -13,7 +13,7 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/grid_item_product_price"
+        android:id="@+id/gridlist_item_product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"

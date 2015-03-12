@@ -2,10 +2,12 @@ package com.onesys.onemarket.model;
 
 import android.widget.ImageView;
 
+import java.io.Serializable;
+
 /**
  * Created by Hung on 12/03/2015.
  */
-public class ProductData {
+public class ProductData implements Serializable {
     private int imageId;
     private String price;
 
