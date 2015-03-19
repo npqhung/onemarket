@@ -24,7 +24,7 @@ public class TabletFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_tablet, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_tablet_listview, container, false);
 
         initListView(rootView);
         return rootView;

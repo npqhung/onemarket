@@ -13,5 +13,6 @@
     <color name="bg_divider">#F00E38</color>
     <color name="footer_background">#ffffff</color>
 
-
+    <color name="tabbar_background">#fff7f6f6</color>
+    <color name="tabbar_divider">#ff8e8e93</color>
 </resources>

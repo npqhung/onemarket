@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +14,21 @@ import android.widget.GridView;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
-import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.Constants;
 
 import java.util.ArrayList;
 
-public class PhoneFragment extends Fragment {
+public class PhoneFragment extends Fragment implements View.OnClickListener{
+    private static final String TAG = "OneMarket";
 
+    private boolean isGridShow = false;
     public PhoneFragment(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_phone, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_phone_gridview, container, false);
 
         initGridView(rootView);
 
@@ -65,6 +67,8 @@ public class PhoneFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, productDetailFragment).commit();
+
+
     }
 
     private ArrayList<ProductData> buildProductList(){
@@ -101,6 +105,19 @@ public class PhoneFragment extends Fragment {
         productList.add(product6);
 
         return productList;
+
+    }
+
+    public void onClick(View paramView)
+    {
+        switch (paramView.getId())
+        {
+            default:
+                return;
+            case R.id.iv_phone_grid_list :
+                Log.i(TAG, "Entered onItemSelected");
+        }
+        if (this.isGridShow);
 
     }
 }

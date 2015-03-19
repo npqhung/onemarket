@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Nav Drawer Menu Items -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- other -->
     <dimen name="footer_icon_size">25.0dip</dimen>
+    <dimen name="second_tab_top_height">48.0dip</dimen>
 </resources>

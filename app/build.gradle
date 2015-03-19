@@ -17,22 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'app/libs/spring-android-auth-1.0.1.RELEASE.jar'
+        exclude 'app/libs/spring-android-rest-template-1.0.1.RELEASE.jar'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.1'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.5.1'
-    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
-    compile 'org.codehaus.jackson:jackson-jaxrs:1.9.13'
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-    compile 'org.simpleframework:simple-xml:2.7.1'
-    compile 'org.springframework.android:spring-android-auth:1.0.1.RELEASE'
-    compile 'org.springframework.android:spring-android-core:1.0.1.RELEASE'
-    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
-    compile 'org.springframework.security:spring-security-crypto:3.2.6.RELEASE'
-    compile 'org.springframework.social:spring-social-core:1.1.0.RELEASE'
+
 }

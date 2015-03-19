@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:orientation="vertical" android:background="@color/tabbar_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:id="@+id/top_bar_btn" android:layout_width="fill_parent" android:layout_height="@dimen/second_tab_top_height">
+
+        <View android:background="@color/tabbar_divider" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@+id/iv_phone_grid_list" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_gridlist_menu_grid" />
+    </LinearLayout>
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gv_phone"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth" >
+
+    </GridView>
+</LinearLayout>
