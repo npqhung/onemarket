@@ -5,7 +5,7 @@
     <LinearLayout android:orientation="horizontal" android:id="@+id/top_bar_btn" android:layout_width="fill_parent" android:layout_height="@dimen/second_tab_top_height">
 
         <View android:background="@color/tabbar_divider" android:layout_width="1.0px" android:layout_height="fill_parent" />
-        <ImageView android:layout_gravity="center_vertical" android:id="@+id/iv_phone_grid_list" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_gridlist_menu_grid" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@+id/iv_phone_gridlist_list" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_gridlist_menu_list" />
     </LinearLayout>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"

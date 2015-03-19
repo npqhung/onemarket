@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
@@ -18,11 +19,12 @@ import com.onesys.onemarket.utils.Constants;
 
 import java.util.ArrayList;
 
-public class PhoneFragment extends Fragment implements View.OnClickListener{
+public class PhoneGridFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "OneMarket";
 
     private boolean isGridShow = false;
-    public PhoneFragment(){}
+    private ImageView ivGridListType;
+    public PhoneGridFragment(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +56,9 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                 showProductDetailView(product);
             }
         });
+
+        this.ivGridListType = ((ImageView)view.findViewById(R.id.iv_phone_gridlist_list));
+        this.ivGridListType.setOnClickListener(this);
     }
 
     private void showProductDetailView(ProductData product){
@@ -112,12 +117,23 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     {
         switch (paramView.getId())
         {
+            case R.id.iv_phone_gridlist_list :
+                Log.i(TAG, "Entered onItemSelected");
+                showPhoneListView();
+                break;
             default:
                 return;
-            case R.id.iv_phone_grid_list :
-                Log.i(TAG, "Entered onItemSelected");
+
         }
         if (this.isGridShow);
 
+    }
+
+    private void showPhoneListView(){
+
+        PhoneListFragment phoneListFragment = new PhoneListFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, phoneListFragment).commit();
     }
 }
