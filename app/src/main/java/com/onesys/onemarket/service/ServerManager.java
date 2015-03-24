@@ -20,6 +20,7 @@ import com.onesys.onemarket.utils.ProductListResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,10 +41,13 @@ public class ServerManager {
     private RestTemplate getRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders requestHeaders = new HttpHeaders();
-//        requestHeaders.setContentType(new MediaType("text", "html"));
-//        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter()); //add to decode JSON string
-        requestHeaders.setContentType(new MediaType("text","html"));
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter()); //add to decode JSON string
+        requestHeaders.setContentType(new MediaType("text", "html"));
+
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.TEXT_HTML));
+
+        restTemplate.getMessageConverters().add(converter); //add to decode JSON string
+
         return restTemplate;
     }
 

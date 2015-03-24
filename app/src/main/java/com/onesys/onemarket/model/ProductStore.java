@@ -16,7 +16,7 @@ public class ProductStore
     public String store_id;
     public String store_name;
 
-    public ProductStore(JSONObject paramJSONObject)
+    public ProductStore()
     {
 
     }

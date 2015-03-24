@@ -18,7 +18,7 @@ public class Promotion
     public String promotion_id;
     public String quantity;
 
-    public Promotion(JSONObject paramJSONObject)
+    public Promotion()
     {
 
     }
