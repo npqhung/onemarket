@@ -25,6 +25,8 @@ public class PhoneListFragment extends Fragment implements View.OnClickListener{
 
     private boolean isGridShow = false;
     private ImageView ivGridListType;
+    private ProductAdapter productAdapter;
+
     public PhoneListFragment(){}
 	
 	@Override
@@ -32,6 +34,8 @@ public class PhoneListFragment extends Fragment implements View.OnClickListener{
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.fragment_phone_listview, container, false);
+
+        productAdapter = new ProductAdapter(rootView.getContext());
 
         initPhoneListView(rootView);
 
@@ -46,7 +50,8 @@ public class PhoneListFragment extends Fragment implements View.OnClickListener{
     private void initPhoneListView(View view) {
         final ListView listView = (ListView) view.findViewById(R.id.lv_phone);
 
-        listView.setAdapter(new ProductAdapter(view.getContext(), buildProductList()));
+        productAdapter.setProductList(buildProductList());
+        listView.setAdapter(productAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

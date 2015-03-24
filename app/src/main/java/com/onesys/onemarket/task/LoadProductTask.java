@@ -2,10 +2,15 @@ package com.onesys.onemarket.task;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
+import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.service.ServerManager;
 import com.onesys.onemarket.utils.ProductListResponse;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hung Nguyen on 3/22/2015.
@@ -15,8 +20,14 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
     private static final String TAG = LoadProductTask.class.getName();
     private static final String productListURL = "http://api.chodidong.me/index.php/Product/List";
 
+    private ProductAdapter productAdapter;
+
+    public LoadProductTask(ProductAdapter productAdapter) {
+        this.productAdapter = productAdapter;
+    }
+
     protected ProductListResponse[] doInBackground(String... criteria) {
-        //int count = searchTexts.length;//
+
         Log.d(TAG, "Get All Product");
 
         ProductListResponse[] products = null;
@@ -54,10 +65,10 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
     @Override
     protected void onPostExecute(ProductListResponse[] productsResponse) {
         super.onPostExecute(productsResponse);
-        displaySearchResult(productsResponse);
+        displayProductListResult(productsResponse);
     }
 
-    protected void displaySearchResult(ProductListResponse[] productsResponse) {
+    protected void displayProductListResult(ProductListResponse[] productsResponse) {
         if (productsResponse == null || productsResponse[0].getData() == null || productsResponse[0].getData().length == 0) {
 //            progressBar.dismiss();
 //            fuelOutletResponse = null;
@@ -81,11 +92,14 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
 
             //fuelOutletResponse = matchingOutlets[0];
             ProductData[] product = productsResponse[0].getData();
+            ArrayList<ProductData> productList = new ArrayList<ProductData>();
             for (int i = 0; i < product.length; i++) {
                 //fuelOutletList.add(outlets[i]);
                 Log.i(TAG, product[i].getName() + " " + product[i].getPrice() );
+                productList.add(product[i]);
             }
 
+            productAdapter.addData(productList);
 
 //    		fuelOutletList.notifyDataSetChanged(); //refresh the dataset...
         }

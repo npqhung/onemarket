@@ -36,14 +36,16 @@ public class ProductAdapter extends BaseAdapter {
         this.productList = productList;
     }
 
-    // Constructor
-    public ProductAdapter(Context c, ArrayList<ProductData> productList){
+    public ProductAdapter(Context c){
         context = c;
-        this.productList = productList;
     }
 
     @Override
     public int getCount() {
+        if(productList == null) {
+            return 0;
+        }
+
         return productList.size();
     }
 
@@ -59,31 +61,26 @@ public class ProductAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//        ImageView imageView = new ImageView(mContext);
-//        imageView.setImageResource(mThumbIds[position]);
-//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
-//        return imageView;
 
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View gridView;
+        View detailView;
 
         if (convertView == null) {
 
-            gridView = new View(context);
+            detailView = new View(context);
 
             // get detail layout
-            gridView = inflater.inflate(R.layout.layout_gridlist_product_detail, null);
+            detailView = inflater.inflate(R.layout.layout_gridlist_product_detail, null);
 
             // set value into textview
-            TextView textView = (TextView) gridView
+            TextView textView = (TextView) detailView
                     .findViewById(R.id.gridlist_item_product_price);
             textView.setText(productList.get(position).getPrice());
 
             // set image based on selected text
-            ImageView imageView = (ImageView) gridView
+            ImageView imageView = (ImageView) detailView
                     .findViewById(R.id.gridlist_item_product_image);
 
             imageView.setImageResource(productList.get(position).getImageId());
@@ -95,9 +92,25 @@ public class ProductAdapter extends BaseAdapter {
             imageView.requestLayout();
 
         } else {
-            gridView = (View) convertView;
+            detailView = (View) convertView;
         }
 
-        return gridView;
+        return detailView;
+    }
+
+    public void clearData()
+    {
+        if (this.productList == null)
+            this.productList = new ArrayList();
+        this.productList.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addData(ArrayList<ProductData> productList)
+    {
+        if (this.productList == null)
+            this.productList = new ArrayList();
+        this.productList.addAll(productList);
+        notifyDataSetChanged();
     }
 }

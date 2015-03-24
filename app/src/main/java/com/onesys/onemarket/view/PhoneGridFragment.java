@@ -45,7 +45,7 @@ public class PhoneGridFragment extends Fragment implements View.OnClickListener{
     private void initGridView(View view) {
         final GridView gridView = (GridView) view.findViewById(R.id.gv_phone);
 
-        gridView.setAdapter(new ProductAdapter(view.getContext(),buildProductList()));
+        gridView.setAdapter(new ProductAdapter(view.getContext()));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

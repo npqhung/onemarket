@@ -26,7 +26,7 @@ import com.onesys.onemarket.view.AccessoriesFragment;
 import com.onesys.onemarket.view.CartFragment;
 import com.onesys.onemarket.view.GameFragment;
 import com.onesys.onemarket.view.HomeFragment;
-import com.onesys.onemarket.view.LaptopFragment;
+import com.onesys.onemarket.view.LaptopListFragment;
 import com.onesys.onemarket.view.PhoneGridFragment;
 import com.onesys.onemarket.view.SearchFragment;
 import com.onesys.onemarket.view.StoreFragment;
@@ -217,7 +217,7 @@ public class MainActivity extends FragmentActivity
                 fragment = new PhoneGridFragment();
                 break;
             case LAPTOP_VIEW:
-                fragment = new LaptopFragment();
+                fragment = new LaptopListFragment();
                 break;
             case TABLET_VIEW:
                 fragment = new TabletFragment();
