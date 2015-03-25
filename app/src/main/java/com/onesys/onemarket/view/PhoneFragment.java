@@ -19,17 +19,19 @@ import com.onesys.onemarket.utils.Constants;
 
 import java.util.ArrayList;
 
-public class PhoneGridFragment extends Fragment implements View.OnClickListener{
+public class PhoneFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "OneMarket";
 
     private boolean isGridShow = false;
     private ImageView ivGridListType;
-    public PhoneGridFragment(){}
+    private GridView phoneGridView;
+
+    public PhoneFragment(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
- 
+
         View rootView = inflater.inflate(R.layout.fragment_phone_gridview, container, false);
 
         initGridView(rootView);
@@ -43,21 +45,21 @@ public class PhoneGridFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initGridView(View view) {
-        final GridView gridView = (GridView) view.findViewById(R.id.gv_phone);
+        phoneGridView = (GridView) view.findViewById(R.id.gv_phone);
 
-        gridView.setAdapter(new ProductAdapter(view.getContext()));
+        phoneGridView.setAdapter(new ProductAdapter(view.getContext()));
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        phoneGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 //show product_detail view
-                ProductData product = (ProductData)gridView.getAdapter().getItem(position);
+                ProductData product = (ProductData)phoneGridView.getAdapter().getItem(position);
                 showProductDetailView(product);
             }
         });
 
-        this.ivGridListType = ((ImageView)view.findViewById(R.id.iv_phone_gridlist_list));
+        this.ivGridListType = ((ImageView)view.findViewById(R.id.iv_phone_gridlist));
         this.ivGridListType.setOnClickListener(this);
     }
 
@@ -117,23 +119,27 @@ public class PhoneGridFragment extends Fragment implements View.OnClickListener{
     {
         switch (paramView.getId())
         {
-            case R.id.iv_phone_gridlist_list :
+            case R.id.iv_phone_gridlist :
                 Log.i(TAG, "Entered onItemSelected");
-                showPhoneListView();
+                updatePhoneView(paramView);
                 break;
             default:
                 return;
 
         }
-        if (this.isGridShow);
 
     }
 
-    private void showPhoneListView(){
+    private void updatePhoneView(View paramView){
 
-        PhoneListFragment phoneListFragment = new PhoneListFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, phoneListFragment).commit();
+            if (this.isGridShow){
+                ivGridListType.setImageResource(R.drawable.ic_gridlist_menu_list);
+                phoneGridView.setNumColumns(2);
+                this.isGridShow = false;
+            }
+            else{
+                phoneGridView.setNumColumns(1);
+                this.isGridShow = false;
+            }
     }
 }

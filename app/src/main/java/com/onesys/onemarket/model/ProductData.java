@@ -169,4 +169,9 @@ public class ProductData implements Serializable {
     public void setWarranty_month(String warrantyMonth) {
         this.warranty_month = warrantyMonth;
     }
+
+    public float getRatePointFloat()
+    {
+        return Float.parseFloat(this.rate_point);
+    }
 }

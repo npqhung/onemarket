@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.model.ProductData;
+import com.onesys.onemarket.utils.image.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -70,26 +72,42 @@ public class ProductAdapter extends BaseAdapter {
         if (convertView == null) {
 
             detailView = new View(context);
+            ProductData product = productList.get(position);
 
             // get detail layout
-            detailView = inflater.inflate(R.layout.layout_gridlist_product_detail, null);
+            detailView = inflater.inflate(R.layout.layout_gridlist_product_detail_grid, null);
 
-            // set value into textview
-            TextView textView = (TextView) detailView
-                    .findViewById(R.id.gridlist_item_product_price);
-            textView.setText(productList.get(position).getPrice());
+//            TextView textView = (TextView) detailView
+//                    .findViewById(R.id.gridlist_item_product_price);
+//            textView.setText(productList.get(position).getPrice());
+//
+//            // set image based on selected text
+//            ImageView imageView = (ImageView) detailView
+//                    .findViewById(R.id.gridlist_item_product_image);
+//
+//            imageView.setImageResource(productList.get(position).getImageId());
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+////            imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
+//            ViewGroup.LayoutParams lp = imageView.getLayoutParams();
+//            lp.width = 120;
+//            lp.height = 120;
+//            imageView.requestLayout();
 
-            // set image based on selected text
-            ImageView imageView = (ImageView) detailView
-                    .findViewById(R.id.gridlist_item_product_image);
+            ImageView localImageView = (ImageView)detailView.findViewById(R.id.iv_product_image);
+            TextView tvProductName = (TextView)detailView.findViewById(R.id.tv_product_name);
+            TextView tvProductCategory = (TextView)detailView.findViewById(R.id.tv_product_category);
+            TextView tvProductPrice = (TextView)detailView.findViewById(R.id.tv_product_price);
+            final RatingBar productRating = (RatingBar)detailView.findViewById(R.id.rb_product_rating);
+            final TextView tvProductRatingTotal = (TextView)detailView.findViewById(R.id.tv_product_rating_total);
 
-            imageView.setImageResource(productList.get(position).getImageId());
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//            imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
-            ViewGroup.LayoutParams lp = imageView.getLayoutParams();
-            lp.width = 120;
-            lp.height = 120;
-            imageView.requestLayout();
+            ImageLoader imgLoader = new ImageLoader(detailView.getContext());
+            imgLoader.DisplayImage(product.getThumbnail(), localImageView);
+            tvProductName.setText(product.getName());
+//            tvProductCategory.setText(this.mContext.getString(2131099706) + " -" + product.getUuDai() + "%");
+//            tvProductPrice.setText(product.getPriceFormat(this.mContext));
+            tvProductPrice.setText(product.getPrice());
+            productRating.setRating(product.getRatePointFloat());
+            tvProductRatingTotal.setText("(" + product.getTotal_rate() + ")");
 
         } else {
             detailView = (View) convertView;
