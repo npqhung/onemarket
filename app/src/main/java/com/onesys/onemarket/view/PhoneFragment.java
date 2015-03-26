@@ -24,7 +24,6 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
 
     private boolean isGridShow = false;
     private ImageView ivGridListType;
-    private GridView phoneGridView;
 
     public PhoneFragment(){}
 	
@@ -45,9 +44,11 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initGridView(View view) {
-        phoneGridView = (GridView) view.findViewById(R.id.gv_phone);
+        final GridView phoneGridView = (GridView) view.findViewById(R.id.gv_phone);
 
-        phoneGridView.setAdapter(new ProductAdapter(view.getContext()));
+        ProductAdapter adapter = new ProductAdapter(view.getContext(),buildProductList());
+
+        phoneGridView.setAdapter(adapter);
 
         phoneGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -134,11 +135,11 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
 
             if (this.isGridShow){
                 ivGridListType.setImageResource(R.drawable.ic_gridlist_menu_list);
-                phoneGridView.setNumColumns(2);
+//                phoneGridView.setNumColumns(2);
                 this.isGridShow = false;
             }
             else{
-                phoneGridView.setNumColumns(1);
+//                phoneGridView.setNumColumns(1);
                 this.isGridShow = false;
             }
     }

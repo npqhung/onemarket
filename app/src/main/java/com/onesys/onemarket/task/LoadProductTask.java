@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class LoadProductTask extends AsyncTask<String, Integer, ProductListResponse[]> {
 
     private static final String TAG = LoadProductTask.class.getName();
-    private static final String productListURL = "http://api.chodidong.me/index.php/Product/List";
+    private static final String productListURL = "http://api.chodidong.me/index.php//Product/List?type=1";
 
     private ProductAdapter productAdapter;
 

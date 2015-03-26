@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.onesys.onemarket.R;
@@ -42,7 +41,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
 
         productAdapter = new ProductAdapter(rootView.getContext());
 
-        initLaptopListView(rootView);
+        initLaptopGridView(rootView);
 
         return rootView;
     }
@@ -52,10 +51,9 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
         super.onAttach(paramActivity);
     }
 
-    private void initLaptopListView(View view) {
+    private void initLaptopGridView(View view) {
         laptopGridView = (GridView) view.findViewById(R.id.gv_laptop);
         laptopGridView.setNumColumns(2);
-        laptopGridView.setAdapter(new ProductAdapter(view.getContext()));
 
         loadProductList();
 

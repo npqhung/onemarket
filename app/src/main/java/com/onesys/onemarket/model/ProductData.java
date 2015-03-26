@@ -172,6 +172,8 @@ public class ProductData implements Serializable {
 
     public float getRatePointFloat()
     {
+        if(this.rate_point == null)
+            return 0;
         return Float.parseFloat(this.rate_point);
     }
 }

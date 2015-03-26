@@ -42,6 +42,11 @@ public class ProductAdapter extends BaseAdapter {
         context = c;
     }
 
+    public ProductAdapter(Context context, ArrayList<ProductData> productList) {
+        this.context = context;
+        this.productList = productList;
+    }
+
     @Override
     public int getCount() {
         if(productList == null) {
@@ -69,7 +74,7 @@ public class ProductAdapter extends BaseAdapter {
 
         View detailView;
 
-        if (convertView == null) {
+//        if (convertView == null) {
 
             detailView = new View(context);
             ProductData product = productList.get(position);
@@ -109,9 +114,9 @@ public class ProductAdapter extends BaseAdapter {
             productRating.setRating(product.getRatePointFloat());
             tvProductRatingTotal.setText("(" + product.getTotal_rate() + ")");
 
-        } else {
-            detailView = (View) convertView;
-        }
+//        } else {
+//            detailView = (View) convertView;
+//        }
 
         return detailView;
     }
