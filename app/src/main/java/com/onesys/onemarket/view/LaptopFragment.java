@@ -117,7 +117,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
     public void loadProductList(){
         application = (OneMarketApplication) getActivity().getApplication();
         if (application.isOnline()) {
-            new LoadProductTask(productAdapter).execute();
+            new LoadProductTask(laptopGridView.getContext(), productAdapter).execute();
         } else {
             Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
         }

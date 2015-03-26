@@ -1,5 +1,7 @@
 package com.onesys.onemarket.task;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -19,11 +21,16 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
 
     private static final String TAG = LoadProductTask.class.getName();
     private static final String productListURL = "http://api.chodidong.me/index.php//Product/List?type=1";
+    private ProgressDialog progressDialog;
 
     private ProductAdapter productAdapter;
 
-    public LoadProductTask(ProductAdapter productAdapter) {
+    public LoadProductTask(Context context, ProductAdapter productAdapter) {
         this.productAdapter = productAdapter;
+
+        this.progressDialog = new ProgressDialog(context);
+        this.progressDialog.setProgressStyle(0);
+        this.progressDialog.setMessage("Loading ...");
     }
 
     protected ProductListResponse[] doInBackground(String... criteria) {
@@ -53,7 +60,7 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
 
     @Override
     protected void onPreExecute() {
-        //progressBar.setVisibility(View.VISIBLE);
+        showProgressDialog();
     }
 
     @Override
@@ -64,6 +71,7 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
 
     @Override
     protected void onPostExecute(ProductListResponse[] productsResponse) {
+        dismissProgressDialog();
         super.onPostExecute(productsResponse);
         displayProductListResult(productsResponse);
     }
@@ -103,5 +111,15 @@ public class LoadProductTask extends AsyncTask<String, Integer, ProductListRespo
 
 //    		fuelOutletList.notifyDataSetChanged(); //refresh the dataset...
         }
+    }
+    private void dismissProgressDialog()    {
+        if (this.progressDialog != null) {
+            this.progressDialog.dismiss();
+        }
+    }
+
+    private void showProgressDialog()    {
+        this.progressDialog.setCancelable(false);
+        this.progressDialog.show();
     }
 }

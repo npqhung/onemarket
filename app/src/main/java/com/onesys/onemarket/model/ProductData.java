@@ -1,6 +1,7 @@
 package com.onesys.onemarket.model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -175,5 +176,19 @@ public class ProductData implements Serializable {
         if(this.rate_point == null)
             return 0;
         return Float.parseFloat(this.rate_point);
+    }
+
+    public String getPriceFormat()
+    {
+        Double localDouble = Double.valueOf(Double.parseDouble(this.price));
+        return new DecimalFormat("#,###,### " + "VND").format(localDouble);
+    }
+
+    public String afterDiscount(){
+        int price = Integer.parseInt(this.price);
+        int discountPrice = Integer.parseInt(this.discount_price);
+        double percentDiscount = (price - discountPrice) * 100/ price;
+
+        return "" + percentDiscount;
     }
 }
