@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
@@ -33,7 +34,7 @@ public class TabletFragment extends Fragment {
     private void initListView(View view) {
         final ListView listView = (ListView) view.findViewById(R.id.lv_tablet);
 
-        listView.setAdapter(new ProductAdapter(view.getContext(),buildProductList()));
+        listView.setAdapter(new ProductAdapter((MainActivity)getActivity(),buildProductList()));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,

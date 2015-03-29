@@ -7,4 +7,9 @@
     <!-- other -->
     <dimen name="footer_icon_size">25.0dip</dimen>
     <dimen name="second_tab_top_height">48.0dip</dimen>
+
+    <dimen name="title_height">54.0dip</dimen>
+    <dimen name="brand_height">54.0dip</dimen>
+
+    <dimen name="second_tab_top_height_2_line">54.0dip</dimen>
 </resources>

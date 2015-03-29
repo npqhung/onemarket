@@ -37,4 +37,13 @@
 
     <string name="str_product_detail">Product Detail</string>
 
+    <string name="str_specification">Specification</string>
+    <string name="str_usercomment">Comments</string>
+
+    <string name="str_in_stock">In Stock</string>
+    <string name="str_out_of_stock">Out Of Stock</string>
+
+    <string name="str_add_to_cart">Add To Cart</string>
+
+
 </resources>

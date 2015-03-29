@@ -16,6 +16,8 @@ import org.springframework.web.client.RestTemplate;
 import android.util.Log;
 
 import com.onesys.onemarket.model.ProductData;
+import com.onesys.onemarket.model.ProductDetailData;
+import com.onesys.onemarket.utils.ProductDetailResponse;
 import com.onesys.onemarket.utils.ProductListResponse;
 
 import java.util.ArrayList;
@@ -103,6 +105,37 @@ public class ServerManager {
         } catch (ResourceAccessException e) {
             ProductListResponse emptyResponse = new ProductListResponse();
             emptyResponse.setData(new ProductData[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
+
+    public ProductDetailResponse getProductDetail(String id) {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        restUrl += id;
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            ProductDetailResponse productResponse = restTemplate.getForObject(restUrl, ProductDetailResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + productResponse.getCode());
+            return productResponse;
+        } catch (HttpServerErrorException e) {
+            ProductDetailResponse emptyResponse = new ProductDetailResponse();
+            emptyResponse.setData(new ProductDetailData());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            ProductDetailResponse emptyResponse = new ProductDetailResponse();
+            emptyResponse.setData(new ProductDetailData());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            ProductDetailResponse emptyResponse = new ProductDetailResponse();
+            emptyResponse.setData(new ProductDetailData());
             emptyResponse.setMessage(e.getMessage());
             Log.e(TAG, "error" + e.getMessage());
             return emptyResponse;

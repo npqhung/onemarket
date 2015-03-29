@@ -15,4 +15,17 @@
 
     <color name="tabbar_background">#fff7f6f6</color>
     <color name="tabbar_divider">#ff8e8e93</color>
+
+    <!-- color -->
+    <color name="blue">#ff007aff</color>
+    <color name="white">#ffffffff</color>
+    <color name="red">#ffff1300</color>
+    <color name="red_slight">#ffe86d66</color>
+    <color name="gray">#ffdbddde</color>
+    <color name="green">#ff1ea558</color>
+    <color name="black">#ff000000</color>
+
+    <color name="dark_text_color">#ffaeb2b2</color>
+    <color name="bg_divider_viewmore">#ffb8bcbc</color>
+
 </resources>

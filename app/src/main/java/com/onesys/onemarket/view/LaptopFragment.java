@@ -13,11 +13,12 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
-import com.onesys.onemarket.task.LoadProductTask;
+import com.onesys.onemarket.task.LoadPhoneProductTask;
 import com.onesys.onemarket.utils.Constants;
 
 public class LaptopFragment extends Fragment implements View.OnClickListener{
@@ -39,7 +40,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
 
         View rootView = inflater.inflate(R.layout.fragment_laptop_gridview, container, false);
 
-        productAdapter = new ProductAdapter(rootView.getContext());
+        productAdapter = new ProductAdapter((MainActivity)getActivity());
 
         initLaptopGridView(rootView);
 
@@ -117,7 +118,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
     public void loadProductList(){
         application = (OneMarketApplication) getActivity().getApplication();
         if (application.isOnline()) {
-            new LoadProductTask(laptopGridView.getContext(), productAdapter).execute();
+            new LoadPhoneProductTask(laptopGridView.getContext(), productAdapter).execute();
         } else {
             Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
         }

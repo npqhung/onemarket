@@ -11,29 +11,44 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
+import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
+import com.onesys.onemarket.task.LoadPhoneDetailTask;
+import com.onesys.onemarket.task.LoadPhoneProductTask;
 import com.onesys.onemarket.utils.Constants;
 
-import java.util.ArrayList;
-
 public class PhoneFragment extends Fragment implements View.OnClickListener{
+
+    private OneMarketApplication application = null;
+    private ProductAdapter productAdapter;
+
     private static final String TAG = "OneMarket";
 
     private boolean isGridShow = false;
-    private ImageView ivGridListType;
+    private ImageView ivPhoneGridListType;
+    private GridView phoneGridView;
+    private MainActivity context;
 
-    public PhoneFragment(){}
-	
-	@Override
+    public PhoneFragment(){
+
+    }
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_phone_gridview, container, false);
+        context = (MainActivity)getActivity();
 
-        initGridView(rootView);
+        productAdapter = new ProductAdapter(context);
+
+        initPhoneGridView(rootView);
 
         return rootView;
     }
@@ -43,77 +58,47 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
         super.onAttach(paramActivity);
     }
 
-    private void initGridView(View view) {
-        final GridView phoneGridView = (GridView) view.findViewById(R.id.gv_phone);
+    private void initPhoneGridView(View view) {
+        phoneGridView = (GridView) view.findViewById(R.id.gv_phone);
+        phoneGridView.setNumColumns(2);
 
-        ProductAdapter adapter = new ProductAdapter(view.getContext(),buildProductList());
+        loadProductList();
 
-        phoneGridView.setAdapter(adapter);
+        phoneGridView.setAdapter(productAdapter);
 
         phoneGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 //show product_detail view
-                ProductData product = (ProductData)phoneGridView.getAdapter().getItem(position);
+                ProductData product = (ProductData) phoneGridView.getAdapter().getItem(position);
                 showProductDetailView(product);
             }
         });
 
-        this.ivGridListType = ((ImageView)view.findViewById(R.id.iv_phone_gridlist));
-        this.ivGridListType.setOnClickListener(this);
+        this.ivPhoneGridListType = ((ImageView)view.findViewById(R.id.iv_phone_gridlist));
+        this.ivPhoneGridListType.setOnClickListener(this);
     }
 
     private void showProductDetailView(ProductData product){
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Constants.PRODUCT_STRING,product);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable(Constants.PRODUCT_STRING,product);
+//        bundle.putInt(Constants.CALL_FROM_INDEX, MainActivity.PHONE_VIEW); // ~screen 11
+//
+//        ProductDetailFragment productDetailFragment = new ProductDetailFragment();
+//        productDetailFragment.setArguments(bundle);
+//
+//        FragmentManager fragmentManager = getFragmentManager();
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.frame_container, productDetailFragment).commit();
 
-        ProductDetailFragment productDetailFragment = new ProductDetailFragment();
-        productDetailFragment.setArguments(bundle);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, productDetailFragment).commit();
-
-
-    }
-
-    private ArrayList<ProductData> buildProductList(){
-        ArrayList<ProductData> productList = new ArrayList<ProductData>();
-
-        ProductData product1 = new ProductData();
-        product1.setImageId(R.drawable.temp_phone1);
-        product1.setPrice("1.999.000");
-        productList.add(product1);
-
-        ProductData product2 = new ProductData();
-        product2.setImageId(R.drawable.temp_phone2);
-        product2.setPrice("2.999.000");
-        productList.add(product2);
-
-        ProductData product3 = new ProductData();
-        product3.setImageId(R.drawable.temp_phone3);
-        product3.setPrice("3.999.000");
-        productList.add(product3);
-
-        ProductData product4 = new ProductData();
-        product4.setImageId(R.drawable.temp_phone4);
-        product4.setPrice("4.999.000");
-        productList.add(product4);
-
-        ProductData product5 = new ProductData();
-        product5.setImageId(R.drawable.temp_phone5);
-        product5.setPrice("5.999.000");
-        productList.add(product5);
-
-        ProductData product6 = new ProductData();
-        product6.setImageId(R.drawable.temp_phone6);
-        product6.setPrice("6.999.000");
-        productList.add(product6);
-
-        return productList;
-
+        application = (OneMarketApplication) getActivity().getApplication();
+        if (application.isOnline()) {
+            new LoadPhoneDetailTask(context,product.getId()).execute();
+        } else {
+            Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onClick(View paramView)
@@ -128,19 +113,28 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                 return;
 
         }
-
     }
 
     private void updatePhoneView(View paramView){
 
-            if (this.isGridShow){
-                ivGridListType.setImageResource(R.drawable.ic_gridlist_menu_list);
-//                phoneGridView.setNumColumns(2);
-                this.isGridShow = false;
-            }
-            else{
-//                phoneGridView.setNumColumns(1);
-                this.isGridShow = false;
-            }
+        if (this.isGridShow){
+            ivPhoneGridListType.setImageResource(R.drawable.ic_gridlist_menu_list);
+            phoneGridView.setNumColumns(2);
+            this.isGridShow = false;
+        }
+        else{
+            ivPhoneGridListType.setImageResource(R.drawable.ic_gridlist_menu_grid);
+            phoneGridView.setNumColumns(1);
+            this.isGridShow = true;
+        }
+    }
+
+    public void loadProductList(){
+        application = (OneMarketApplication) getActivity().getApplication();
+        if (application.isOnline()) {
+            new LoadPhoneProductTask(phoneGridView.getContext(), productAdapter).execute();
+        } else {
+            Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
+        }
     }
 }

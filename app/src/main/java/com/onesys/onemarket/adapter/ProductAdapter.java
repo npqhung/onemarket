@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.utils.image.ImageLoader;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  * Created by Hung on 12/03/2015.
  */
 public class ProductAdapter extends BaseAdapter {
-    private Context context;
+    private MainActivity context;
 
     // Keep all Images in array
 //    public Integer[] mThumbIds = {
@@ -38,11 +39,11 @@ public class ProductAdapter extends BaseAdapter {
         this.productList = productList;
     }
 
-    public ProductAdapter(Context c){
+    public ProductAdapter(MainActivity c){
         context = c;
     }
 
-    public ProductAdapter(Context context, ArrayList<ProductData> productList) {
+    public ProductAdapter(MainActivity context, ArrayList<ProductData> productList) {
         this.context = context;
         this.productList = productList;
     }
@@ -86,8 +87,8 @@ public class ProductAdapter extends BaseAdapter {
             TextView tvProductName = (TextView)detailView.findViewById(R.id.tv_product_name);
             TextView tvProductCategory = (TextView)detailView.findViewById(R.id.tv_product_category);
             TextView tvProductPrice = (TextView)detailView.findViewById(R.id.tv_product_price);
-            final RatingBar productRating = (RatingBar)detailView.findViewById(R.id.rb_product_rating);
-            final TextView tvProductRatingTotal = (TextView)detailView.findViewById(R.id.tv_product_rating_total);
+            RatingBar productRating = (RatingBar)detailView.findViewById(R.id.rb_product_rating);
+            TextView tvProductRatingTotal = (TextView)detailView.findViewById(R.id.tv_product_rating_total);
 
             ImageLoader imgLoader = new ImageLoader(detailView.getContext());
             imgLoader.DisplayImage(product.getThumbnail(), localImageView);
