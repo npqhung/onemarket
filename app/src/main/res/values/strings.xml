@@ -45,5 +45,9 @@
 
     <string name="str_add_to_cart">Add To Cart</string>
 
+    <string name="str_search_by">Search By</string>
+    <string name="str_sort_by">Sort By</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_select">Select</string>
 
 </resources>

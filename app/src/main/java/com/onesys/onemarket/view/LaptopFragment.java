@@ -18,7 +18,7 @@ import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
-import com.onesys.onemarket.task.LoadPhoneProductTask;
+//import com.onesys.onemarket.task.LoadPhoneProductTask;
 import com.onesys.onemarket.utils.Constants;
 
 public class LaptopFragment extends Fragment implements View.OnClickListener{
@@ -72,6 +72,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
 
         this.ivLaptopGridListType = ((ImageView)view.findViewById(R.id.iv_laptop_gridlist));
         this.ivLaptopGridListType.setOnClickListener(this);
+
     }
 
     private void showProductDetailView(ProductData product){
@@ -118,7 +119,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
     public void loadProductList(){
         application = (OneMarketApplication) getActivity().getApplication();
         if (application.isOnline()) {
-            new LoadPhoneProductTask(laptopGridView.getContext(), productAdapter).execute();
+//            new LoadPhoneProductTask(laptopGridView.getContext(), productAdapter).execute();
         } else {
             Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
         }

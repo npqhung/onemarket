@@ -3,7 +3,15 @@
 <LinearLayout android:orientation="vertical" android:background="@color/tabbar_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout android:orientation="horizontal" android:id="@+id/top_bar_btn" android:layout_width="fill_parent" android:layout_height="@dimen/second_tab_top_height">
-
+        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:id="@+id/ll_phonegrid_searchby" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:id="@+id/iv_phonegird_searchby" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_searchby" />
+            <TextView android:textAppearance="@style/ButtonTextAppearance" android:id="@+id/tv_phonegrid_searchby" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/str_search_by" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:id="@+id/ll_phonegrid_sortby" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <ImageView android:id="@+id/iv_phonegird_sortby" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_sortby" />
+            <TextView android:textAppearance="@style/ButtonTextAppearance" android:id="@+id/tv_phonegird_sortby" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/str_sort_by" />
+        </LinearLayout>
         <View android:background="@color/tabbar_divider" android:layout_width="1.0px" android:layout_height="fill_parent" />
         <ImageView android:layout_gravity="center_vertical" android:id="@+id/iv_phone_gridlist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_gridlist_menu_list" />
     </LinearLayout>
