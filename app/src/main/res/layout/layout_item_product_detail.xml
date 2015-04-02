@@ -15,7 +15,7 @@
         <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0px" />
         <LinearLayout android:orientation="horizontal" android:id="@id/top_bar_btn" android:background="@drawable/bg_slide_right" android:layout_width="fill_parent" android:layout_height="@dimen/second_tab_top_height">
             <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal"
-                android:id="@+id/ll_productdetail_specification" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+                android:id="@+id/ll_specification" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
                 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_productdetail_specification" />
                 <TextView android:textAppearance="@style/ButtonTextAppearance" android:id="@+id/tv_productdetail_specification"
                     android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/str_specification" android:maxLines="1" />
@@ -30,7 +30,7 @@
         <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0px" />
         <RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent">
             <LinearLayout android:orientation="vertical" android:id="@+id/ll_main_content" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip">
-                <LinearLayout android:orientation="vertical" android:id="@+id/ll_detail_image" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <LinearLayout android:orientation="vertical" android:id="@+id/ll_productdetail_main" android:layout_width="fill_parent" android:layout_height="fill_parent">
                     <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent">
                         <!-- <include layout="@layout/layout_ds4_detail_more_main" /> -->
                         <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
@@ -58,12 +58,12 @@
                         </LinearLayout>
                     </ScrollView>
                 </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:id="@+id/ll_specification" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <LinearLayout android:orientation="vertical" android:id="@+id/ll_productdetail_specification" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
                     <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent">
-                        <!-- <include layout="@layout/layout_ds4_detail_more_thongsokythuat" /> -->
+                         <include layout="@layout/layout_phone_productdetail_specification" />
                     </ScrollView>
                 </LinearLayout>
-                <LinearLayout android:orientation="vertical" android:id="@+id/ll_usercomment_detail" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <LinearLayout android:orientation="vertical" android:id="@+id/ll_productdetail_comment" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent">
                     <!--<include layout="@layout/layout_ds4_detail_more_ykien_nguoidung" /> -->
                 </LinearLayout>
             </LinearLayout>

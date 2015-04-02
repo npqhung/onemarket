@@ -64,15 +64,15 @@ public class ProductDetailData
     private String manufactur_id;
 
 
-    public Object getMobileinfo() {
+    public SpecificationInfo getMobileinfo() {
         return mobileinfo;
     }
 
-    public void setMobileinfo(Object mobileinfo) {
+    public void setMobileinfo(SpecificationInfo mobileinfo) {
         this.mobileinfo = mobileinfo;
     }
 
-    private Object mobileinfo;
+    private SpecificationInfo mobileinfo;
     private String name;
     private String order_type;
     private String point;

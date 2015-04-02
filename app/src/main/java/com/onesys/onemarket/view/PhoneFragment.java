@@ -2,7 +2,6 @@ package com.onesys.onemarket.view;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +19,7 @@ import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.task.LoadPhoneDetailTask;
-//import com.onesys.onemarket.task.LoadPhoneProductTask;
+import com.onesys.onemarket.task.LoadPhoneProductTask;
 import com.onesys.onemarket.utils.Constants;
 import com.onesys.onemarket.utils.quickaction.ActionItem;
 import com.onesys.onemarket.utils.quickaction.SearchByQuickAction;
@@ -151,7 +150,7 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     public void loadProductList(){
         application = (OneMarketApplication) getActivity().getApplication();
         if (application.isOnline()) {
-//            new LoadPhoneProductTask(phoneGridView.getContext(), productAdapter).execute();
+            new LoadPhoneProductTask(phoneGridView.getContext(), productAdapter).execute();
         } else {
             Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
         }

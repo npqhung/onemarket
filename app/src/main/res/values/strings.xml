@@ -50,4 +50,19 @@
     <string name="str_cancel">Cancel</string>
     <string name="str_select">Select</string>
 
+    <!--Product Detail Specification-->
+    <string name="spec_general_info">GENERAL INFORMATION</string>
+    <string name="spec_network_2g">2G Network</string>
+    <string name="spec_network_3g">3G Network</string>
+    <string name="spec_monitor">Monitor</string>
+    <string name="spec_release_date">Release Date</string>
+    <string name="spec_sale_date">Sale Date</string>
+    <string name="spec_dimension">Dimension</string>
+    <string name="spec_weight">Weight</string>
+    <string name="spec_display">Display</string>
+    <string name="spec_type">Type</string>
+    <string name="spec_touch">Touch</string>
+    <string name="spec_sound">Sound</string>
+    <string name="spec_ring_type">Ring Type</string>
+
 </resources>
