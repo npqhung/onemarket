@@ -9,7 +9,7 @@ import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.service.ServerManager;
 import com.onesys.onemarket.utils.Constants;
-import com.onesys.onemarket.utils.ProductListResponse;
+import com.onesys.onemarket.utils.response.ProductListResponse;
 
 import java.util.ArrayList;
 

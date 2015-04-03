@@ -64,7 +64,7 @@
                     </ScrollView>
                 </LinearLayout>
                 <LinearLayout android:orientation="vertical" android:id="@+id/ll_productdetail_comment" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent">
-                    <!--<include layout="@layout/layout_ds4_detail_more_ykien_nguoidung" /> -->
+                    <include layout="@layout/layout_productdetail_comment_list" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/ll_control" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="80.0dip" android:src="@drawable/bg_dashboard" android:layout_alignParentRight="true">

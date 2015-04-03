@@ -4,7 +4,6 @@ import org.apache.http.HttpStatus;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException;
@@ -15,15 +14,14 @@ import org.springframework.web.client.RestTemplate;
 
 import android.util.Log;
 
+import com.onesys.onemarket.model.ProductComment;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.model.ProductDetailData;
-import com.onesys.onemarket.utils.ProductDetailResponse;
-import com.onesys.onemarket.utils.ProductListResponse;
+import com.onesys.onemarket.utils.response.ProductCommentResponse;
+import com.onesys.onemarket.utils.response.ProductDetailResponse;
+import com.onesys.onemarket.utils.response.ProductListResponse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * For sending records to server...
@@ -136,6 +134,37 @@ public class ServerManager {
         } catch (ResourceAccessException e) {
             ProductDetailResponse emptyResponse = new ProductDetailResponse();
             emptyResponse.setData(new ProductDetailData());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
+
+    public ProductCommentResponse getProductComment(String id) {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        restUrl += id;
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            ProductCommentResponse productResponse = restTemplate.getForObject(restUrl, ProductCommentResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + productResponse.getCode());
+            return productResponse;
+        } catch (HttpServerErrorException e) {
+            ProductCommentResponse emptyResponse = new ProductCommentResponse();
+            emptyResponse.setData(new ProductComment[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            ProductCommentResponse emptyResponse = new ProductCommentResponse();
+            emptyResponse.setData(new ProductComment[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            ProductCommentResponse emptyResponse = new ProductCommentResponse();
+            emptyResponse.setData(new ProductComment[0]);
             emptyResponse.setMessage(e.getMessage());
             Log.e(TAG, "error" + e.getMessage());
             return emptyResponse;

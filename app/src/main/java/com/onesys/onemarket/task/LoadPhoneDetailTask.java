@@ -2,20 +2,16 @@ package com.onesys.onemarket.task;
 
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
-import com.onesys.onemarket.adapter.ProductAdapter;
-import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.service.ServerManager;
 import com.onesys.onemarket.utils.Constants;
-import com.onesys.onemarket.utils.ProductDetailResponse;
-import com.onesys.onemarket.utils.ProductListResponse;
+import com.onesys.onemarket.utils.response.ProductDetailResponse;
 import com.onesys.onemarket.view.ProductDetailFragment;
 
 /**

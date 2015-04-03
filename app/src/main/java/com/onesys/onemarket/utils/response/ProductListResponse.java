@@ -1,4 +1,4 @@
-package com.onesys.onemarket.utils;
+package com.onesys.onemarket.utils.response;
 
 import com.onesys.onemarket.model.ProductData;
 

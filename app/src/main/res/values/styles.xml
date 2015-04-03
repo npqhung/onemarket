@@ -89,9 +89,18 @@
         <item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
     </style>
 
+    <style name="GameUngDUngTextBlackAppearance">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
     <style name="RedBoldTextDS4Appearance">
         <item name="android:textSize">18.0sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+    <style name="RedTextDS4Appearance">
+        <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">@color/red</item>
     </style>
 

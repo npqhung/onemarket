@@ -10,15 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
-import com.onesys.onemarket.model.ProductData;
+import com.onesys.onemarket.adapter.CommentAdapter;
+import com.onesys.onemarket.application.OneMarketApplication;
+import com.onesys.onemarket.model.ProductComment;
 import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.model.SpecificationInfo;
+import com.onesys.onemarket.task.LoadPhoneCommentTask;
+import com.onesys.onemarket.task.LoadPhoneDetailTask;
 import com.onesys.onemarket.utils.Constants;
 import com.onesys.onemarket.utils.image.ImageLoader;
+import com.onesys.onemarket.utils.response.ProductCommentResponse;
+
+import java.util.ArrayList;
 
 public class ProductDetailFragment extends Fragment implements View.OnClickListener{
 
@@ -29,6 +39,8 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     private LinearLayout detailView; //normal view
     private LinearLayout specView;
     private LinearLayout commentView;
+
+    private CommentAdapter commentAdapter;
 
     public ProductDetailFragment() {
     }
@@ -41,6 +53,11 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
 
         initProductDetailView(view);
 
+        //init comment view
+        commentAdapter = new CommentAdapter((MainActivity)getActivity());
+        ListView commentView = (ListView) view.findViewById(R.id.lv_comment);
+        commentView.setAdapter(commentAdapter);
+
         return view;
     }
 
@@ -49,13 +66,6 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         productDetail = (ProductDetailData) args
                 .getSerializable(Constants.PRODUCT_STRING);
         callFromIndex = args.getInt(Constants.CALL_FROM_INDEX);
-
-//        this.tv_info_rating.setText(paramProductDetailsData.getTotalRate() + " Ratings, " + paramProductDetailsData.getViewsCount() + " views");
-//        this.rt_rating.setRating(paramProductDetailsData.getRatePointFloat());
-//        this.imageLoader.DisplayImage(paramProductDetailsData.getFullThumbnail(), this.iv_sanpham_full, true);
-//        this.tv_gia_sanpham.setText(paramProductDetailsData.getPrice(getActivity()));
-//        this.tv_info_khuyen_mai.setText(paramProductDetailsData.getUuDai());
-//        this.tv_info_con_hang.setText(paramProductDetailsData.getStatus(getActivity()));
 
         TextView tvName = (TextView) view
                 .findViewById(R.id.tv_productdetail_name);
@@ -99,11 +109,28 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
                 Log.i(TAG, "Entered Product Detail Specification");
                 showSpecification(paramView);
                 break;
+            case R.id.ll_usercomment :
+                Log.i(TAG, "Entered Product Detail Specification");
+                showComments(paramView);
+                break;
 
             default:
                 return;
 
         }
+    }
+
+    public void showComments(View view){
+        OneMarketApplication application = (OneMarketApplication) getActivity().getApplication();
+        if (application.isOnline()) {
+            new LoadPhoneCommentTask((MainActivity)getActivity(),productDetail.getId(),commentAdapter).execute();
+        } else {
+            Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
+        }
+
+        detailView.setVisibility(View.GONE);
+        commentView.setVisibility(View.VISIBLE);
+        specView.setVisibility(View.GONE);
     }
 
     public void showSpecification(View view){
@@ -129,36 +156,36 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         setTextInfo(view, R.id.tv_spec_network_3g, info.getInfo_3g());
         setTextInfo(view, R.id.tv_spec_release_date, info.getInfo_date_present());//release date
         setTextInfo(view, R.id.tv_spec_sale_date, info.getInfo_date_sale());
-//        setTextInfo(2131558543, info.getSize());
-//        setTextInfo(2131558544, info.getWeight());
-//        setTextInfo(2131558545, info.getSreenType());
+        setTextInfo(view, R.id.tv_spec_size, info.getSize());
+        setTextInfo(view, R.id.tv_spec_weight, info.getWeight());
+//        setTextInfo(view, R.id.tv_spec_screen_type, info.getSreen_type());
 //        this.mScreen.findViewById(2131558545).setSelected(true);
-//        setTextInfo(2131558546, info.getSreenSize() + ", " + info.getSreenSizeWidthHeight());
-//        setTextInfo(2131558547, info.getSreenMoreInfo());
-//        setTextInfo(2131558548, info.getAudioType());
-//        setTextInfo(2131558549, info.getAudioStandard());
-//        setTextInfo(2131558550, info.getMemoryContact());
-//        setTextInfo(2131558551, info.getMemoryCalled());
-//        setTextInfo(2131558552, info.getMemoryHdd() + "," + info.getMemoryRam());
-//        setTextInfo(2131558553, info.getMemorySlot());
-//        setTextInfo(2131558554, info.getDataGprs());
-//        setTextInfo(2131558555, info.getDataEdge());
-//        setTextInfo(2131558556, info.getData3gSpeed());
-//        setTextInfo(2131558557, info.getDataNfc());
-//        setTextInfo(2131558558, info.getDataWlan());
-//        setTextInfo(2131558559, info.getDataBluetooth());
-//        setTextInfo(2131558560, info.getDataInfrared());
-//        setTextInfo(2131558561, info.getDataUsb());
-//        setTextInfo(2131558562, info.getCamera());
-//        setTextInfo(2131558563, info.getCameraRecordVideo());
-//        setTextInfo(2131558564, info.getCameraSub());
-//        setTextInfo(2131558565, info.getOsDetail());
-//        setTextInfo(2131558566, info.getCpu());
-//        setTextInfo(2131558567, info.getChipset());
-//        setTextInfo(2131558568, info.getSms());
-//        setTextInfo(2131558569, info.getBrowser());
-//        setTextInfo(2131558570, info.getRadio());
-//        setTextInfo(2131558571, info.getGame());
+        setTextInfo(view, R.id.tv_spec_size, info.getSreen_size() + ", " + info.getSreen_size_width_height());
+//        setTextInfo(view, R.id.tv_spec_, info.getSreenMoreInfo());
+        setTextInfo(view, R.id.tv_spec_ring_type, info.getAudio_type());
+        setTextInfo(view,R.id.tv_spec_audio_output, info.getAudio_standard());
+        setTextInfo(view,R.id.tv_spec_contact, info.getMemory_contact());
+        setTextInfo(view, R.id.tv_spec_called_memory, info.getMemory_called());
+        setTextInfo(view, R.id.tv_spec_internal_ram, info.getMemory_hdd() + "," + info.getMemory_ram());
+        setTextInfo(view,R.id.tv_spec_memory_slot, info.getMemory_slot());
+        setTextInfo(view, R.id.tv_spec_gprs, info.getData_gprs());
+        setTextInfo(view, R.id.tv_spec_edge, info.getData_edge());
+        setTextInfo(view, R.id.tv_spec_speed_3g, info.getData_3g_speed());
+        setTextInfo(view,R.id.tv_spec_nfc, info.getData_nfc());
+        setTextInfo(view, R.id.tv_spec_wlan, info.getData_wlan());
+        setTextInfo(view,R.id.tv_spec_bluetooth, info.getData_bluetooth());
+        setTextInfo(view, R.id.tv_spec_infrared, info.getData_infrared());
+        setTextInfo(view,R.id.tv_spec_usb, info.getData_usb());
+        setTextInfo(view,R.id.tv_spec_rear_camera, info.getCamera());
+        setTextInfo(view, R.id.tv_spec_camera_recorder, info.getCamera_record_video());
+        setTextInfo(view,R.id.tv_spec_front_camera, info.getCamera_sub());
+        setTextInfo(view,R.id.tv_spec_os, info.getOs_detail());
+        setTextInfo(view,R.id.tv_spec_cpu, info.getCpu());
+        setTextInfo(view, R.id.tv_spec_chipset, info.getChipset());
+        setTextInfo(view, R.id.tv_spec_sms, info.getSms());
+        setTextInfo(view,R.id.tv_spec_browser, info.getBrowser());
+        setTextInfo(view,R.id.tv_spec_radio, info.getRadio());
+        setTextInfo(view, R.id.tv_spec_game, info.getGame());
 //        setTextInfo(2131558572, null);
 //        setTextInfo(2131558573, info.getLanguage());
 //        setTextInfo(2131558574, info.getGps());

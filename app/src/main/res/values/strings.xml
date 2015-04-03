@@ -57,12 +57,42 @@
     <string name="spec_monitor">Monitor</string>
     <string name="spec_release_date">Release Date</string>
     <string name="spec_sale_date">Sale Date</string>
-    <string name="spec_dimension">Dimension</string>
+    <string name="spec_size">Size</string>
     <string name="spec_weight">Weight</string>
     <string name="spec_display">Display</string>
     <string name="spec_type">Type</string>
     <string name="spec_touch">Touch</string>
     <string name="spec_sound">Sound</string>
     <string name="spec_ring_type">Ring Type</string>
+    <string name="spec_audio_output">Audio Output</string>
+    <string name="spec_ram">Ram</string>
+    <string name="spec_contact">Contact</string>
+    <string name="spec_called_memory">Called Memory</string>
+    <string name="spec_internal_memory">Internal Memory</string>
+    <string name="spec_memory_slot">Memory Slot</string>
+    <string name="spec_network">Network</string>
+    <string name="spec_gprs">GPRS</string>
+    <string name="spec_edge">EDGE</string>
+    <string name="spec_nfc">NFC</string>
+    <string name="spec_wlan">WLAN</string>
+    <string name="spec_bluetooth">Bluetooth</string>
+    <string name="spec_infrared">Infrared</string>
+    <string name="spec_usb">USB</string>
+    <string name="spec_camera">Camera</string>
+    <string name="spec_front_camera">Front Camera</string>
+    <string name="spec_rear_camera">Rear Camera</string>
+    <string name="spec_camera_recorder">Camera Recorder</string>
+    <string name="spec_os">Operating System</string>
+    <string name="spec_cpu">CPU</string>
+    <string name="spec_chipset">Chipset</string>
+    <string name="spec_sms">SMS</string>
+    <string name="spec_browser">Browser</string>
+    <string name="spec_radio">Radio</string>
+    <string name="spec_game">Game</string>
+
+
+    <string name="comment_number">Number of Comments</string>
+    <string name="comment_your_comment">Your Comment</string>
+    <string name="comment_post">Post</string>
 
 </resources>
