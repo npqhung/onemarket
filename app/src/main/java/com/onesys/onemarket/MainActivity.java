@@ -36,6 +36,8 @@ public class MainActivity extends FragmentActivity
         implements BaseFragment.OnFragmentAttachedListener,
         BaseFragment.ShowContentListener{
 
+    private static final String TAG = "OneMarket";
+
     public static final int HOME_VIEW = 6;
     public static final int SEARCH_VIEW = 7;
     public static final int CART_VIEW = 8;
@@ -69,6 +71,8 @@ public class MainActivity extends FragmentActivity
 
     public FooterFragment mFootMenu;
     private boolean isVisbleFooter = true;
+
+    public ArrayList<Fragment> mListScreen = new ArrayList();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -200,9 +204,13 @@ public class MainActivity extends FragmentActivity
 	public void showContent(int position) {
 		// update the main content by replacing fragments
 		Fragment fragment = null;
+        FragmentManager fragmentManager = getFragmentManager();
+
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		switch (position) {
             case HOME_VIEW:
                 fragment = new HomeFragment();
+                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + HOME_VIEW);
                 break;
             case SEARCH_VIEW:
                 fragment = new SearchFragment();
@@ -212,9 +220,11 @@ public class MainActivity extends FragmentActivity
                 break;
             case STORE_VIEW:
                 fragment = new StoreFragment();
+                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + STORE_VIEW);
                 break;
             case PHONE_VIEW:
                 fragment = new PhoneFragment();
+                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + PHONE_VIEW);
                 break;
             case LAPTOP_VIEW:
                 fragment = new LaptopFragment();
@@ -234,9 +244,16 @@ public class MainActivity extends FragmentActivity
         }
 
         if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+            if (!this.mListScreen.contains(fragment)) {
+                this.mListScreen.add(fragment);
+            }
+
+            hideAllFragment(fragmentTransaction);
+
+//            fragmentManager.beginTransaction()
+//                    .replace(R.id.frame_container, fragment).commit();
+            fragmentTransaction.show(fragment);
+            fragmentTransaction.commitAllowingStateLoss();
 
             // update selected item and title, then close the drawer
             if(position == HOME_VIEW){
@@ -297,6 +314,13 @@ public class MainActivity extends FragmentActivity
         localFragmentTransaction.replace(R.id.footer_frame, this.mFootMenu);
         localFragmentTransaction.commitAllowingStateLoss();
         this.isVisbleFooter = true;
+    }
+
+    public void hideAllFragment(android.app.FragmentTransaction fragmentTransaction){
+        for(Fragment fragment : mListScreen){
+            Log.i(TAG, "Hide fragment : " + fragment.getTag());
+            fragmentTransaction.hide(fragment);
+        }
     }
 
 }

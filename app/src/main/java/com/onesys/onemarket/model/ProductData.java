@@ -187,6 +187,11 @@ public class ProductData implements Serializable {
     public String afterDiscount(){
         int price = Integer.parseInt(this.price);
         int discountPrice = Integer.parseInt(this.discount_price);
+
+        if(price == 0){
+            return "0.0";
+        }
+
         double percentDiscount = (price - discountPrice) * 100/ price;
 
         return "" + percentDiscount;

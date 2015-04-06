@@ -1,6 +1,8 @@
 package com.onesys.onemarket.task;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -108,8 +110,15 @@ public class LoadPhoneDetailTask extends AsyncTask<String, Integer, ProductDetai
         productDetailFragment.setArguments(bundle);
 
         FragmentManager fragmentManager = context.getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, productDetailFragment).commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frame_container, (Fragment) productDetailFragment, "" + MainActivity.PRODUCT_DETAIL_VIEW);
+        if (!context.mListScreen.contains(productDetailFragment)) {
+            context.mListScreen.add(productDetailFragment);
+        }
+
+        context.hideAllFragment(fragmentTransaction);
+        fragmentTransaction.show(productDetailFragment);
+        fragmentTransaction.commitAllowingStateLoss();
 
     }
 }

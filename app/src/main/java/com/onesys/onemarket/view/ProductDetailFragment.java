@@ -1,6 +1,8 @@
 package com.onesys.onemarket.view;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
@@ -41,6 +43,7 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     private LinearLayout commentView;
 
     private CommentAdapter commentAdapter;
+    private int currentTab; //0 : main; 1 : spec; 2 : user comments
 
     public ProductDetailFragment() {
     }
@@ -85,6 +88,9 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         ImageView ivProductImg = (ImageView)view.findViewById(R.id.iv_productdetail_full);
         imgLoader.DisplayImage(productDetail.getThumbnail(), ivProductImg);
 
+        ImageView backBtn = ((ImageView)view.findViewById(R.id.iv_productdetail_back));
+        backBtn.setOnClickListener(this);
+
         LinearLayout specBtn = (LinearLayout) view.findViewById(R.id.ll_specification);
         specBtn.setOnClickListener(this);
         LinearLayout commentBtn = (LinearLayout) view.findViewById(R.id.ll_usercomment);
@@ -105,6 +111,10 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     {
         switch (paramView.getId())
         {
+            case R.id.iv_productdetail_back :
+                Log.i(TAG, "Entered Product Detail Specification");
+                showBack();
+                break;
             case R.id.ll_specification :
                 Log.i(TAG, "Entered Product Detail Specification");
                 showSpecification(paramView);
@@ -120,7 +130,41 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    public void showComments(View view){
+    private void showBack(){
+        if (this.currentTab != 0)
+        {
+            showDetailView();
+            return;
+        }
+
+        Log.i(TAG,"Show Phone Fragment");
+        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        Fragment phoneFragment = fragmentManager.findFragmentByTag("" + MainActivity.PHONE_VIEW);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        ((MainActivity)getActivity()).hideAllFragment(fragmentTransaction);
+        fragmentTransaction.show(phoneFragment);
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    private void showDetailView(){
+        if (this.currentTab == 0) {
+            return;
+        }
+        this.currentTab = 0;
+
+        detailView.setVisibility(View.VISIBLE);
+        commentView.setVisibility(View.GONE);
+        specView.setVisibility(View.GONE);
+    }
+
+    private void showComments(View view){
+
+        if (this.currentTab == 2) {
+            return;
+        }
+        this.currentTab = 2;
+
         OneMarketApplication application = (OneMarketApplication) getActivity().getApplication();
         if (application.isOnline()) {
             new LoadPhoneCommentTask((MainActivity)getActivity(),productDetail.getId(),commentAdapter).execute();
@@ -133,7 +177,12 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         specView.setVisibility(View.GONE);
     }
 
-    public void showSpecification(View view){
+    private void showSpecification(View view){
+        if (this.currentTab == 1) {
+            return;
+        }
+        this.currentTab = 1;
+
         detailView.setVisibility(View.GONE);
         commentView.setVisibility(View.GONE);
         specView.setVisibility(View.VISIBLE);

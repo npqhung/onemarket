@@ -6,9 +6,9 @@
             <ImageView android:id="@+id/top_menu_search" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/ic_top_search" />
             <ImageView android:id="@+id/top_menu_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/ic_top_menu_right" />
         </LinearLayout>
-        <ImageView android:id="@+id/top_menu_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_back" android:scaleType="centerCrop" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+        <ImageView android:id="@+id/iv_productdetail_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_back" android:scaleType="centerCrop" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
         <TextView android:textAppearance="@style/TabTitleTextAppearance" android:gravity="center"
-            android:id="@+id/tv_productdetail_title" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/str_product_detail" android:maxLines="1" android:layout_toLeftOf="@id/top_right" android:layout_toRightOf="@id/top_menu_left" />
+            android:id="@+id/tv_productdetail_title" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/str_product_detail" android:maxLines="1" android:layout_toLeftOf="@id/top_right" android:layout_toRightOf="@id/iv_productdetail_back" />
     </RelativeLayout>
     <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0px" />
     <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/bg_dashboard">

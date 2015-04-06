@@ -11,7 +11,11 @@ import com.onesys.onemarket.service.ServerManager;
 import com.onesys.onemarket.utils.Constants;
 import com.onesys.onemarket.utils.response.ProductListResponse;
 
+import org.apache.http.client.utils.URLEncodedUtils;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * Created by Hung Nguyen on 3/22/2015.
@@ -19,25 +23,27 @@ import java.util.ArrayList;
 public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductListResponse[]> {
 
     private static final String TAG = LoadPhoneProductTask.class.getName();
-    private static final String productListURL = Constants.DOMAIN + "/Product/List?type=1";
+    private static final String productListURL = Constants.DOMAIN + "/Product/List?";
     private ProgressDialog progressDialog;
 
     private ProductAdapter productAdapter;
+    private LinkedList criteria;
 
-    public LoadPhoneProductTask(Context context, ProductAdapter productAdapter) {
+    public LoadPhoneProductTask(Context context, ProductAdapter productAdapter, LinkedList criteria) {
         this.productAdapter = productAdapter;
+        this.criteria = criteria;
 
         this.progressDialog = new ProgressDialog(context);
         this.progressDialog.setProgressStyle(0);
         this.progressDialog.setMessage("Loading ...");
     }
 
-    protected ProductListResponse[] doInBackground(String... criteria) {
+    protected ProductListResponse[] doInBackground(String... param) {
 
         Log.d(TAG, "Get All Product");
 
         ProductListResponse[] products = null;
-        ServerManager server = new ServerManager(productListURL);
+        ServerManager server = new ServerManager(productListURL + URLEncodedUtils.format(criteria, "utf-8"));
 
         //totalSize += Downloader.downloadFile(urls[i]);
         try {

@@ -12,10 +12,14 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.onesys.onemarket.R;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SortByQuickAction extends PopupWindows {
 	private ImageView mArrowUp;
@@ -34,6 +38,8 @@ public class SortByQuickAction extends PopupWindows {
 	public static final int ANIM_GROW_FROM_CENTER = 3;
 	public static final int ANIM_AUTO = 4;
 
+    private ArrayList<CheckBox> mListCheckBox = new ArrayList();
+
 	public SortByQuickAction(Context context) {
 		super(context);
 
@@ -50,7 +56,7 @@ public class SortByQuickAction extends PopupWindows {
 			}
 		});
 
-		setRootViewId(R.layout.layout_quickaction_searchby);
+		setRootViewId(R.layout.layout_quickaction_sortby);
 
 		animStyle = ANIM_AUTO;
 		animateTrack = true;
@@ -64,6 +70,27 @@ public class SortByQuickAction extends PopupWindows {
 		mArrowDown = (ImageView) mRootView.findViewById(R.id.arrow_down);
 		mArrowUp = (ImageView) mRootView.findViewById(R.id.arrow_up);
 
+        TextView mCancel = (TextView)mRootView.findViewById(R.id.tv_sortby_item_cancel);
+        mCancel.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View paramAnonymousView)
+            {
+                dismiss();
+            }
+        });
+
+        TextView mSelect = (TextView)mRootView.findViewById(R.id.tv_sortby_item_select);
+        mSelect.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View paramAnonymousView)
+            {
+                if (mListener != null) {
+                    mListener.onItemClick(mChildPos);
+                }
+                dismiss();
+            }
+        });
+
 		setContentView(mRootView);
 	}
 
@@ -75,44 +102,65 @@ public class SortByQuickAction extends PopupWindows {
 		this.animStyle = animStyle;
 	}
 
-	public void addActionItem(ActionItem action) {
+	public void addActionItem(SortByActionItem action) {
 
-		String title = action.getTitle();
-		Drawable icon = action.getIcon();
+		View container = (View) inflater.inflate(R.layout.quickaction_sortby_item, null);
 
-		View container = (View) inflater.inflate(R.layout.action_item, null);
-
-		ImageView img = (ImageView) container.findViewById(R.id.iv_icon);
-		TextView text = (TextView) container.findViewById(R.id.tv_title);
-
-		if (icon != null)
-			img.setImageDrawable(icon);
-		else
-			img.setVisibility(View.GONE);
-
+        String title = action.getTitle();
+		TextView text = (TextView) container.findViewById(R.id.tv_sortby_title);
 		if (title != null)
 			text.setText(title);
 		else
 			text.setVisibility(View.GONE);
 
-		final int pos = mChildPos;
+        final CheckBox localCheckBox = (CheckBox)container.findViewById(R.id.cb_select);
+        localCheckBox.setChecked(false);
+        localCheckBox.setClickable(false);
+        localCheckBox.setVisibility(View.INVISIBLE);
+        this.mListCheckBox.add(localCheckBox);
 
-		container.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				if (mListener != null)
-					mListener.onItemClick(pos);
-
-				dismiss();
-			}
-		});
-
-		container.setFocusable(true);
-		container.setClickable(true);
+        final int pos = mChildPos;
+        container.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                SortByQuickAction.this.uncheckAll(localCheckBox);
+                if (localCheckBox.isChecked())
+                {
+                    mChildPos = -1;
+                    localCheckBox.setChecked(false);
+                    localCheckBox.setVisibility(View.INVISIBLE);
+                    return;
+                }
+                mChildPos = pos;
+                localCheckBox.setChecked(true);
+                localCheckBox.setVisibility(View.VISIBLE);
+            }
+        });
+        container.setFocusable(true);
+        container.setClickable(true);
 
 		mTrack.addView(container, mChildPos + 1);
 
 		mChildPos++;
 	}
+
+    private void uncheckAll(CheckBox paramCheckBox)
+    {
+        Iterator localIterator = this.mListCheckBox.iterator();
+        for (;;)
+        {
+            if (!localIterator.hasNext()) {
+                return;
+            }
+            CheckBox localCheckBox = (CheckBox)localIterator.next();
+            if (!localCheckBox.equals(paramCheckBox))
+            {
+                localCheckBox.setChecked(false);
+                localCheckBox.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
 
 	public void setOnActionItemClickListener(OnActionItemClickListener listener) {
 		mListener = listener;

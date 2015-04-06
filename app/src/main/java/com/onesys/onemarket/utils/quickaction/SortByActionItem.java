@@ -13,16 +13,16 @@ import android.graphics.drawable.Drawable;
  * @author Phat (Phillip) H. VU <vuhongphat@hotmail.com>
  *
  */
-public class ActionItem {
+public class SortByActionItem {
 	private Drawable icon;
 	private Bitmap thumb;
 	private String title;
 	private boolean selected;
 
-	public ActionItem() {
+	public SortByActionItem() {
 	}
 
-	public ActionItem(Drawable icon) {
+	public SortByActionItem(Drawable icon) {
 		this.icon = icon;
 	}
 

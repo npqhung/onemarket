@@ -75,20 +75,13 @@ public class SearchByQuickAction extends PopupWindows {
 		this.animStyle = animStyle;
 	}
 
-	public void addActionItem(ActionItem action) {
+	public void addActionItem(SortByActionItem action) {
 
 		String title = action.getTitle();
-		Drawable icon = action.getIcon();
 
-		View container = (View) inflater.inflate(R.layout.action_item, null);
+		View container = (View) inflater.inflate(R.layout.quickaction_searchby_item, null);
 
-		ImageView img = (ImageView) container.findViewById(R.id.iv_icon);
-		TextView text = (TextView) container.findViewById(R.id.tv_title);
-
-		if (icon != null)
-			img.setImageDrawable(icon);
-		else
-			img.setVisibility(View.GONE);
+		TextView text = (TextView) container.findViewById(R.id.tv_searchby_item_title);
 
 		if (title != null)
 			text.setText(title);
