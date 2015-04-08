@@ -119,7 +119,7 @@ public class ProductAdapter extends BaseAdapter {
     {
         if (this.productList == null)
             this.productList = new ArrayList();
-        this.productList.clear();
+
         this.productList.addAll(productList);
         notifyDataSetChanged();
     }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -25,9 +26,11 @@ import com.onesys.onemarket.utils.quickaction.SearchByActionItem;
 import com.onesys.onemarket.utils.quickaction.SortByActionItem;
 import com.onesys.onemarket.utils.quickaction.SearchByQuickAction;
 import com.onesys.onemarket.utils.quickaction.SortByQuickAction;
+import com.onesys.onemarket.utils.response.ProductListResponse;
 
 import org.apache.http.message.BasicNameValuePair;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -50,6 +53,11 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     private final String PRICE_UP = "0";
     private final String PRICE_DOWN = "1";
 
+    private int pageIndex;
+    private boolean isLoading = false;
+    private boolean isHasMoreData = false;
+    private LinkedList criteria = new LinkedList();
+
     public PhoneFragment(){
 
     }
@@ -62,6 +70,7 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
         context = (MainActivity)getActivity();
 
         productAdapter = new ProductAdapter(context);
+        pageIndex = 1;
 
         initPhoneGridView(rootView);
 
@@ -79,7 +88,7 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
         phoneGridView = (GridView) view.findViewById(R.id.gv_phone);
         phoneGridView.setNumColumns(2);
 
-        loadProductList(new LinkedList());
+        productAdapter.clearData();
 
         phoneGridView.setAdapter(productAdapter);
 
@@ -92,6 +101,27 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                 showProductDetailView(product);
             }
         });
+
+        phoneGridView.setOnScrollListener(new AbsListView.OnScrollListener()
+        {
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,int totalItemCount)
+            {
+                Log.i(TAG,"firstVisibleItem : " +  firstVisibleItem
+                                + "\n" + " visibleItemCount : " + visibleItemCount
+                                + "\n" + " totalItemCount : " + totalItemCount
+                                + "\n" + " isHasMoreData : " + isHasMoreData
+                            );
+                if ((firstVisibleItem + visibleItemCount == totalItemCount)&& (!isLoading) && (isHasMoreData))
+                {
+                    pageIndex++;
+                    loadDataMore();
+                }
+            }
+
+            public void onScrollStateChanged(AbsListView view, int scrollState) {}
+        });
+
+        loadProductList(criteria);
 
         this.ivPhoneGridListType = ((ImageView)view.findViewById(R.id.iv_phone_gridlist));
         this.ivPhoneGridListType.setOnClickListener(this);
@@ -162,7 +192,19 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     public void loadProductList(LinkedList criteria){
         application = (OneMarketApplication) getActivity().getApplication();
         if (application.isOnline()) {
-            new LoadPhoneProductTask(phoneGridView.getContext(), productAdapter, criteria).execute();
+            new LoadPhoneProductTask(context,  productAdapter, criteria){
+                protected ProductListResponse[] doInBackground(String... paramAnonymousVarArgs)
+                {
+                    isLoading = true;
+                    return super.doInBackground(paramAnonymousVarArgs);
+                }
+
+                protected void onPostExecute(ArrayList<ProductData> paramAnonymousArrayList)
+                {
+                    isLoading = false;
+                    isHasMoreData = true;
+                }
+            }.execute();
         } else {
             Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
         }
@@ -196,9 +238,8 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                 getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[5], SearchByUtils.getMobileOptionList(5));
         searchByQuickAction.addActionItem(promotionItem);
 
-        final LinkedList searchCriteria = new LinkedList();
-        searchByQuickAction.setOnActionItemClickListener(new SearchByQuickAction.OnActionItemClickListener(){
-            public void onItemAcceptClick(String selectedPrice, String selectedBrand, String selectedOS, String selectedScreen, String selectedFeature,String selectedPromotion){
+        searchByQuickAction.setOnActionItemClickListener(new SearchByQuickAction.OnActionItemClickListener() {
+            public void onItemAcceptClick(String selectedPrice, String selectedBrand, String selectedOS, String selectedScreen, String selectedFeature, String selectedPromotion) {
 //                ((MobileMarketActivity)DS4DienThoaiFragment.this.getActivity()).showFrameBlack(false);
 //                DS4DienThoaiFragment.this.sort = null;
 //                DS4DienThoaiFragment.this.price = null;
@@ -210,19 +251,19 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
 //                DS4DienThoaiFragment.this.pagesize = null;
 //                DS4DienThoaiFragment.this.pageIndex = 1;
 //                DS4DienThoaiFragment.this.loadData();
-                searchCriteria.clear();
-                searchCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                if(!selectedBrand.equals("-1")) {
-                    searchCriteria.add(new BasicNameValuePair("brand", selectedBrand));
+                criteria.clear();
+                criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                if (!selectedBrand.equals("-1")) {
+                    criteria.add(new BasicNameValuePair("brand", selectedBrand));
                 }
-                if(!selectedPrice.equals("-1")) {
-                    searchCriteria.add(new BasicNameValuePair("price_search", selectedPrice));
+                if (!selectedPrice.equals("-1")) {
+                    criteria.add(new BasicNameValuePair("price_search", selectedPrice));
                 }
 
-                if(!selectedPromotion.equals("-1")){
-                    searchCriteria.add(new BasicNameValuePair("status", selectedPromotion));
+                if (!selectedPromotion.equals("-1")) {
+                    criteria.add(new BasicNameValuePair("status", selectedPromotion));
                 }
-                loadProductList(searchCriteria);
+                loadProductList(criteria);
             }
         });
 
@@ -238,33 +279,37 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
         sort3Action.setTitle("Price Low to High");
         sortByQuickAction.addActionItem(sort3Action);
 
-        final LinkedList sortCriteria = new LinkedList();
         sortByQuickAction.setOnActionItemClickListener(new SortByQuickAction.OnActionItemClickListener(){
             public void onItemClick(int position){
                 switch (position){
                     case 0:
                         Log.i(TAG, "Sort by View");
-                        sortCriteria.clear();
-                        sortCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                        sortCriteria.add(new BasicNameValuePair("sort", "views"));
-                        loadProductList(sortCriteria);
+                        criteria.clear();
+                        criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                        criteria.add(new BasicNameValuePair("sort", "views"));
+                        loadProductList(criteria);
                         break;
                     case 1:
                         Log.i(TAG, "Sort by Price DOWN");
-                        sortCriteria.clear();
-                        sortCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                        sortCriteria.add(new BasicNameValuePair("price", PRICE_DOWN));
-                        loadProductList(sortCriteria);
+                        criteria.clear();
+                        criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                        criteria.add(new BasicNameValuePair("price", PRICE_DOWN));
+                        loadProductList(criteria);
                         break;
                     case 2:
                         Log.i(TAG, "Sort by PRICE UP");
-                        sortCriteria.clear();
-                        sortCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                        sortCriteria.add(new BasicNameValuePair("price", PRICE_UP));
-                        loadProductList(sortCriteria);
+                        criteria.clear();
+                        criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                        criteria.add(new BasicNameValuePair("price", PRICE_UP));
+                        loadProductList(criteria);
                         break;
                 }
             }
         });
+    }
+
+    private void loadDataMore(){
+        criteria.add(new BasicNameValuePair("pageIndex", ""+pageIndex));
+        loadProductList(criteria);
     }
 }

@@ -45,13 +45,11 @@ public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductList
         ProductListResponse[] products = null;
         ServerManager server = new ServerManager(productListURL + URLEncodedUtils.format(criteria, "utf-8"));
 
-        //totalSize += Downloader.downloadFile(urls[i]);
         try {
             Log.d(this.getClass().getName(), "calling remote server to find outlets");
 
             ProductListResponse response = server.getAllProductList();
-//		             publishProgress((int) ((i / (float) count) * 100));
-            //outlets = response.getOutlets(); //need to change this so the result is appended to the array
+
             products = new ProductListResponse[]{response};
         } catch (RuntimeException e) {
             Log.e(this.getClass().getName(), e.getMessage());
