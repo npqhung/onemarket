@@ -20,6 +20,8 @@ import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.task.LoadPhoneDetailTask;
 import com.onesys.onemarket.task.LoadPhoneProductTask;
+import com.onesys.onemarket.utils.SearchByUtils;
+import com.onesys.onemarket.utils.quickaction.SearchByActionItem;
 import com.onesys.onemarket.utils.quickaction.SortByActionItem;
 import com.onesys.onemarket.utils.quickaction.SearchByQuickAction;
 import com.onesys.onemarket.utils.quickaction.SortByQuickAction;
@@ -167,14 +169,43 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     }
 
     public void initQuickAction(){
-        searchByQuickAction = new SearchByQuickAction(context);
-        SortByActionItem text1Action = new SortByActionItem();
-        text1Action.setTitle("text 1");
-        searchByQuickAction.addActionItem(text1Action);
 
-        SortByActionItem text2Action = new SortByActionItem();
-        text2Action.setTitle("text 2");
-        searchByQuickAction.addActionItem(text2Action);
+        searchByQuickAction = new SearchByQuickAction(context);
+
+        SearchByActionItem priceItem = new SearchByActionItem(0,
+                getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[0], SearchByUtils.getMobileOptionList(0));
+        searchByQuickAction.addActionItem(priceItem);
+
+        SearchByActionItem brandItem = new SearchByActionItem(1,
+                getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[1], SearchByUtils.getMobileOptionList(1));
+        searchByQuickAction.addActionItem(brandItem);
+
+        final LinkedList searchCriteria = new LinkedList();
+        searchByQuickAction.setOnActionItemClickListener(new SearchByQuickAction.OnActionItemClickListener(){
+            public void onItemAcceptClick(String selectedPrice, String selectedBrand, String selectedOS, String selectedScreen, String selectedFeature,String selectedPromotion){
+//                ((MobileMarketActivity)DS4DienThoaiFragment.this.getActivity()).showFrameBlack(false);
+//                DS4DienThoaiFragment.this.sort = null;
+//                DS4DienThoaiFragment.this.price = null;
+//                DS4DienThoaiFragment.this.brand = paramAnonymousString2;
+//                DS4DienThoaiFragment.this.status = paramAnonymousString6;
+//                DS4DienThoaiFragment.this.key_search = null;
+//                DS4DienThoaiFragment.this.price_search = paramAnonymousString1;
+//                DS4DienThoaiFragment.this.promotion = null;
+//                DS4DienThoaiFragment.this.pagesize = null;
+//                DS4DienThoaiFragment.this.pageIndex = 1;
+//                DS4DienThoaiFragment.this.loadData();
+                searchCriteria.clear();
+                searchCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                if(!selectedBrand.equals("-1")) {
+                    searchCriteria.add(new BasicNameValuePair("brand", selectedBrand));
+                }
+                if(!selectedPrice.equals("-1")) {
+                    searchCriteria.add(new BasicNameValuePair("price_search", selectedPrice));
+                }
+
+                loadProductList(searchCriteria);
+            }
+        });
 
         sortByQuickAction = new SortByQuickAction(context);
 
@@ -188,30 +219,30 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
         sort3Action.setTitle("Price Low to High");
         sortByQuickAction.addActionItem(sort3Action);
 
-        final LinkedList criteria = new LinkedList();
+        final LinkedList sortCriteria = new LinkedList();
         sortByQuickAction.setOnActionItemClickListener(new SortByQuickAction.OnActionItemClickListener(){
             public void onItemClick(int position){
                 switch (position){
                     case 0:
                         Log.i(TAG, "Sort by View");
-                        criteria.clear();
-                        criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                        criteria.add(new BasicNameValuePair("sort", "views"));
-                        loadProductList(criteria);
+                        sortCriteria.clear();
+                        sortCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                        sortCriteria.add(new BasicNameValuePair("sort", "views"));
+                        loadProductList(sortCriteria);
                         break;
                     case 1:
                         Log.i(TAG, "Sort by Price DOWN");
-                        criteria.clear();
-                        criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                        criteria.add(new BasicNameValuePair("price", PRICE_DOWN));
-                        loadProductList(criteria);
+                        sortCriteria.clear();
+                        sortCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                        sortCriteria.add(new BasicNameValuePair("price", PRICE_DOWN));
+                        loadProductList(sortCriteria);
                         break;
                     case 2:
                         Log.i(TAG, "Sort by PRICE UP");
-                        criteria.clear();
-                        criteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
-                        criteria.add(new BasicNameValuePair("price", PRICE_UP));
-                        loadProductList(criteria);
+                        sortCriteria.clear();
+                        sortCriteria.add(new BasicNameValuePair("category", CATEGORY_PHONE));
+                        sortCriteria.add(new BasicNameValuePair("price", PRICE_UP));
+                        loadProductList(sortCriteria);
                         break;
                 }
             }

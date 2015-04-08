@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_quick_action_searchby">
+        <item>Price</item>
+        <item>Brand</item>
+        <item>Operating System</item>
+        <item>Screen Size</item>
+        <item>Feature</item>
+        <item>Promotion</item>
+    </string-array>
+    <string-array name="array_quick_action_searchby_price">
+        <item>Nhỏ hơn 1 triệu</item>
+        <item>Nhỏ hơn 2 triệu</item>
+        <item>Nhỏ hơn 5 triệu</item>
+        <item>Nhỏ hơn 10 triệu</item>
+        <item>lớn hơn 10 triệu</item>
+        <item>Hủy</item>
+    </string-array>
+</resources>

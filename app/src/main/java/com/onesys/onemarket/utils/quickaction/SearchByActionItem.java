@@ -1,60 +1,75 @@
 package com.onesys.onemarket.utils.quickaction;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
 
-/**
- * We firstly must create an entity which will represent a particular item of out quick action. 
- * It will mainly contain an icon and a title (what is visible for the user). Besides this, the item
- * will have an id (in order to recognize it when we want to listen on click events on it), and 
- * two states � sticky or not (i.e. after taping on the item the quick action will disappear or not).
- * It�s basically an object that holds the information for a particular item from the quick action.
- * 
- * @author Phat (Phillip) H. VU <vuhongphat@hotmail.com>
- *
- */
 public class SearchByActionItem {
-	private Drawable icon;
-	private Bitmap thumb;
-	private String title;
-	private boolean selected;
+    private ArrayList<OptionItem> arrayValues;
+    private int currentValuePosition;
+    private int id;
+    private String title;
 
-	public SearchByActionItem() {
-	}
+    public SearchByActionItem(int paramInt, String paramString)
+    {
+        this(paramInt, paramString, new ArrayList());
+    }
 
-	public SearchByActionItem(Drawable icon) {
-		this.icon = icon;
-	}
+    public SearchByActionItem(int id, String title, ArrayList<OptionItem> optionList)
+    {
+        this.id = id;
+        this.title = title;
+        this.arrayValues = optionList;
+        this.currentValuePosition = (-1 + optionList.size());
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public OptionItem getArrayValue(int paramInt)
+    {
+        if ((paramInt < 0) || (paramInt >= this.arrayValues.size()))
+            return null;
+        return (OptionItem)this.arrayValues.get(paramInt);
+    }
 
-	public String getTitle() {
-		return this.title;
-	}
+    public ArrayList<OptionItem> getArrayValues()
+    {
+        return this.arrayValues;
+    }
 
-	public void setIcon(Drawable icon) {
-		this.icon = icon;
-	}
+    public OptionItem getCurrentValue()
+    {
+        return getArrayValue(this.currentValuePosition);
+    }
 
-	public Drawable getIcon() {
-		return this.icon;
-	}
+    public int getCurrentValuePosition()
+    {
+        return this.currentValuePosition;
+    }
 
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
+    public int getId()
+    {
+        return this.id;
+    }
 
-	public boolean isSelected() {
-		return this.selected;
-	}
+    public String getTitle()
+    {
+        return this.title;
+    }
 
-	public void setThumb(Bitmap thumb) {
-		this.thumb = thumb;
-	}
+    public void setCurrentValuePosition(int paramInt)
+    {
+        this.currentValuePosition = paramInt;
+    }
 
-	public Bitmap getThumb() {
-		return this.thumb;
-	}
+    public void setId(int paramInt)
+    {
+        this.id = paramInt;
+    }
+
+    public void setTitle(String paramString)
+    {
+        this.title = paramString;
+    }
+
+    public String toString()
+    {
+        return "SearchByActionItem [id=" + this.id + ", title=" + this.title + ", arrayValues=" + this.arrayValues + ", currentValuePosition=" + this.currentValuePosition + "]";
+    }
 }
