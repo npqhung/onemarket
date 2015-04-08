@@ -106,14 +106,19 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
         {
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,int totalItemCount)
             {
-                Log.i(TAG,"firstVisibleItem : " +  firstVisibleItem
-                                + "\n" + " visibleItemCount : " + visibleItemCount
-                                + "\n" + " totalItemCount : " + totalItemCount
-                                + "\n" + " isHasMoreData : " + isHasMoreData
-                            );
+
                 if ((firstVisibleItem + visibleItemCount == totalItemCount)&& (!isLoading) && (isHasMoreData))
                 {
                     pageIndex++;
+
+                    Log.i(TAG,"firstVisibleItem : " +  firstVisibleItem
+                                    + "\n" + " visibleItemCount : " + visibleItemCount
+                                    + "\n" + " totalItemCount : " + totalItemCount
+                                    + "\n" + " isLoading : " + isLoading
+                                    + "\n" + " isHasMoreData : " + isHasMoreData
+                                    + "\n" + " pageIndex : " + pageIndex
+                    );
+
                     loadDataMore();
                 }
             }
@@ -199,10 +204,13 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                     return super.doInBackground(paramAnonymousVarArgs);
                 }
 
-                protected void onPostExecute(ArrayList<ProductData> paramAnonymousArrayList)
+                protected void onPostExecute(ProductListResponse[] productsResponse)
                 {
                     isLoading = false;
                     isHasMoreData = true;
+                    super.onPostExecute(productsResponse);
+
+
                 }
             }.execute();
         } else {
@@ -309,6 +317,7 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
     }
 
     private void loadDataMore(){
+        Log.i(TAG,"Load MORE DATA");
         criteria.add(new BasicNameValuePair("pageIndex", ""+pageIndex));
         loadProductList(criteria);
     }

@@ -93,6 +93,7 @@ public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductList
                 Log.i(TAG, product[i].getName() + " " + product[i].getPrice() );
                 productList.add(product[i]);
             }
+            Log.i(TAG, "Size : " + productList.size());
 
             productAdapter.addData(productList);
         }
