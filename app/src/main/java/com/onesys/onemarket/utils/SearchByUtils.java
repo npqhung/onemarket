@@ -50,6 +50,34 @@ public class SearchByUtils {
 
     }
 
+    private static ArrayList<OptionItem> getMobileOSList(){
+        ArrayList<OptionItem> osList = new ArrayList<OptionItem>();
+
+        osList.add(new OptionItem("1", "iOS"));
+        osList.add(new OptionItem("2", "Android"));
+        osList.add(new OptionItem("3", "Window Phone"));
+        osList.add(new OptionItem("4", "BlackBerry"));
+        osList.add(new OptionItem("5", "Nokia X"));
+        osList.add(new OptionItem("-1", "Cancel"));
+
+        return osList;
+    }
+
+    private static ArrayList<OptionItem> getMobileScreenSizeList(){
+        ArrayList<OptionItem> screenList = new ArrayList<OptionItem>();
+
+        screenList.add(new OptionItem("1", "Under 3.5\""));
+        screenList.add(new OptionItem("2", "From 3.5\" - 4\""));
+        screenList.add(new OptionItem("3", "From 4\" - 5\""));
+        screenList.add(new OptionItem("4", "From 5\" - 6\""));
+        screenList.add(new OptionItem("5", "About 7\""));
+        screenList.add(new OptionItem("6", "About 8\""));
+        screenList.add(new OptionItem("7", "About 10\""));
+        screenList.add(new OptionItem("8", "Over 11\""));
+        screenList.add(new OptionItem("-1", "Cancel"));
+
+        return screenList;
+    }
 
     public static ArrayList<OptionItem> getMobileOptionList(int position){
 
@@ -60,6 +88,20 @@ public class SearchByUtils {
                 break;
             case 1: //brand
                 optionList = getMobileBrandList();
+                break;
+            case 2: //os
+                optionList = getMobileOSList();
+                break;
+            case 3 : //screenSize
+                optionList = getMobileScreenSizeList();
+                break;
+            case 4 :
+                optionList.add(new OptionItem("0","Filter"));
+                optionList.add(new OptionItem("-1","Cancel"));
+                break;
+            case 5 :
+                optionList.add(new OptionItem("0","Filter"));
+                optionList.add(new OptionItem("-1","Cancel"));
                 break;
         }
         return optionList;

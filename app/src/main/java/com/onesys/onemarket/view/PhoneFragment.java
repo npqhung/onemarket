@@ -180,6 +180,22 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                 getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[1], SearchByUtils.getMobileOptionList(1));
         searchByQuickAction.addActionItem(brandItem);
 
+        SearchByActionItem osItem = new SearchByActionItem(2,
+                getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[2], SearchByUtils.getMobileOptionList(2));
+        searchByQuickAction.addActionItem(osItem);
+
+        SearchByActionItem screenItem = new SearchByActionItem(3,
+                getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[3], SearchByUtils.getMobileOptionList(3));
+        searchByQuickAction.addActionItem(screenItem);
+
+        SearchByActionItem featureItem = new SearchByActionItem(4,
+                getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[4], SearchByUtils.getMobileOptionList(4));
+        searchByQuickAction.addActionItem(featureItem);
+
+        SearchByActionItem promotionItem = new SearchByActionItem(5,
+                getActivity().getResources().getStringArray(R.array.array_quick_action_searchby)[5], SearchByUtils.getMobileOptionList(5));
+        searchByQuickAction.addActionItem(promotionItem);
+
         final LinkedList searchCriteria = new LinkedList();
         searchByQuickAction.setOnActionItemClickListener(new SearchByQuickAction.OnActionItemClickListener(){
             public void onItemAcceptClick(String selectedPrice, String selectedBrand, String selectedOS, String selectedScreen, String selectedFeature,String selectedPromotion){
@@ -203,6 +219,9 @@ public class PhoneFragment extends Fragment implements View.OnClickListener{
                     searchCriteria.add(new BasicNameValuePair("price_search", selectedPrice));
                 }
 
+                if(!selectedPromotion.equals("-1")){
+                    searchCriteria.add(new BasicNameValuePair("status", selectedPromotion));
+                }
                 loadProductList(searchCriteria);
             }
         });
