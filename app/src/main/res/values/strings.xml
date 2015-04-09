@@ -95,4 +95,7 @@
     <string name="comment_your_comment">Your Comment</string>
     <string name="comment_post">Post</string>
 
+    <string name="str_empty_store">There is no product in stores</string>
+    <string name="str_choose_store">Please choose a store</string>
+
 </resources>

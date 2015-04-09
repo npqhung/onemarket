@@ -21,6 +21,10 @@ public class OneMarketApplication extends Application{
     public static final String SETTING_SERVER = "setting_server";
     public static final String SETTING_CLIENT_NAME = "setting_client_name";
 
+    public static final String USER_ID = "user_id";
+
+    private String userId;
+
     @Override
 	public void onCreate() {
 		super.onCreate();
@@ -58,5 +62,9 @@ public class OneMarketApplication extends Application{
 
     }
 
+    public String getUserId()
+    {
+        return this.userId;
+    }
 
 }

@@ -21,18 +21,17 @@ import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.CommentAdapter;
 import com.onesys.onemarket.application.OneMarketApplication;
-import com.onesys.onemarket.model.ProductComment;
+import com.onesys.onemarket.dialog.StoreDialog;
 import com.onesys.onemarket.model.ProductDetailData;
+import com.onesys.onemarket.model.ProductStore;
 import com.onesys.onemarket.model.SpecificationInfo;
 import com.onesys.onemarket.task.LoadPhoneCommentTask;
-import com.onesys.onemarket.task.LoadPhoneDetailTask;
 import com.onesys.onemarket.utils.Constants;
 import com.onesys.onemarket.utils.image.ImageLoader;
-import com.onesys.onemarket.utils.response.ProductCommentResponse;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class ProductDetailFragment extends Fragment implements View.OnClickListener{
+public class ProductDetailFragment extends Fragment implements Serializable, View.OnClickListener, StoreDialog.StoreListener{
 
     ProductDetailData productDetail;
     private int callFromIndex;
@@ -105,6 +104,9 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         SpecificationInfo mobileInfo = productDetail.getMobileinfo();
         parseSpecificationView(view, mobileInfo);
 
+        LinearLayout addToCartBtn = (LinearLayout)view.findViewById(R.id.ll_payment);
+        addToCartBtn.setOnClickListener(this);
+
     }
 
     public void onClick(View paramView)
@@ -122,6 +124,22 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
             case R.id.ll_usercomment :
                 Log.i(TAG, "Entered Product Detail Specification");
                 showComments(paramView);
+                break;
+            case R.id.ll_payment :
+                Log.i(TAG, "Entered Add To Cart");
+                if (productDetail.getProduct_store() == null || productDetail.getProduct_store().size() == 0){
+                    Toast.makeText(getActivity(), getString(R.string.str_empty_store), Toast.LENGTH_SHORT).show();
+                } else{
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(Constants.PRODUCT_STRING,productDetail);
+                    bundle.putSerializable(Constants.STORE_LISTENER, this);
+
+                    StoreDialog storeDialog = new StoreDialog();
+                    storeDialog.setArguments(bundle);
+
+                    storeDialog.show(getActivity().getFragmentManager(), "Dialog store fragment");
+                }
+
                 break;
 
             default:
@@ -244,5 +262,37 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
 //        setTextInfo(2131558578, info.getBatteryWaiting());
 //        setTextInfo(2131558579, info.getBatteryCall());
     }
+
+    public void onChooseStore(ProductStore productStore)
+    {
+        String storeId = productStore.store_id;
+        System.out.println("storeInfo.store_id = " + productStore.store_id);
+//        addToCart(storeId);
+    }
+
+//    private void addToCart(final String storeId)
+//    {
+//        if (TextUtils.isEmpty(((OneMarketApplication)getActivity().getApplication()).getUserId()))
+//        {
+//            Toast.makeText(getActivity(), "Please login to complete it!", 0).show();
+//            return;
+//        }
+//        new CheckAddTask(getActivity(), paramString, this.productDetailsData)
+//        {
+//            protected void onPostExecute(Boolean paramAnonymousBoolean)
+//            {
+//                super.onPostExecute(paramAnonymousBoolean);
+//                if (paramAnonymousBoolean.booleanValue())
+//                {
+//                    ((MobileMarketApplication)DS4DienThoaiDetailMoreFragment.this.getActivity().getApplication()).addDataCart(DS4DienThoaiDetailMoreFragment.this.productDetailsData, paramString);
+//                    Toast.makeText(DS4DienThoaiDetailMoreFragment.this.getActivity(), "This product will be added to cart!", 0).show();
+//                    ((MobileMarketActivity)DS4DienThoaiDetailMoreFragment.this.getActivity()).updateGioHangTab();
+//                    return;
+//                }
+//                Toast.makeText(DS4DienThoaiDetailMoreFragment.this.getActivity(), "This product can't purchased now!", 0).show();
+//            }
+//        }
+//                .execute(new String[0]);
+//    }
 
 }
