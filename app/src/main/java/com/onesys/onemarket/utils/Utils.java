@@ -5,6 +5,7 @@ package com.onesys.onemarket.utils;
  */
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
 
 public class Utils {
     public static void CopyStream(InputStream is, OutputStream os)
@@ -23,4 +24,11 @@ public class Utils {
         }
         catch(Exception ex){}
     }
+
+    public static String getPriceFormat(String price)
+    {
+        Double localDouble = Double.valueOf(Double.parseDouble(price));
+        return new DecimalFormat("#,###,### " + "VND").format(localDouble);
+    }
+
 }

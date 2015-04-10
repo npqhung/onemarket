@@ -98,4 +98,14 @@
     <string name="str_empty_store">There is no product in stores</string>
     <string name="str_choose_store">Please choose a store</string>
 
+    <!-- cart-->
+    <string name="str_cart_total_item">%d items in cart</string>
+    <string name="str_cart_price">Price</string>
+    <string name="str_cart_fee">Fee</string>
+    <string name="str_cart_total">Total</string>
+    <string name="str_cart_payment">Payment</string>
+
+    <string name="str_color">Color :</string>
+    <string name="str_quantity">Số lượng :</string>
+
 </resources>

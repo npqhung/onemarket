@@ -1,9 +1,9 @@
 package com.onesys.onemarket.view;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +19,10 @@ import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
 //import com.onesys.onemarket.task.LoadPhoneProductTask;
+import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.Constants;
 
-public class LaptopFragment extends Fragment implements View.OnClickListener{
+public class LaptopFragment extends BaseFragment implements View.OnClickListener{
 
     private OneMarketApplication application = null;
     private ProductAdapter productAdapter;
@@ -83,7 +84,7 @@ public class LaptopFragment extends Fragment implements View.OnClickListener{
         ProductDetailFragment productDetailFragment = new ProductDetailFragment();
         productDetailFragment.setArguments(bundle);
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, productDetailFragment).commit();
     }

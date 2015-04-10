@@ -2,13 +2,13 @@ package com.onesys.onemarket;
 
 import java.util.ArrayList;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -204,9 +204,9 @@ public class MainActivity extends FragmentActivity
 	public void showContent(int position) {
 		// update the main content by replacing fragments
 		Fragment fragment = null;
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		switch (position) {
             case HOME_VIEW:
                 fragment = new HomeFragment();
@@ -216,7 +216,17 @@ public class MainActivity extends FragmentActivity
                 fragment = new SearchFragment();
                 break;
             case CART_VIEW:
-                fragment = new CartFragment();
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.CART_VIEW);
+                if (fragment == null) {
+                    fragment = new CartFragment();
+                }
+
+                fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
+
+//                ((BaseFragment)fragment).onFragmentSelected();
+
+//                fragment = new CartFragment();
+//                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + CART_VIEW);
                 break;
             case STORE_VIEW:
                 fragment = new StoreFragment();
@@ -233,10 +243,10 @@ public class MainActivity extends FragmentActivity
                 fragment = new TabletFragment();
                 break;
             case GAME_VIEW:
-                fragment = new GameFragment();
+//                fragment = new GameFragment();
                 break;
             case ACCESSORIES_VIEW:
-                fragment = new AccessoriesFragment();
+//                fragment = new AccessoriesFragment();
                 break;
 
             default:
@@ -253,7 +263,8 @@ public class MainActivity extends FragmentActivity
 //            fragmentManager.beginTransaction()
 //                    .replace(R.id.frame_container, fragment).commit();
             fragmentTransaction.show(fragment);
-            fragmentTransaction.commitAllowingStateLoss();
+            fragmentTransaction.commit();
+//            fragmentTransaction.commitAllowingStateLoss();
 
             // update selected item and title, then close the drawer
             if(position == HOME_VIEW){
@@ -316,7 +327,7 @@ public class MainActivity extends FragmentActivity
         this.isVisbleFooter = true;
     }
 
-    public void hideAllFragment(android.app.FragmentTransaction fragmentTransaction){
+    public void hideAllFragment(FragmentTransaction fragmentTransaction){
         for(Fragment fragment : mListScreen){
             Log.i(TAG, "Hide fragment : " + fragment.getTag());
             fragmentTransaction.hide(fragment);

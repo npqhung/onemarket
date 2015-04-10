@@ -21,6 +21,7 @@ import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.task.LoadPhoneDetailTask;
 import com.onesys.onemarket.task.LoadPhoneProductTask;
+import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.SearchByUtils;
 import com.onesys.onemarket.utils.quickaction.SearchByActionItem;
 import com.onesys.onemarket.utils.quickaction.SortByActionItem;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class PhoneFragment extends Fragment implements View.OnClickListener{
+public class PhoneFragment extends BaseFragment implements View.OnClickListener{
 
     private OneMarketApplication application = null;
     private ProductAdapter productAdapter;

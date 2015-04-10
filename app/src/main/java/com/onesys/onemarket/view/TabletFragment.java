@@ -1,8 +1,7 @@
 package com.onesys.onemarket.view;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,12 @@ import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
+import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.Constants;
 
 import java.util.ArrayList;
 
-public class TabletFragment extends Fragment {
+public class TabletFragment extends BaseFragment {
 
     public TabletFragment(){}
 
@@ -54,7 +54,7 @@ public class TabletFragment extends Fragment {
         ProductDetailFragment productDetailFragment = new ProductDetailFragment();
         productDetailFragment.setArguments(bundle);
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, productDetailFragment).commit();
     }

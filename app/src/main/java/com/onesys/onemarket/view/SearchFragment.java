@@ -1,14 +1,14 @@
 package com.onesys.onemarket.view;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.onesys.onemarket.R;
+import com.onesys.onemarket.utils.BaseFragment;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends BaseFragment {
 
 	public SearchFragment(){}
 	

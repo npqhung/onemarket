@@ -29,4 +29,9 @@
     <color name="dark_text_color">#ffaeb2b2</color>
     <color name="bg_divider_viewmore">#ffb8bcbc</color>
 
+    <!-- cart-->
+    <color name="bg_cart_gridview">#fff2f2f2</color>
+    <color name="bg_cart1">#ffe6e6e6</color>
+    <color name="bg_cart2">#fff3f3f3</color>
+
 </resources>

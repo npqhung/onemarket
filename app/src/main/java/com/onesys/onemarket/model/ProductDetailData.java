@@ -19,15 +19,15 @@ public class ProductDetailData
     private String category_id;
 //    private ArrayList<ColorObject> colorObjectArray = new ArrayList();
 
-    public ArrayList<Object> getColor() {
+    public ArrayList<ColorObject> getColor() {
         return color;
     }
 
-    public void setColor(ArrayList<Object> color) {
+    public void setColor(ArrayList<ColorObject> color) {
         this.color = color;
     }
 
-    private ArrayList<Object> color = new ArrayList();
+    private ArrayList<ColorObject> color = new ArrayList();
 
     public ArrayList<Object> getImages() {
         return images;

@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.onesys.onemarket.R;
+import com.onesys.onemarket.utils.BaseFragment;
 
-public class StoreFragment extends Fragment {
+public class StoreFragment extends BaseFragment {
 	
 	public StoreFragment(){}
 	

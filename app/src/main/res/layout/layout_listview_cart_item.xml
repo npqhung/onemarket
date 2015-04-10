@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@+id/iv_cartitem_product_img" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:src="@drawable/ic_no_available" android:minHeight="120.0dip" android:layout_weight="3.0" />
+    <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="6.0">
+        <TextView android:textAppearance="@style/GameUngDUngTextBlackAppearance" android:gravity="left" android:layout_gravity="left" android:id="@+id/tv_cartitem_product_name" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Iphone 9s" android:maxLines="1" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:textColor="@color/red" android:gravity="left" android:layout_gravity="left" android:id="@+id/tv_cartitem_price" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="16.999 vnd" android:maxLines="1" />
+            <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@color/red" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip">
+                <TextView android:textSize="12.0sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="center_vertical" android:layout_gravity="left" android:id="@+id/tv_cartitem_percent" android:paddingLeft="5.0dip"
+                    android:paddingRight="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10%" android:maxLines="1" android:drawableLeft="@drawable/ic_checkbox_checked" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <TextView android:textAppearance="@style/GameUngDUngTextBlackAppearance" android:gravity="left" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/str_color" android:maxLines="1" android:layout_weight="1.0" />
+            <TextView android:textAppearance="@style/GameUngDUngTextBlackAppearance" android:gravity="center" android:id="@+id/tv_cartitem_color" android:background="@drawable/bg_btn_cartitem" android:padding="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="" android:layout_weight="1.0" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <TextView android:textAppearance="@style/GameUngDUngTextBlackAppearance" android:gravity="left" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/str_quantity" android:maxLines="1" android:layout_weight="1.0" />
+            <TextView android:textAppearance="@style/GameUngDUngTextBlackAppearance" android:gravity="center" android:id="@+id/tv_cartitem_quantity" android:background="@drawable/bg_btn_cartitem" android:padding="5.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="5" android:layout_weight="1.0" />
+        </LinearLayout>
+        <TextView android:gravity="center_vertical" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="Phí giao hàng nội thành \n 20.000đ/1 đơn hàng" />
+    </LinearLayout>
+    <ImageView android:id="@+id/iv_cartitem_trash" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:src="@drawable/ic_trash" android:layout_weight="1.0" />
+</LinearLayout>

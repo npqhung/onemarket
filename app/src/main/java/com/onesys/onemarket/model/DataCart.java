@@ -21,6 +21,8 @@ public class DataCart {
 
     private static final String TAG = "OneMarket";
     private ArrayList<CartItem> cartItems = new ArrayList();
+    private int price;
+    private int transportFee;
 
     public ArrayList<CartItem> getCartItems() {
         return cartItems;
@@ -71,7 +73,25 @@ public class DataCart {
 //        countTotalPrice();
     }
 
+    public int getPrice()    {
+        return price;
+    }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
+    public int getTransportFee() {
+        return transportFee;
+    }
+
+    public void setTransportFee(int transportFee) {
+        this.transportFee = transportFee;
+    }
+
+    public int getTotalPrice()
+    {
+        return this.price + this.transportFee;
+    }
 
 }

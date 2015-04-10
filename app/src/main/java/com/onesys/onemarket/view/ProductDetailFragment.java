@@ -1,9 +1,9 @@
 package com.onesys.onemarket.view;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,12 +26,13 @@ import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.model.ProductStore;
 import com.onesys.onemarket.model.SpecificationInfo;
 import com.onesys.onemarket.task.LoadPhoneCommentTask;
+import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.Constants;
 import com.onesys.onemarket.utils.image.ImageLoader;
 
 import java.io.Serializable;
 
-public class ProductDetailFragment extends Fragment implements Serializable, View.OnClickListener, StoreDialog.StoreListener{
+public class ProductDetailFragment extends BaseFragment implements Serializable, View.OnClickListener, StoreDialog.StoreListener{
 
     ProductDetailData productDetail;
     private int callFromIndex;
@@ -156,7 +157,7 @@ public class ProductDetailFragment extends Fragment implements Serializable, Vie
         }
 
         Log.i(TAG,"Show Phone Fragment");
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         Fragment phoneFragment = fragmentManager.findFragmentByTag("" + MainActivity.PHONE_VIEW);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
