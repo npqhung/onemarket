@@ -16,11 +16,12 @@ import android.widget.TextView;
 
 import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
+import com.onesys.onemarket.application.OneMarketApplication;
 
 public class FooterFragment extends BaseFragment
 {
     private LinearLayout mFooterGioHang;
-//    private TextView mFooterGioHangCount;
+    private TextView tvFooterCartCount;
 //    private LinearLayout mFooterKhuyenMai;
 //    private LinearLayout mFooterThem;
     private LinearLayout mFooterTimKiem;
@@ -54,8 +55,10 @@ public class FooterFragment extends BaseFragment
         this.mTxtGioHang = ((TextView)paramView.findViewById(R.id.tv_footer_cart));
 //        this.mTxtKhuyenMai = ((TextView)paramView.findViewById(2131558661));
 //        this.mTxtThem = ((TextView)paramView.findViewById(2131558664));
-//        this.mFooterGioHangCount = ((TextView)paramView.findViewById(2131558658));
+        tvFooterCartCount = ((TextView)paramView.findViewById(R.id.tv_footer_cart_count));
+        updateCartCount();
 //        ((MobileMarketActivity)getActivity()).updateGioHangTab();
+
         this.mIvTrangChu = ((ImageView)paramView.findViewById(R.id.iv_footer_home));
         this.mIvTimKiem = ((ImageView)paramView.findViewById(R.id.iv_footer_search));
 
@@ -143,16 +146,19 @@ public class FooterFragment extends BaseFragment
         return localView;
     }
 
-//    public void setGioHangCount(int paramInt)
-//    {
-//        this.mFooterGioHangCount.setText(paramInt);
-//        if (paramInt == 0)
-//        {
-//            this.mFooterGioHangCount.setVisibility(8);
-//            return;
-//        }
-//        this.mFooterGioHangCount.setVisibility(0);
-//    }
+    public void setCartCount(int size)
+    {
+        tvFooterCartCount.setText(String.valueOf(size));
+        if (size == 0){
+            tvFooterCartCount.setVisibility(View.GONE);
+        }else {
+            tvFooterCartCount.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void updateCartCount(){
+        setCartCount(((OneMarketApplication) getActivity().getApplication()).getDataCart().getCartItems().size());
+    }
 
     public void showHome()
     {

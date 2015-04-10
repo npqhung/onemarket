@@ -6,7 +6,11 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-import android.telephony.TelephonyManager;
+
+import com.onesys.onemarket.model.DataCart;
+import com.onesys.onemarket.model.ProductDetailData;
+import com.onesys.onemarket.utils.Constants;
+
 
 /**
  * This is an application scope class that acts like a singleton class
@@ -23,7 +27,9 @@ public class OneMarketApplication extends Application{
 
     public static final String USER_ID = "user_id";
 
-    private String userId;
+    private String userId = "61";
+    private DataCart dataCart;
+    private SharedPreferences sharedPref;
 
     @Override
 	public void onCreate() {
@@ -32,7 +38,13 @@ public class OneMarketApplication extends Application{
 	}
 
 	private void initSettings() {
+        sharedPref = getSharedPreferences(Constants.SHARED_PREFS_NAME, MODE_PRIVATE);
 
+        dataCart = DataCart.readFromPreference(sharedPref);
+        if (dataCart == null)        {
+            dataCart = new DataCart();
+            DataCart.saveToPreference(sharedPref, dataCart);
+        }
 	}
 
 	private String getRestURL() {
@@ -65,6 +77,16 @@ public class OneMarketApplication extends Application{
     public String getUserId()
     {
         return this.userId;
+    }
+
+    public void addDataCart(ProductDetailData productDetail, String storeId)
+    {
+        dataCart.addCart(productDetail, storeId);
+        DataCart.saveToPreference(sharedPref, dataCart);
+    }
+
+    public DataCart getDataCart(){
+        return this.dataCart;
     }
 
 }

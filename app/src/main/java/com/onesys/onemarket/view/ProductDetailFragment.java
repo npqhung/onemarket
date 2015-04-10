@@ -267,16 +267,17 @@ public class ProductDetailFragment extends Fragment implements Serializable, Vie
     {
         String storeId = productStore.store_id;
         System.out.println("storeInfo.store_id = " + productStore.store_id);
-//        addToCart(storeId);
+        addToCart(storeId);
     }
 
-//    private void addToCart(final String storeId)
-//    {
-//        if (TextUtils.isEmpty(((OneMarketApplication)getActivity().getApplication()).getUserId()))
-//        {
-//            Toast.makeText(getActivity(), "Please login to complete it!", 0).show();
-//            return;
-//        }
+    private void addToCart(final String storeId)
+    {
+        Log.i(TAG,"addToCart()");
+        if (TextUtils.isEmpty(((OneMarketApplication)getActivity().getApplication()).getUserId())){
+            Log.i(TAG,"addToCart() - User ID is empty");
+            Toast.makeText(getActivity(), "Please login to complete it!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 //        new CheckAddTask(getActivity(), paramString, this.productDetailsData)
 //        {
 //            protected void onPostExecute(Boolean paramAnonymousBoolean)
@@ -293,6 +294,48 @@ public class ProductDetailFragment extends Fragment implements Serializable, Vie
 //            }
 //        }
 //                .execute(new String[0]);
-//    }
+        checkAddToCart(storeId);
+    }
+
+    private void checkAddToCart(String storeId){
+        boolean success = true;
+
+        int orderType = Integer.parseInt(productDetail.getOrder_type());
+
+        if (orderType == 2)
+        {
+            if (!this.productDetail.getStatus().equals("2"))
+            {
+                success = false;
+            }
+//            if (localMobileMarketApplication.getDataCart().isAdd(this.productDetailsData.getId(), this.store_id))
+//            {
+//                System.out.println("doInBackground 3");
+//                return Boolean.valueOf(false);
+//            }
+//            if ((this.listDataLichSuGiaoDich == null) || (this.listDataLichSuGiaoDich.size() == 0))
+//            {
+//                str1 = LoadAPI35LichSuMuaHang.LICHSU_MUAHANG_URL;
+//                arrayOfObject = new Object[1];
+//                arrayOfObject[0] = localMobileMarketApplication.getUserId();
+//                str2 = String.format(str1, arrayOfObject);
+//            }
+        }
+
+        if (orderType == 1 && (productDetail.getStatus().equals("4") || productDetail.getStatus().equals("2"))){
+            success = false;
+        }
+
+        if(success){
+            ((OneMarketApplication)getActivity().getApplication()).addDataCart(productDetail, storeId);
+            Toast.makeText(getActivity(), "This product will be added to cart!", Toast.LENGTH_SHORT).show();
+            ((MainActivity)getActivity()).mFootMenu.updateCartCount();
+
+//            ((MobileMarketActivity)DS4DienThoaiDetailMoreFragment.this.getActivity()).updateGioHangTab();
+        }else{
+            Toast.makeText(getActivity(), "This product can't purchased now!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 }
