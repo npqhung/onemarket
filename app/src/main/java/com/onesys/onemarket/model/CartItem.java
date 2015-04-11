@@ -9,17 +9,19 @@ public class CartItem {
     private String storeId;
     private ColorObject colorObject;
 
+    public int getTranportFee() {
+        return tranportFee;
+    }
+
+    public void setTranportFee(int tranportFee) {
+        this.tranportFee = tranportFee;
+    }
+
     private int tranportFee = 20000;
 
-    public int getQuantity() {
-        return quantity;
+    public Integer getQuantity() {
+        return 1;
     }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    private int quantity = 0;
 
     public CartItem(ProductDetailData productDetail, String storeId)
     {
@@ -47,21 +49,21 @@ public class CartItem {
     public int getCartItemPrice(){
         int totalPrice = 0;
 
-        if ((productDetail == null) || (quantity == 0)) {
+        if ((this.productDetail == null)) {
             return 0;
         }
 
         if (Integer.parseInt(productDetail.getOrder_type()) == 2){//preOrder
             try
             {
-                totalPrice = Integer.parseInt(productDetail.getPreorder_price()) * quantity;
+                totalPrice = Integer.parseInt(productDetail.getPreorder_price()) * 1;
             }
             catch (Exception exception) {
 
             }
         }else{
             try {
-                totalPrice = Integer.parseInt(productDetail.getPrice()) * quantity;
+                totalPrice = Integer.parseInt(productDetail.getPrice()) * 1;
             }catch (Exception e){
 
             }

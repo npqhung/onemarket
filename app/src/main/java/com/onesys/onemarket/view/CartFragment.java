@@ -19,6 +19,7 @@ import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.CartItem;
 import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.Utils;
+import com.onesys.onemarket.utils.image.ImageLoader;
 
 
 public class CartFragment extends BaseFragment implements View.OnClickListener{
@@ -32,7 +33,8 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        Log.i(TAG,"onCreateView CartFragment ");
+        Log.i(TAG,"CartFragment - onCreateView");
+        //super.onCreateView(inflater,container,savedInstanceState);
 
         View rootView = inflater.inflate(R.layout.fragment_cart, container, false);
         
@@ -42,8 +44,9 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     }
 
     public void onAttach(Activity paramActivity){
+        Log.i(TAG,"CartFragment - onAttach");
         super.onAttach(paramActivity);
-//        this.mIsSelected = true;
+        this.mIsSelected = true;
     }
 
     public void initCartView(View view){
@@ -76,6 +79,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     }
 
     public void reloadData(){
+        Log.i(TAG,"CartFragment - reloadData ");
         loadData();
     }
 
@@ -114,8 +118,8 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
 
             CartItem productCartItem = (CartItem)application.getDataCart().getCartItems().get(i);
 
-//            ImageLoader imgLoader = new ImageLoader(getActivity());
-//            imgLoader.DisplayImage(productCartItem.getColorObject().getImage(), ivCartImg);
+            ImageLoader imgLoader = new ImageLoader(getActivity());
+            imgLoader.DisplayImage(productCartItem.getColorObject().getImage(), ivCartImg);
 
             tvName.setText(productCartItem.getProductDetail().getName());
 
@@ -139,7 +143,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
                 }
             });
 
-            tvQuantity.setText(productCartItem.getQuantity());
+            tvQuantity.setText(String.valueOf(productCartItem.getQuantity()));
 
             llCartList.addView(cartItemView);
         }
@@ -153,7 +157,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
         OneMarketApplication application = (OneMarketApplication)getActivity().getApplication();
 
         TextView tvNumber = (TextView)getView().findViewById(R.id.tv_cart_total_item);
-        tvNumber.setText(getString(R.string.str_cart_total_item, String.valueOf(application.getDataCart().getCartItems().size())));
+        tvNumber.setText(getString(R.string.str_cart_total_item, application.getDataCart().getCartItems().size()));
 
         TextView tvPrice = (TextView)getView().findViewById(R.id.tv_cart_price);
         tvPrice.setText(Utils.getPriceFormat(""+application.getDataCart().getPrice()));
@@ -161,7 +165,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
         TextView tvFee = (TextView)getView().findViewById(R.id.tv_cart_transport_fee);
         tvFee.setText(Utils.getPriceFormat(""+application.getDataCart().getTransportFee()));
 
-        TextView tvTotal = (TextView)getView().findViewById(R.id.tv_cart_totalprice);
+        TextView tvTotal = (TextView)getView().findViewById(R.id.tv_cart_item_total);
 
         tvTotal.setText(Utils.getPriceFormat(""+application.getDataCart().getTotalPrice()));
 
@@ -172,5 +176,10 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
         }else {
             svPayment.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void onFragmentUnselected()    {
+        Log.i(TAG,"CartFragment - onFragmentUnselected");
+        super.onFragmentUnselected();
     }
 }

@@ -3,8 +3,6 @@ package com.onesys.onemarket.model;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.onesys.onemarket.utils.Constants;
@@ -70,7 +68,18 @@ public class DataCart {
 
         this.cartItems.add(cartItem);
 
-//        countTotalPrice();
+        countTotalPrice();
+    }
+
+    public void countTotalPrice()
+    {
+        this.price = 0;
+        this.transportFee = 0;
+
+        for(CartItem item : cartItems){
+            price += item.getCartItemPrice();
+            transportFee += item.getTranportFee();
+        }
     }
 
     public int getPrice()    {

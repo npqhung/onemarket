@@ -218,14 +218,14 @@ public class MainActivity extends FragmentActivity
             case CART_VIEW:
                 fragment = fragmentManager.findFragmentByTag("" + MainActivity.CART_VIEW);
                 if (fragment == null) {
+                    Log.i(TAG,"MainActivity - new CartFragment object ");
                     fragment = new CartFragment();
+                    fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
                 }
 
-                fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
-
-//                ((BaseFragment)fragment).onFragmentSelected();
-
-//                fragment = new CartFragment();
+                //                fragment = new CartFragment();
 //                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + CART_VIEW);
                 break;
             case STORE_VIEW:

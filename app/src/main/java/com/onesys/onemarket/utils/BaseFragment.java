@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,14 @@ import android.view.ViewGroup;
 
 public class BaseFragment extends Fragment
 {
+    private static final String TAG = "OneMarket";
     public int mIdScreen = -1;
     protected boolean mIsSelected = false;
     OnFragmentAttachedListener mListener = null;
 
     public void onAttach(Activity paramActivity)
     {
+        Log.i(TAG,"BaseFragment - onAttach");
         super.onAttach(paramActivity);
         try
         {
@@ -40,22 +43,26 @@ public class BaseFragment extends Fragment
 
     public void onCreate(Bundle paramBundle)
     {
+        Log.i(TAG,"BaseFragment - onCreate");
         super.onCreate(paramBundle);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG,"BaseFragment - onCreateView");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public void onFragmentSelected()
     {
+        Log.i(TAG,"BaseFragment - onFragmentSelected");
         this.mIsSelected = true;
         reloadData();
     }
 
     public void onFragmentUnselected()
     {
+        Log.i(TAG,"BaseFragment - onFragmentUnselected");
         this.mIsSelected = false;
     }
 
@@ -68,6 +75,7 @@ public class BaseFragment extends Fragment
 
     public void onStart()
     {
+        Log.i(TAG,"BaseFragment - onStart");
         super.onStart();
         if (this.mIsSelected)
             reloadData();
