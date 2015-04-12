@@ -5,10 +5,9 @@ package com.onesys.onemarket.model;
  */
 
 
-import android.content.Context;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -16,7 +15,62 @@ public class ProductDetailData
         implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private String category_id;
+
+    @JsonProperty("category_id")
+    private String categoryId;
+
+    private ArrayList<ColorObject> color = new ArrayList();
+
+    private ArrayList<Object> images = new ArrayList();
+
+    @JsonProperty("discount_price")
+    private String discountPrice;
+
+    private String id;
+    // private ArrayList<ImageObject> imageObjectArray = new ArrayList();
+    private String laptopinfo;
+
+    @JsonProperty("product_store")
+    private ArrayList<ProductStore> productStore = new ArrayList();
+
+    @JsonProperty("manufactur_id")
+    private String manufactureId;
+
+    private SpecificationInfo mobileinfo;
+    private String name;
+
+    @JsonProperty("order_type")
+    private String orderType;
+
+    private String point;
+
+    @JsonProperty("preorder_price")
+    private String preorderPrice;
+
+    private String price;
+
+    @JsonProperty("product_type")
+    private String productType;
+
+    @JsonProperty("rate_point")
+    private String ratePoint;
+
+    private String status;
+    private String thumbnail;
+
+    @JsonProperty("total_rate")
+    private String totalRate;
+    private String videos;
+
+    @JsonProperty("views_count")
+    private String viewsCount;
+
+    @JsonProperty("warranty_manufactur_id")
+    private String warrantyManufactureId;
+
+    @JsonProperty("warranty_month")
+    private String warrantyMonth;
+
 //    private ArrayList<ColorObject> colorObjectArray = new ArrayList();
 
     public ArrayList<ColorObject> getColor() {
@@ -27,7 +81,7 @@ public class ProductDetailData
         this.color = color;
     }
 
-    private ArrayList<ColorObject> color = new ArrayList();
+
 
     public ArrayList<Object> getImages() {
         return images;
@@ -37,12 +91,7 @@ public class ProductDetailData
         this.images = images;
     }
 
-    private ArrayList<Object> images = new ArrayList();
 
-    private String discount_price;
-    private String id;
-   // private ArrayList<ImageObject> imageObjectArray = new ArrayList();
-    private String laptopinfo;
 
     public String getLaptopinfo() {
         return laptopinfo;
@@ -52,17 +101,13 @@ public class ProductDetailData
         this.laptopinfo = laptopinfo;
     }
 
-    public ArrayList<ProductStore> getProduct_store() {
-        return product_store;
+    public ArrayList<ProductStore> getProductStore() {
+        return productStore;
     }
 
-    public void setProduct_store(ArrayList<ProductStore> product_store) {
-        this.product_store = product_store;
+    public void setProductStore(ArrayList<ProductStore> productStore) {
+        this.productStore = productStore;
     }
-
-    private ArrayList<ProductStore> product_store = new ArrayList();
-    private String manufactur_id;
-
 
     public SpecificationInfo getMobileinfo() {
         return mobileinfo;
@@ -72,40 +117,26 @@ public class ProductDetailData
         this.mobileinfo = mobileinfo;
     }
 
-    private SpecificationInfo mobileinfo;
-    private String name;
-    private String order_type;
-    private String point;
-    private String preorder_price;
-    private String price;
-    private String product_type;
-    private String rate_point;
-    private String status;
-    private String thumbnail;
-    private String total_rate;
-    private String videos;
-    private String views_count;
-    private String warranty_manufactur_id;
-    private String warranty_month;
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCategory_id() {
-        return category_id;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getDiscount_price() {
-        return discount_price;
+    public String getDiscountPrice() {
+        return discountPrice;
     }
 
-    public void setDiscount_price(String discount_price) {
-        this.discount_price = discount_price;
+    public void setDiscountPrice(String discountPrice) {
+        this.discountPrice = discountPrice;
     }
 
     public String getId() {
@@ -116,12 +147,12 @@ public class ProductDetailData
         this.id = id;
     }
 
-    public String getManufactur_id() {
-        return manufactur_id;
+    public String getManufactureId() {
+        return manufactureId;
     }
 
-    public void setManufactur_id(String manufactur_id) {
-        this.manufactur_id = manufactur_id;
+    public void setManufactureId(String manufactureId) {
+        this.manufactureId = manufactureId;
     }
 
     public String getName() {
@@ -132,12 +163,12 @@ public class ProductDetailData
         this.name = name;
     }
 
-    public String getOrder_type() {
-        return order_type;
+    public String getOrderType() {
+        return orderType;
     }
 
-    public void setOrder_type(String order_type) {
-        this.order_type = order_type;
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 
     public String getPoint() {
@@ -148,12 +179,12 @@ public class ProductDetailData
         this.point = point;
     }
 
-    public String getPreorder_price() {
-        return preorder_price;
+    public String getPreorderPrice() {
+        return preorderPrice;
     }
 
-    public void setPreorder_price(String preorder_price) {
-        this.preorder_price = preorder_price;
+    public void setPreorderPrice(String preorderPrice) {
+        this.preorderPrice = preorderPrice;
     }
 
     public String getPrice() {
@@ -164,20 +195,20 @@ public class ProductDetailData
         this.price = price;
     }
 
-    public String getProduct_type() {
-        return product_type;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setProduct_type(String product_type) {
-        this.product_type = product_type;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
-    public String getRate_point() {
-        return rate_point;
+    public String getRatePoint() {
+        return ratePoint;
     }
 
-    public void setRate_point(String rate_point) {
-        this.rate_point = rate_point;
+    public void setRatePoint(String ratePoint) {
+        this.ratePoint = ratePoint;
     }
 
     public String getStatus() {
@@ -196,12 +227,12 @@ public class ProductDetailData
         this.thumbnail = thumbnail;
     }
 
-    public String getTotal_rate() {
-        return total_rate;
+    public String getTotalRate() {
+        return totalRate;
     }
 
-    public void setTotal_rate(String total_rate) {
-        this.total_rate = total_rate;
+    public void setTotalRate(String totalRate) {
+        this.totalRate = totalRate;
     }
 
     public String getVideos() {
@@ -212,32 +243,32 @@ public class ProductDetailData
         this.videos = videos;
     }
 
-    public String getViews_count() {
-        return views_count;
+    public String getViewsCount() {
+        return viewsCount;
     }
 
-    public void setViews_count(String views_count) {
-        this.views_count = views_count;
+    public void setViewsCount(String viewsCount) {
+        this.viewsCount = viewsCount;
     }
 
-    public String getWarranty_manufactur_id() {
-        return warranty_manufactur_id;
+    public String getWarrantyManufactureId() {
+        return warrantyManufactureId;
     }
 
-    public void setWarranty_manufactur_id(String warranty_manufactur_id) {
-        this.warranty_manufactur_id = warranty_manufactur_id;
+    public void setWarrantyManufactureId(String warrantyManufactureId) {
+        this.warrantyManufactureId = warrantyManufactureId;
     }
 
-    public String getWarranty_month() {
-        return warranty_month;
+    public String getWarrantyMonth() {
+        return warrantyMonth;
     }
 
-    public void setWarranty_month(String warranty_month) {
-        this.warranty_month = warranty_month;
+    public void setWarrantyMonth(String warrantyMonth) {
+        this.warrantyMonth = warrantyMonth;
     }
 
     public float getRatePointFloat(){
-        return Float.parseFloat(this.rate_point);
+        return Float.parseFloat(this.ratePoint);
     }
 }
 

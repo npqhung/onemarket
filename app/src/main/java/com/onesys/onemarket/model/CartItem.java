@@ -53,10 +53,10 @@ public class CartItem {
             return 0;
         }
 
-        if (Integer.parseInt(productDetail.getOrder_type()) == 2){//preOrder
+        if (Integer.parseInt(productDetail.getOrderType()) == 2){//preOrder
             try
             {
-                totalPrice = Integer.parseInt(productDetail.getPreorder_price()) * 1;
+                totalPrice = Integer.parseInt(productDetail.getPreorderPrice()) * 1;
             }
             catch (Exception exception) {
 

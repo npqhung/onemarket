@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.service.ServerManager;
@@ -28,6 +30,7 @@ public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductList
 
     private ProductAdapter productAdapter;
     private LinkedList criteria;
+    private MainActivity context;
 
     public LoadPhoneProductTask(Context context, ProductAdapter productAdapter, LinkedList criteria) {
         this.productAdapter = productAdapter;
@@ -36,6 +39,8 @@ public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductList
         this.progressDialog = new ProgressDialog(context);
         this.progressDialog.setProgressStyle(0);
         this.progressDialog.setMessage("Loading ...");
+
+        this.context = (MainActivity)context;
     }
 
     protected ProductListResponse[] doInBackground(String... param) {
@@ -46,7 +51,7 @@ public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductList
         ServerManager server = new ServerManager(productListURL + URLEncodedUtils.format(criteria, "utf-8"));
 
         try {
-            Log.d(this.getClass().getName(), "calling remote server to find outlets");
+            Log.d(this.getClass().getName(), "calling remote server to get Product list");
 
             ProductListResponse response = server.getAllProductList();
 
@@ -83,6 +88,7 @@ public class LoadPhoneProductTask extends AsyncTask<String, Integer, ProductList
         if (productsResponse == null || productsResponse[0].getData() == null || productsResponse[0].getData().length == 0) {
             dismissProgressDialog();
             Log.i(TAG, "Cannot get Product List");
+            Toast.makeText(context, " Cannot load Product List", Toast.LENGTH_LONG).show();
         } else { //add to the list...
             dismissProgressDialog();
 

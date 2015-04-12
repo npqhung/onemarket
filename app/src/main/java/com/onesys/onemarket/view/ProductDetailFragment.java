@@ -76,11 +76,11 @@ public class ProductDetailFragment extends BaseFragment implements Serializable,
 
         TextView tvCategory = (TextView) view
                 .findViewById(R.id.tv_productdetail_category);
-        tvCategory.setText(productDetail.getCategory_id());
+        tvCategory.setText(productDetail.getCategoryId());
 
         TextView tvInfoRating = (TextView) view
                 .findViewById(R.id.tv_productdetail_info_rating);
-        tvInfoRating.setText(productDetail.getTotal_rate() + " Ratings, " + productDetail.getViews_count() + " views");
+        tvInfoRating.setText(productDetail.getTotalRate() + " Ratings, " + productDetail.getViewsCount() + " views");
 
         RatingBar productRating = (RatingBar)view.findViewById(R.id.rb_productdetail_rating);
         productRating.setRating(productDetail.getRatePointFloat());
@@ -128,7 +128,7 @@ public class ProductDetailFragment extends BaseFragment implements Serializable,
                 break;
             case R.id.ll_payment :
                 Log.i(TAG, "Entered Add To Cart");
-                if (productDetail.getProduct_store() == null || productDetail.getProduct_store().size() == 0){
+                if (productDetail.getProductStore() == null || productDetail.getProductStore().size() == 0){
                     Toast.makeText(getActivity(), getString(R.string.str_empty_store), Toast.LENGTH_SHORT).show();
                 } else{
                     Bundle bundle = new Bundle();
@@ -301,7 +301,7 @@ public class ProductDetailFragment extends BaseFragment implements Serializable,
     private void checkAddToCart(String storeId){
         boolean success = true;
 
-        int orderType = Integer.parseInt(productDetail.getOrder_type());
+        int orderType = Integer.parseInt(productDetail.getOrderType());
 
         if (orderType == 2)
         {

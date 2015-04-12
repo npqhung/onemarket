@@ -108,4 +108,17 @@
     <string name="str_color">Color :</string>
     <string name="str_quantity">Số lượng :</string>
 
+    <!-- user inf -->
+    <string name="str_user_info_tittle">User Information</string>
+    <string name="str_user_info_name">User Name</string>
+    <string name="str_user_info_address">Address</string>
+    <string name="str_user_info_city">City</string>
+    <string name="str_user_info_phone">Phone</string>
+    <string name="str_user_info_email">Email</string>
+    <string name="str_user_info_payment_type">Payment Type</string>
+    <string name="str_user_info_delivery_type">Delivery Type</string>
+    <string name="str_user_info_note">Note</string>
+    <string name="str_user_info_confirm">Confirm</string>
+
+
 </resources>

@@ -11,11 +11,9 @@ import android.widget.ListView;
 import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
 import com.onesys.onemarket.adapter.StoreAdapter;
-import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.model.ProductStore;
 import com.onesys.onemarket.utils.Constants;
-import com.onesys.onemarket.view.ProductDetailFragment;
 
 /**
  * Created by Hung on 9/04/2015.
@@ -43,13 +41,13 @@ public class StoreDialog extends DialogFragment
 
         getDialog().setTitle(R.string.str_choose_store);
         this.mListView = ((ListView)localView.findViewById(R.id.dialog_choose_store_listview));
-        this.mAdapter = new StoreAdapter((MainActivity)getActivity(), productDetailData.getProduct_store());
+        this.mAdapter = new StoreAdapter((MainActivity)getActivity(), productDetailData.getProductStore());
         this.mListView.setAdapter(this.mAdapter);
         this.mListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong)
             {
-                storeListener.onChooseStore((ProductStore) productDetailData.getProduct_store().get(paramAnonymousInt));
+                storeListener.onChooseStore((ProductStore) productDetailData.getProductStore().get(paramAnonymousInt));
                 dismiss();
             }
         });

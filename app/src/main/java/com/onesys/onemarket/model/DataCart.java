@@ -71,6 +71,14 @@ public class DataCart {
         countTotalPrice();
     }
 
+    public void removeCart(int position){
+        if (position >= cartItems.size()) {
+            return;
+        }
+        cartItems.remove(position);
+        countTotalPrice();
+    }
+
     public void countTotalPrice()
     {
         this.price = 0;

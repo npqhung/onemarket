@@ -1,9 +1,14 @@
 package com.onesys.onemarket.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
@@ -74,7 +80,26 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
                 //show Home
                 ((MainActivity)getActivity()).mFootMenu.showHome();
                 return;
-            case 2131558538:
+
+            case R.id.tv_cart_payment:
+                OneMarketApplication application = (OneMarketApplication)getActivity().getApplication();
+                if (application.getDataCart() == null || application.getDataCart().getCartItems().size() == 0)
+                {
+                    Toast.makeText(getActivity(), "No data to charge", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+//                String str1 = application.getEmail();
+                String str2 = application.getUserId();
+                if ((//TextUtils.isEmpty(str1)) ||
+                        TextUtils.isEmpty(application.getUserId())))
+                {
+                    Toast.makeText(getActivity(), "You must update account info to do it", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ((MainActivity)getActivity()).showContent(MainActivity.USER_INFO_CONFIRMATION_VIEW);
+
+
+                break;
         }
     }
 
@@ -112,7 +137,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
             {
                 public void onClick(View paramAnonymousView)
                 {
-//                    GioHangFragment.this.confirmDeleteDialog(localMobileMarketApplication, j, localView);
+                    confirmDeleteDialog(j, cartItemView);
                 }
             });
 
@@ -181,5 +206,32 @@ public class CartFragment extends BaseFragment implements View.OnClickListener{
     public void onFragmentUnselected()    {
         Log.i(TAG,"CartFragment - onFragmentUnselected");
         super.onFragmentUnselected();
+    }
+
+    private void confirmDeleteDialog(final int position, final View paramView)
+    {
+        final OneMarketApplication application = (OneMarketApplication)getActivity().getApplication();
+        AlertDialog.Builder localBuilder = new AlertDialog.Builder(getActivity());
+        localBuilder.setMessage("Are you sure delete this product?");
+        localBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+            {
+                application.removeCart(position);
+//                llCartList.removeView(paramView);
+                onFragmentSelected();
+                ((MainActivity)getActivity()).mFootMenu.updateCartCount();
+                updateValue();
+                paramAnonymousDialogInterface.dismiss();
+            }
+        });
+        localBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+            {
+                paramAnonymousDialogInterface.dismiss();
+            }
+        });
+        localBuilder.show();
     }
 }
