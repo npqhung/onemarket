@@ -120,5 +120,14 @@
     <string name="str_user_info_note">Note</string>
     <string name="str_user_info_confirm">Confirm</string>
 
+    <string name="str_user_info_paymenttype_cash">Cash</string>
+    <string name="str_user_info_paymenttype_online">Online</string>
+    <string name="error_userinfo_address">Please input your address</string>
+    <string name="error_userinfo_phone">Please input your phone number</string>
+    <string name="error_userinfo_paymenttype">Please select payment method</string>
+    <string name="error_userinfo_deliverytype">Please select delivery method</string>
+    <string name="error_userinfo_city">Please select your city</string>
+    <string name="error_userinfo_name">Name cannot be empty</string>
+    <string name="error_userinfo_email">Email cannot be empty</string>
 
 </resources>

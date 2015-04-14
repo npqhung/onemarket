@@ -98,7 +98,7 @@ public class ProductAdapter extends BaseAdapter {
             tvProductPrice.setText(product.getPriceFormat());
 //            tvProductPrice.setText(product.getPrice());
             productRating.setRating(product.getRatePointFloat());
-            tvProductRatingTotal.setText("(" + product.getTotal_rate() + ")");
+            tvProductRatingTotal.setText("(" + product.getTotalRate() + ")");
 
 //        } else {
 //            detailView = (View) convertView;

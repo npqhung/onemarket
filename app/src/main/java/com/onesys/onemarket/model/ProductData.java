@@ -1,5 +1,7 @@
 package com.onesys.onemarket.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -25,23 +27,47 @@ public class ProductData implements Serializable {
     public void setPrice(String price) {
         this.price = price;
     }
-    private String category_id;
-    private String discount_price;
+
+    @JsonProperty("category_id")
+    private String categoryId;
+
+    @JsonProperty("discount_price")
+    private String discountPrice;
     private String id;
+
     private ArrayList<Promotion> promotion = new ArrayList();
-    private ArrayList<ProductStore> product_store = new ArrayList();
-    private String manufactur_id;
+
+    @JsonProperty("product_store")
+    private ArrayList<ProductStore> productStore = new ArrayList();
+
+    @JsonProperty("manufactur_id")
+    private String manufactureId;
     private String name;
-    private String os_id;
+
+    @JsonProperty("os_id")
+    private String osId;
     private String price;
-    private String product_type;
-    private String rate_point;
+
+    @JsonProperty("product_type")
+    private String productType;
+
+    @JsonProperty("rate_point")
+    private String ratePoint;
+
     private String status;
     private String thumbnail;
-    private String total_rate;
-    private String views_count;
-    private String warranty_manufactur_id;
-    private String warranty_month;
+
+    @JsonProperty("total_rate")
+    private String totalRate;
+
+    @JsonProperty("views_count")
+    private String viewsCount;
+
+    @JsonProperty("warranty_manufactur_id")
+    private String warrantyManufactureId;
+
+    @JsonProperty("warranty_month")
+    private String warrantyMonth;
 
     public String getName() {
         return name;
@@ -51,20 +77,20 @@ public class ProductData implements Serializable {
         this.name = name;
     }
 
-    public String getCategory_id() {
-        return category_id;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(String categoryId) {
-        this.category_id = categoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getDiscount_price() {
-        return discount_price;
+    public String getDiscountPrice() {
+        return discountPrice;
     }
 
-    public void setDiscount_price(String discountPrice) {
-        this.discount_price = discountPrice;
+    public void setDiscountPrice(String discountPrice) {
+        this.discountPrice = discountPrice;
     }
 
     public String getId() {
@@ -83,44 +109,44 @@ public class ProductData implements Serializable {
         this.promotion = promotion;
     }
 
-    public ArrayList<ProductStore> getProduct_store() {
-        return product_store;
+    public ArrayList<ProductStore> getProductStore() {
+        return productStore;
     }
 
-    public void setProduct_store(ArrayList<ProductStore> listStore) {
-        this.product_store = listStore;
+    public void setProductStore(ArrayList<ProductStore> listStore) {
+        this.productStore = listStore;
     }
 
-    public String getManufactur_id() {
-        return manufactur_id;
+    public String getManufactureId() {
+        return manufactureId;
     }
 
-    public void setManufactur_id(String manufacturId) {
-        this.manufactur_id = manufacturId;
+    public void setManufactureId(String manufacturId) {
+        this.manufactureId = manufacturId;
     }
 
-    public String getOs_id() {
-        return os_id;
+    public String getOsId() {
+        return osId;
     }
 
-    public void setOs_id(String os_id) {
-        this.os_id = os_id;
+    public void setOsId(String osId) {
+        this.osId = osId;
     }
 
-    public String getProduct_type() {
-        return product_type;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setProduct_type(String productType) {
-        this.product_type = productType;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
-    public String getRate_point() {
-        return rate_point;
+    public String getRatePoint() {
+        return ratePoint;
     }
 
-    public void setRate_point(String ratePoint) {
-        this.rate_point = ratePoint;
+    public void setRatePoint(String ratePoint) {
+        this.ratePoint = ratePoint;
     }
 
     public String getStatus() {
@@ -139,43 +165,43 @@ public class ProductData implements Serializable {
         this.thumbnail = thumbnail;
     }
 
-    public String getTotal_rate() {
-        return total_rate;
+    public String getTotalRate() {
+        return totalRate;
     }
 
-    public void setTotal_rate(String totalRate) {
-        this.total_rate = totalRate;
+    public void setTotalRate(String totalRate) {
+        this.totalRate = totalRate;
     }
 
-    public String getViews_count() {
-        return views_count;
+    public String getViewsCount() {
+        return viewsCount;
     }
 
-    public void setViews_count(String views_count) {
-        this.views_count = views_count;
+    public void setViewsCount(String viewsCount) {
+        this.viewsCount = viewsCount;
     }
 
-    public String getWarranty_manufactur_id() {
-        return warranty_manufactur_id;
+    public String getWarrantyManufactureId() {
+        return warrantyManufactureId;
     }
 
-    public void setWarranty_manufactur_id(String warrantyManufacturId) {
-        this.warranty_manufactur_id = warrantyManufacturId;
+    public void setWarrantyManufactureId(String warrantyManufacturId) {
+        this.warrantyManufactureId = warrantyManufacturId;
     }
 
-    public String getWarranty_month() {
-        return warranty_month;
+    public String getWarrantyMonth() {
+        return warrantyMonth;
     }
 
-    public void setWarranty_month(String warrantyMonth) {
-        this.warranty_month = warrantyMonth;
+    public void setWarrantyMonth(String warrantyMonth) {
+        this.warrantyMonth = warrantyMonth;
     }
 
     public float getRatePointFloat()
     {
-        if(this.rate_point == null)
+        if(this.ratePoint == null)
             return 0;
-        return Float.parseFloat(this.rate_point);
+        return Float.parseFloat(this.ratePoint);
     }
 
     public String getPriceFormat()
@@ -186,7 +212,7 @@ public class ProductData implements Serializable {
 
     public String afterDiscount(){
         int price = Integer.parseInt(this.price);
-        int discountPrice = Integer.parseInt(this.discount_price);
+        int discountPrice = Integer.parseInt(this.discountPrice);
 
         if(price == 0){
             return "0.0";

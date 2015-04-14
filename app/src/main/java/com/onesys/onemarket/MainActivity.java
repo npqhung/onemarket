@@ -31,6 +31,7 @@ import com.onesys.onemarket.view.PhoneFragment;
 import com.onesys.onemarket.view.SearchFragment;
 import com.onesys.onemarket.view.StoreFragment;
 import com.onesys.onemarket.view.TabletFragment;
+import com.onesys.onemarket.view.UserInfoConfirmationFragment;
 
 public class MainActivity extends FragmentActivity
         implements BaseFragment.OnFragmentAttachedListener,
@@ -44,6 +45,7 @@ public class MainActivity extends FragmentActivity
     public static final int PROMOTION_VIEW = 9;
     public static final int MORE_VIEW = 10;
     public static final int PRODUCT_DETAIL_VIEW = 10;
+    public static final int USER_INFO_CONFIRMATION_VIEW = 11;
 
     public static final int STORE_VIEW = 0;
     public static final int PHONE_VIEW = 1;
@@ -52,43 +54,43 @@ public class MainActivity extends FragmentActivity
     public static final int GAME_VIEW = 4;
     public static final int ACCESSORIES_VIEW = 5;
 
-	private DrawerLayout mDrawerLayout;
-	private ListView mDrawerList;
-	private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
 
-	// nav drawer title
-	private CharSequence mDrawerTitle;
+    // nav drawer title
+    private CharSequence mDrawerTitle;
 
-	// used to store app title
-	private CharSequence mTitle;
+    // used to store app title
+    private CharSequence mTitle;
 
-	// slide menu items
-	private String[] navMenuTitles;
-	private TypedArray navMenuIcons;
+    // slide menu items
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
 
-	private ArrayList<NavDrawerItem> navDrawerItems;
-	private NavDrawerListAdapter adapter;
+    private ArrayList<NavDrawerItem> navDrawerItems;
+    private NavDrawerListAdapter adapter;
 
     public FooterFragment mFootMenu;
     private boolean isVisbleFooter = true;
 
     public ArrayList<Fragment> mListScreen = new ArrayList();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-		mTitle = mDrawerTitle = getTitle();
+        mTitle = mDrawerTitle = getTitle();
 
         initNaviDrawer();
         setFooter();
 
-		if (savedInstanceState == null) {
-			// on first time display view for first nav item
+        if (savedInstanceState == null) {
+            // on first time display view for first nav item
             showContent(HOME_VIEW);
-		}
-	}
+        }
+    }
 
     private void initNaviDrawer(){
         // load slide menu items
@@ -153,61 +155,61 @@ public class MainActivity extends FragmentActivity
 
     }
 
-	/**
-	 * Slide menu item click listener
-	 * */
-	private class SlideMenuClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			// display view for selected nav drawer item
+    /**
+     * Slide menu item click listener
+     * */
+    private class SlideMenuClickListener implements
+            ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+            // display view for selected nav drawer item
             showContent(position);
-		}
-	}
+        }
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.menu_main, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// toggle nav drawer on selecting action bar app icon/title
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		// Handle action bar actions click
-		switch (item.getItemId()) {
-		case R.id.action_settings:
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // toggle nav drawer on selecting action bar app icon/title
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle action bar actions click
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-	/* *
-	 * Called when invalidateOptionsMenu() is triggered
-	 */
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		// if nav drawer is opened, hide the action items
-		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-		return super.onPrepareOptionsMenu(menu);
-	}
+    /* *
+     * Called when invalidateOptionsMenu() is triggered
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // if nav drawer is opened, hide the action items
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-	/**
-	 * Diplaying fragment view for selected nav drawer list item
-	 * */
-	public void showContent(int position) {
-		// update the main content by replacing fragments
-		Fragment fragment = null;
+    /**
+     * Diplaying fragment view for selected nav drawer list item
+     * */
+    public void showContent(int position) {
+        // update the main content by replacing fragments
+        Fragment fragment = null;
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		switch (position) {
+        switch (position) {
             case HOME_VIEW:
                 fragment = new HomeFragment();
                 fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + HOME_VIEW);
@@ -218,14 +220,14 @@ public class MainActivity extends FragmentActivity
             case CART_VIEW:
                 fragment = fragmentManager.findFragmentByTag("" + MainActivity.CART_VIEW);
                 if (fragment == null) {
+                    Log.i(TAG,"MainActivity - new CartFragment object ");
                     fragment = new CartFragment();
+                    fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
                 }
 
-                fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
-
-                ((BaseFragment)fragment).onFragmentSelected();
-
-//                fragment = new CartFragment();
+                //                fragment = new CartFragment();
 //                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + CART_VIEW);
                 break;
             case STORE_VIEW:
@@ -233,8 +235,13 @@ public class MainActivity extends FragmentActivity
                 fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + STORE_VIEW);
                 break;
             case PHONE_VIEW:
-                fragment = new PhoneFragment();
-                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + PHONE_VIEW);
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.PHONE_VIEW);
+                if (fragment == null) {
+                    fragment = new PhoneFragment();
+                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + PHONE_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
+                }
                 break;
             case LAPTOP_VIEW:
                 fragment = new LaptopFragment();
@@ -249,6 +256,14 @@ public class MainActivity extends FragmentActivity
 //                fragment = new AccessoriesFragment();
                 break;
 
+            case USER_INFO_CONFIRMATION_VIEW:
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.USER_INFO_CONFIRMATION_VIEW);
+                if (fragment == null) {
+                    fragment = new UserInfoConfirmationFragment();
+                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + MainActivity.USER_INFO_CONFIRMATION_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
+                }
             default:
                 break;
         }
@@ -275,6 +290,8 @@ public class MainActivity extends FragmentActivity
                 setTitle(R.string.str_footer_cart);
             }else if(position == PRODUCT_DETAIL_VIEW){
                 setTitle(R.string.str_product_detail);
+            }else if(position == USER_INFO_CONFIRMATION_VIEW){
+                setTitle(R.string.str_user_info_tittle);
             }else { // drawer views
                 mDrawerList.setItemChecked(position, true);
                 mDrawerList.setSelection(position);
@@ -286,32 +303,32 @@ public class MainActivity extends FragmentActivity
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
-	}
+    }
 
-	@Override
-	public void setTitle(CharSequence title) {
-		mTitle = title;
-		getActionBar().setTitle(mTitle);
-	}
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getActionBar().setTitle(mTitle);
+    }
 
-	/**
-	 * When using the ActionBarDrawerToggle, you must call it during
-	 * onPostCreate() and onConfigurationChanged()...
-	 */
+    /**
+     * When using the ActionBarDrawerToggle, you must call it during
+     * onPostCreate() and onConfigurationChanged()...
+     */
 
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		// Sync the toggle state after onRestoreInstanceState has occurred.
-		mDrawerToggle.syncState();
-	}
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		// Pass any configuration change to the drawer toggls
-		mDrawerToggle.onConfigurationChanged(newConfig);
-	}
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
     public void OnFragmentAttached()
     {
