@@ -31,7 +31,6 @@ import com.onesys.onemarket.view.PhoneFragment;
 import com.onesys.onemarket.view.SearchFragment;
 import com.onesys.onemarket.view.StoreFragment;
 import com.onesys.onemarket.view.TabletFragment;
-import com.onesys.onemarket.view.UserInfoConfirmationFragment;
 
 public class MainActivity extends FragmentActivity
         implements BaseFragment.OnFragmentAttachedListener,
@@ -45,7 +44,6 @@ public class MainActivity extends FragmentActivity
     public static final int PROMOTION_VIEW = 9;
     public static final int MORE_VIEW = 10;
     public static final int PRODUCT_DETAIL_VIEW = 10;
-    public static final int USER_INFO_CONFIRMATION_VIEW = 11;
 
     public static final int STORE_VIEW = 0;
     public static final int PHONE_VIEW = 1;
@@ -220,14 +218,14 @@ public class MainActivity extends FragmentActivity
             case CART_VIEW:
                 fragment = fragmentManager.findFragmentByTag("" + MainActivity.CART_VIEW);
                 if (fragment == null) {
-                    Log.i(TAG,"MainActivity - new CartFragment object ");
                     fragment = new CartFragment();
-                    fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
-                }else{
-                    ((BaseFragment)fragment).onFragmentSelected();
                 }
 
-                //                fragment = new CartFragment();
+                fragmentTransaction.add(R.id.frame_container, fragment, "" + CART_VIEW);
+
+                ((BaseFragment)fragment).onFragmentSelected();
+
+//                fragment = new CartFragment();
 //                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + CART_VIEW);
                 break;
             case STORE_VIEW:
@@ -235,13 +233,8 @@ public class MainActivity extends FragmentActivity
                 fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + STORE_VIEW);
                 break;
             case PHONE_VIEW:
-                fragment = fragmentManager.findFragmentByTag("" + MainActivity.PHONE_VIEW);
-                if (fragment == null) {
-                    fragment = new PhoneFragment();
-                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + PHONE_VIEW);
-                }else{
-                    ((BaseFragment)fragment).onFragmentSelected();
-                }
+                fragment = new PhoneFragment();
+                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + PHONE_VIEW);
                 break;
             case LAPTOP_VIEW:
                 fragment = new LaptopFragment();
@@ -256,14 +249,6 @@ public class MainActivity extends FragmentActivity
 //                fragment = new AccessoriesFragment();
                 break;
 
-            case USER_INFO_CONFIRMATION_VIEW:
-                fragment = fragmentManager.findFragmentByTag("" + MainActivity.USER_INFO_CONFIRMATION_VIEW);
-                if (fragment == null) {
-                    fragment = new UserInfoConfirmationFragment();
-                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + MainActivity.USER_INFO_CONFIRMATION_VIEW);
-                }else{
-                    ((BaseFragment)fragment).onFragmentSelected();
-                }
             default:
                 break;
         }
@@ -290,8 +275,6 @@ public class MainActivity extends FragmentActivity
                 setTitle(R.string.str_footer_cart);
             }else if(position == PRODUCT_DETAIL_VIEW){
                 setTitle(R.string.str_product_detail);
-            }else if(position == USER_INFO_CONFIRMATION_VIEW){
-                setTitle(R.string.str_user_info_tittle);
             }else { // drawer views
                 mDrawerList.setItemChecked(position, true);
                 mDrawerList.setSelection(position);
