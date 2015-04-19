@@ -90,6 +90,13 @@ public class OneMarketApplication extends Application{
         dataCart.removeCart(position);
         DataCart.saveToPreference(this.sharedPref, dataCart);
     }
+
+    public void clearDataCart()
+    {
+        dataCart.clearData();
+        DataCart.saveToPreference(this.sharedPref, dataCart);
+    }
+
     public DataCart getDataCart(){
         return this.dataCart;
     }

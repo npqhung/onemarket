@@ -1,5 +1,6 @@
 package com.onesys.onemarket.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,9 +17,14 @@ import android.widget.Toast;
 
 import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
+import com.onesys.onemarket.WebviewPayment;
 import com.onesys.onemarket.application.OneMarketApplication;
+import com.onesys.onemarket.model.CartItem;
+import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.model.SpinnerItem;
+import com.onesys.onemarket.task.LoadCashPayment;
 import com.onesys.onemarket.utils.BaseFragment;
+import com.onesys.onemarket.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -27,13 +33,15 @@ public class UserInfoConfirmationFragment extends BaseFragment
 
     private static final String TAG = "OneMarket";
 
+    private View rootView;
+
 	public UserInfoConfirmationFragment(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.layout_user_info_confirmation, container, false);
+        rootView = inflater.inflate(R.layout.layout_user_info_confirmation, container, false);
 
         ImageView mBackIcon = ((ImageView)rootView.findViewById(R.id.userinfo_top_menu_left));
         mBackIcon.setOnClickListener(this);
@@ -107,6 +115,9 @@ public class UserInfoConfirmationFragment extends BaseFragment
             public void onNothingSelected(AdapterView<?> paramAnonymousAdapterView){
             }
         });
+
+        TextView confirmPayment = (TextView)rootView.findViewById(R.id.userinfo_confirm);
+        confirmPayment.setOnClickListener(this);
          
         return rootView;
     }
@@ -141,58 +152,69 @@ public class UserInfoConfirmationFragment extends BaseFragment
                 break;
 
             case R.id.userinfo_confirm :
-                confirmPayment(paramView);
+                confirmPayment();
                 break;
             default:
                 return;
         }
     }
 
-    private void confirmPayment(View view){
+    private void confirmPayment(){
 
-        TextView userInfoAddress = (TextView)view.findViewById(R.id.userinfo_address);
-
-        if (TextUtils.isEmpty(userInfoAddress.getText().toString())){
-            Toast.makeText(getActivity(), getString(R.string.error_userinfo_address), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        TextView userInfoPhone = (TextView)view.findViewById(R.id.userinfo_phone);
-        if (TextUtils.isEmpty(userInfoPhone.getText().toString())){
-            Toast.makeText(getActivity(), getString(R.string.error_userinfo_phone), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        TextView userInfoName = (TextView)view.findViewById(R.id.userinfo_name);
+        TextView userInfoName = (TextView)rootView.findViewById(R.id.userinfo_name);
         if (TextUtils.isEmpty(userInfoName.getText().toString())){
             Toast.makeText(getActivity(), getString(R.string.error_userinfo_name), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        TextView userInfoEmail = (TextView)view.findViewById(R.id.userinfo_email);
+        TextView userInfoPhone = (TextView)rootView.findViewById(R.id.userinfo_phone);
+        if (TextUtils.isEmpty(userInfoPhone.getText().toString())){
+            Toast.makeText(getActivity(), getString(R.string.error_userinfo_phone), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        TextView userInfoEmail = (TextView)rootView.findViewById(R.id.userinfo_email);
         if (TextUtils.isEmpty(userInfoEmail.getText().toString()))
         {
             Toast.makeText(getActivity(), getString(R.string.error_userinfo_email), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        SpinnerItem citySpinner = (SpinnerItem)((Spinner)view.findViewById(R.id.userinfo_city)).getSelectedItem();
+        TextView userInfoAddress = (TextView)rootView.findViewById(R.id.userinfo_address);
+
+        if (TextUtils.isEmpty(userInfoAddress.getText().toString())){
+            Toast.makeText(getActivity(), getString(R.string.error_userinfo_address), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        SpinnerItem citySpinner = (SpinnerItem)((Spinner)rootView.findViewById(R.id.userinfo_city)).getSelectedItem();
         if (citySpinner == null){
             Toast.makeText(getActivity(), getString(R.string.error_userinfo_city), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        SpinnerItem paymentTypeSpinner = (SpinnerItem)((Spinner)view.findViewById(R.id.userinfo_payment_type)).getSelectedItem();
+        SpinnerItem paymentTypeSpinner = (SpinnerItem)((Spinner)rootView.findViewById(R.id.userinfo_payment_type)).getSelectedItem();
         if (paymentTypeSpinner == null){
             Toast.makeText(getActivity(), getString(R.string.error_userinfo_paymenttype), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        SpinnerItem deliveryTypeSpinner = (SpinnerItem)((Spinner)view.findViewById(R.id.userinfo_delivery_type)).getSelectedItem();
+        SpinnerItem deliveryTypeSpinner = (SpinnerItem)((Spinner)rootView.findViewById(R.id.userinfo_delivery_type)).getSelectedItem();
         if (deliveryTypeSpinner == null){
             Toast.makeText(getActivity(), getString(R.string.error_userinfo_deliverytype), Toast.LENGTH_SHORT).show();
             return;
         }
+
+        TextView userInfoNote = (TextView)rootView.findViewById(R.id.userinfo_note);
+
+        int paymentTypeId = paymentTypeSpinner.id;
+        String address = userInfoAddress.getText().toString();
+        int cityId = citySpinner.id;
+        String phone = userInfoPhone.getText().toString();
+        String note = userInfoNote.getText().toString();
+        String email = userInfoEmail.getText().toString();
+        String name = userInfoName.getText().toString();
+        int deliveryType = deliveryTypeSpinner.id;
 
 
 //        final int i = this.mPhuongThucThanhToan.id;
@@ -238,6 +260,45 @@ public class UserInfoConfirmationFragment extends BaseFragment
 //            }
 //        }
 //                .execute(new String[0]);
+
+        String url = Constants.DOMAIN + "/Order/AddOrder2?user_id=" + ((OneMarketApplication)getActivity().getApplication()).getUserId()
+                + "&fullname=" + name + "&address=" + address + "&city_id=" + cityId + "&phone_number=" + phone + "&email=" + email
+                + "&payment_type_id=" + paymentTypeId + "&receive_type_id=" + deliveryType;
+
+        if (!TextUtils.isEmpty(note)) {
+            url = url + "&message=" + note;
+        }
+
+        url = url + "&total_price=" + 0;
+
+        //build one item order
+        OneMarketApplication application = (OneMarketApplication) getActivity().getApplication();
+
+        //for testing
+        ProductDetailData item = application.getDataCart().getCartItems().get(0).getProductDetail();
+
+        url = url + "&products[0][quantity]=" + 1
+                + "&" + "products[0][order_type]=" + item.getOrderType()
+                + "&" + "products[0][color]=" + item.getColor().get(0).getId()
+                + "&" + "products[" + 0 + "][store]=" + item.getProductStore().get(0).store_id
+                + "&" + "products[" + 0 + "][pricepay]=" + item.getPrice()
+                + "&" + "products[" + 0 + "][product_id]=" + item.getId();
+
+        Log.i(TAG,"Payment URL : " + url);
+
+        if (paymentTypeId == 3){//online
+            Intent localIntent = new Intent(getActivity(), WebviewPayment.class);
+            localIntent.putExtra(WebviewPayment.URL_STRING, url);
+            startActivityForResult(localIntent, 0);
+            return;
+        }else{//cash
+            if (application.isOnline()) {
+                new LoadCashPayment(getActivity()).execute(new String[] { url });
+            } else {
+                Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
+            }
+
+        }
 
     }
 }

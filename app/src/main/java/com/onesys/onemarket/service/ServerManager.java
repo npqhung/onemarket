@@ -14,9 +14,13 @@ import org.springframework.web.client.RestTemplate;
 
 import android.util.Log;
 
+import com.onesys.onemarket.model.OnlinePayment;
+import com.onesys.onemarket.model.Payment;
 import com.onesys.onemarket.model.ProductComment;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.model.ProductDetailData;
+import com.onesys.onemarket.utils.response.OnlinePaymentResponse;
+import com.onesys.onemarket.utils.response.PaymentResponse;
 import com.onesys.onemarket.utils.response.ProductCommentResponse;
 import com.onesys.onemarket.utils.response.ProductDetailResponse;
 import com.onesys.onemarket.utils.response.ProductListResponse;
@@ -165,6 +169,66 @@ public class ServerManager {
         } catch (ResourceAccessException e) {
             ProductCommentResponse emptyResponse = new ProductCommentResponse();
             emptyResponse.setData(new ProductComment[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
+
+    public PaymentResponse getCashPayment() {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            PaymentResponse paymentResponse = restTemplate.getForObject(restUrl, PaymentResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + paymentResponse.getCode());
+            return paymentResponse;
+        } catch (HttpServerErrorException e) {
+            PaymentResponse emptyResponse = new PaymentResponse();
+            emptyResponse.setData(new Payment());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            PaymentResponse emptyResponse = new PaymentResponse();
+            emptyResponse.setData(new Payment());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            PaymentResponse emptyResponse = new PaymentResponse();
+            emptyResponse.setData(new Payment());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
+
+    public OnlinePaymentResponse getOnlinePayment() {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            OnlinePaymentResponse onlineResponse = restTemplate.getForObject(restUrl, OnlinePaymentResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + onlineResponse.getCode());
+            return onlineResponse;
+        } catch (HttpServerErrorException e) {
+            OnlinePaymentResponse emptyResponse = new OnlinePaymentResponse();
+            emptyResponse.setData(new OnlinePayment());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            OnlinePaymentResponse emptyResponse = new OnlinePaymentResponse();
+            emptyResponse.setData(new OnlinePayment());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            OnlinePaymentResponse emptyResponse = new OnlinePaymentResponse();
+            emptyResponse.setData(new OnlinePayment());
             emptyResponse.setMessage(e.getMessage());
             Log.e(TAG, "error" + e.getMessage());
             return emptyResponse;

@@ -22,9 +22,7 @@ import com.onesys.onemarket.slidemenu.NavDrawerItem;
 import com.onesys.onemarket.slidemenu.NavDrawerListAdapter;
 import com.onesys.onemarket.utils.BaseFragment;
 import com.onesys.onemarket.utils.FooterFragment;
-import com.onesys.onemarket.view.AccessoriesFragment;
 import com.onesys.onemarket.view.CartFragment;
-import com.onesys.onemarket.view.GameFragment;
 import com.onesys.onemarket.view.HomeFragment;
 import com.onesys.onemarket.view.LaptopFragment;
 import com.onesys.onemarket.view.PhoneFragment;
@@ -350,5 +348,4 @@ public class MainActivity extends FragmentActivity
             fragmentTransaction.hide(fragment);
         }
     }
-
 }

@@ -79,6 +79,12 @@ public class DataCart {
         countTotalPrice();
     }
 
+    public void clearData()    {
+        cartItems.clear();
+        this.price = 0;
+        this.transportFee = 0;
+    }
+
     public void countTotalPrice()
     {
         this.price = 0;
