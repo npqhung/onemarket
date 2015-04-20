@@ -245,7 +245,13 @@ public class MainActivity extends FragmentActivity
                 fragment = new LaptopFragment();
                 break;
             case TABLET_VIEW:
-                fragment = new TabletFragment();
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.TABLET_VIEW);
+                if (fragment == null) {
+                    fragment = new TabletFragment();
+                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + TABLET_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
+                }
                 break;
             case GAME_VIEW:
 //                fragment = new GameFragment();

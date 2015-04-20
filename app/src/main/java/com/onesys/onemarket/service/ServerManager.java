@@ -19,11 +19,15 @@ import com.onesys.onemarket.model.Payment;
 import com.onesys.onemarket.model.ProductComment;
 import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.model.ProductDetailData;
+import com.onesys.onemarket.model.Tablet;
+import com.onesys.onemarket.model.TabletDetail;
 import com.onesys.onemarket.utils.response.OnlinePaymentResponse;
 import com.onesys.onemarket.utils.response.PaymentResponse;
 import com.onesys.onemarket.utils.response.ProductCommentResponse;
 import com.onesys.onemarket.utils.response.ProductDetailResponse;
 import com.onesys.onemarket.utils.response.ProductListResponse;
+import com.onesys.onemarket.utils.response.TabletDetailResponse;
+import com.onesys.onemarket.utils.response.TabletListResponse;
 
 import java.util.Collections;
 
@@ -235,4 +239,64 @@ public class ServerManager {
         }
     }
 
+    public TabletListResponse getAllTabletList() {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            TabletListResponse productResponse = restTemplate.getForObject(restUrl, TabletListResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + productResponse.getCode());
+            return productResponse;
+        } catch (HttpServerErrorException e) {
+            TabletListResponse emptyResponse = new TabletListResponse();
+            emptyResponse.setData(new Tablet[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            TabletListResponse emptyResponse = new TabletListResponse();
+            emptyResponse.setData(new Tablet[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            TabletListResponse emptyResponse = new TabletListResponse();
+            emptyResponse.setData(new Tablet[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
+
+    public TabletDetailResponse getTabletDetail(String id) {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        restUrl += id;
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            TabletDetailResponse productResponse = restTemplate.getForObject(restUrl, TabletDetailResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + productResponse.getCode());
+            return productResponse;
+        } catch (HttpServerErrorException e) {
+            TabletDetailResponse emptyResponse = new TabletDetailResponse();
+            emptyResponse.setData(new TabletDetail());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            TabletDetailResponse emptyResponse = new TabletDetailResponse();
+            emptyResponse.setData(new TabletDetail());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            TabletDetailResponse emptyResponse = new TabletDetailResponse();
+            emptyResponse.setData(new TabletDetail());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
 }

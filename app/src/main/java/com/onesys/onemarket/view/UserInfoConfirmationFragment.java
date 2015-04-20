@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.R;
-import com.onesys.onemarket.WebviewPayment;
+//import com.onesys.onemarket.WebviewPayment;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.CartItem;
 import com.onesys.onemarket.model.ProductDetailData;
@@ -287,9 +287,9 @@ public class UserInfoConfirmationFragment extends BaseFragment
         Log.i(TAG,"Payment URL : " + url);
 
         if (paymentTypeId == 3){//online
-            Intent localIntent = new Intent(getActivity(), WebviewPayment.class);
-            localIntent.putExtra(WebviewPayment.URL_STRING, url);
-            startActivityForResult(localIntent, 0);
+//            Intent localIntent = new Intent(getActivity(), WebviewPayment.class);
+//            localIntent.putExtra(WebviewPayment.URL_STRING, url);
+//            startActivityForResult(localIntent, 0);
             return;
         }else{//cash
             if (application.isOnline()) {

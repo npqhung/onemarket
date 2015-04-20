@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:id="@+id/ll_comment_number" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true">
+            <TextView android:textAppearance="@style/RedTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_comment_number" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/second_tab_top_height" android:text="@string/comment_number" android:maxLines="1" />
+            <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        </LinearLayout>
+        <ListView android:id="@+id/lv_tablet_comment" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@color/tabbar_divider" android:dividerHeight="1.0dip" android:layout_above="@+id/ll_comment" android:layout_below="@+id/ll_comment_number" />
+        <LinearLayout android:orientation="vertical" android:id="@+id/ll_comment" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+            <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+            <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="5.0dip">
+                <EditText android:id="@+id/edt_comment" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:hint="@string/comment_your_comment" android:maxLines="1" android:layout_weight="1.0" />
+                <TextView android:textAppearance="@style/GameUngDUngTextBlackAppearance" android:id="@+id/tv_comment_post" android:padding="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5.0dip" android:text="@string/comment_post" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

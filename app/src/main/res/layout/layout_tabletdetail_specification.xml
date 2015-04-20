@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_general_info" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_network_2g" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_network_2g" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="GSM 850/1800/1900" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_network_3g" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_network_3g" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_monitor" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_release_date" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_release_date" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_release_date" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_sale_date" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_sale_date" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_sale_date" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_size" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_size" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_size" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_size" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_weight" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_weight" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_weight" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_display" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_type" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:ellipsize="marquee" android:gravity="left|center" android:id="@+id/tv_spec_type" android:padding="10.0dip" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_type" android:scrollHorizontally="true" android:layout_weight="2.0" android:marqueeRepeatLimit="marquee_forever" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_size" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_dimension_display" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_size" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_touch" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_touch" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_touch" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_sound" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_ring_type" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_ring_type" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_ring_type" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_audio_output" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_audio_output" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_audio_output" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_ram" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_contact" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_contact" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_contact" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_called_memory" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_called_memory" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_called_memory" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_internal_memory" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_internal_ram" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_internal_memory" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_memory_slot" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_memory_slot" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_memory_slot" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_network" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_gprs" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_gprs" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_gprs" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_edge" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_edge" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_edge" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_network_3g" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_speed_3g" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_network_3g" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_nfc" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_nfc" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_nfc" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_wlan" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_wlan" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_wlan" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_bluetooth" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_bluetooth" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_bluetooth" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_infrared" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_infrared" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_infrared" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_usb" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_usb" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_usb" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_camera" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_rear_camera" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_rear_camera" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_rear_camera" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_camera_recorder" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_camera_recorder" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_camera_recorder" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_front_camera" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_front_camera" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_front_camera" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_os" />
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_os" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_os" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_os" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_cpu" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_cpu" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_cpu" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_chipset" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_chipset" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_chipset" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_sms" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_sms" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_sms" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_browser" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_browser" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_browser" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_radio" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_radio" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_radio" android:layout_weight="2.0" />
+        </LinearLayout>
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_game" android:layout_weight="1.0" />
+            <View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />
+            <TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@+id/tv_spec_game" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/spec_game" android:layout_weight="2.0" />
+        </LinearLayout>
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/mau_sac" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_mau_sac" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/mau_sac" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/ngon_ngu" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_ngon_ngu" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/ngon_ngu" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/dinh_vi_toan_cau" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_dinh_vi_toan_cau" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/dinh_vi_toan_cau" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/java" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_java" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/java" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_java_info" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/java" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<TextView android:textAppearance="@style/RedBoldTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/pin" />-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/pin_chuan" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_pin_chuan" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/pin_chuan" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/cho" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_cho" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/cho" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <!--<View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />-->
+        <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="3.0">-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/dam_thoai" android:layout_weight="1.0" />-->
+            <!--<View android:background="@color/tabbar_divider" android:layout_width="1.0dip" android:layout_height="fill_parent" />-->
+            <!--<TextView android:textAppearance="@style/BlackTextDS4Appearance" android:gravity="left|center" android:id="@id/tv_dam_thoai" android:padding="10.0dip" android:layout_width="0.0dip" android:layout_height="wrap_content" android:minHeight="@dimen/second_tab_top_height" android:text="@string/dam_thoai" android:layout_weight="2.0" />-->
+        <!--</LinearLayout>-->
+        <View android:background="@color/tabbar_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    </LinearLayout>
+</LinearLayout>
