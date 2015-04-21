@@ -62,7 +62,7 @@ public class DataCart {
         editor.commit();
     }
 
-    public void addCart(ProductDetailData productDetail, String storeId){
+    public void addCart(Product productDetail, String storeId){
 
         CartItem cartItem = new CartItem(productDetail, storeId);
 

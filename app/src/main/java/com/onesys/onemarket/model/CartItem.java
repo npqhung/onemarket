@@ -5,7 +5,7 @@ package com.onesys.onemarket.model;
  */
 public class CartItem {
 
-    private ProductDetailData productDetail;
+    private Product productDetail;
     private String storeId;
     private ColorObject colorObject;
 
@@ -23,18 +23,18 @@ public class CartItem {
         return 1;
     }
 
-    public CartItem(ProductDetailData productDetail, String storeId)
+    public CartItem(Product productDetail, String storeId)
     {
         this.storeId = storeId;
         this.productDetail = productDetail;
         this.colorObject = productDetail.getColor().get(0);
     }
 
-    public ProductDetailData getProductDetail() {
+    public Product getProductDetail() {
         return productDetail;
     }
 
-    public void setProductDetail(ProductDetailData productDetail) {
+    public void setProductDetail(Product productDetail) {
         this.productDetail = productDetail;
     }
 

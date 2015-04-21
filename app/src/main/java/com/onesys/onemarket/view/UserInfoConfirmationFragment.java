@@ -20,6 +20,7 @@ import com.onesys.onemarket.R;
 //import com.onesys.onemarket.WebviewPayment;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.CartItem;
+import com.onesys.onemarket.model.Product;
 import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.model.SpinnerItem;
 import com.onesys.onemarket.task.LoadCashPayment;
@@ -275,30 +276,30 @@ public class UserInfoConfirmationFragment extends BaseFragment
         OneMarketApplication application = (OneMarketApplication) getActivity().getApplication();
 
         //for testing
-        ProductDetailData item = application.getDataCart().getCartItems().get(0).getProductDetail();
+        Product item = application.getDataCart().getCartItems().get(0).getProductDetail();
 
-        url = url + "&products[0][quantity]=" + 1
-                + "&" + "products[0][order_type]=" + item.getOrderType()
-                + "&" + "products[0][color]=" + item.getColor().get(0).getId()
-                + "&" + "products[" + 0 + "][store]=" + item.getProductStore().get(0).store_id
-                + "&" + "products[" + 0 + "][pricepay]=" + item.getPrice()
-                + "&" + "products[" + 0 + "][product_id]=" + item.getId();
-
-        Log.i(TAG,"Payment URL : " + url);
-
-        if (paymentTypeId == 3){//online
-//            Intent localIntent = new Intent(getActivity(), WebviewPayment.class);
-//            localIntent.putExtra(WebviewPayment.URL_STRING, url);
-//            startActivityForResult(localIntent, 0);
-            return;
-        }else{//cash
-            if (application.isOnline()) {
-                new LoadCashPayment(getActivity()).execute(new String[] { url });
-            } else {
-                Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
-            }
-
-        }
+//        url = url + "&products[0][quantity]=" + 1
+//                + "&" + "products[0][order_type]=" + item.getOrderType()
+//                + "&" + "products[0][color]=" + item.getColor().get(0).getId()
+//                + "&" + "products[" + 0 + "][store]=" + item.getProductStore().get(0).store_id
+//                + "&" + "products[" + 0 + "][pricepay]=" + item.getPrice()
+//                + "&" + "products[" + 0 + "][product_id]=" + item.getId();
+//
+//        Log.i(TAG,"Payment URL : " + url);
+//
+//        if (paymentTypeId == 3){//online
+////            Intent localIntent = new Intent(getActivity(), WebviewPayment.class);
+////            localIntent.putExtra(WebviewPayment.URL_STRING, url);
+////            startActivityForResult(localIntent, 0);
+//            return;
+//        }else{//cash
+//            if (application.isOnline()) {
+//                new LoadCashPayment(getActivity()).execute(new String[] { url });
+//            } else {
+//                Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
+//            }
+//
+//        }
 
     }
 }

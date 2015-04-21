@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 
 import com.onesys.onemarket.model.DataCart;
+import com.onesys.onemarket.model.Product;
 import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.utils.Constants;
 
@@ -79,7 +80,7 @@ public class OneMarketApplication extends Application{
         return this.userId;
     }
 
-    public void addDataCart(ProductDetailData productDetail, String storeId)
+    public void addDataCart(Product productDetail, String storeId)
     {
         dataCart.addCart(productDetail, storeId);
         DataCart.saveToPreference(sharedPref, dataCart);

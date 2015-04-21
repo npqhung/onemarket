@@ -105,7 +105,7 @@ public class TabletDetailFragment extends BaseFragment implements Serializable, 
         SpecificationInfo mobileInfo = tabletDetail.getMobileinfo();
         parseSpecificationView(view, mobileInfo);
 
-        LinearLayout addToCartBtn = (LinearLayout)view.findViewById(R.id.ll_payment);
+        LinearLayout addToCartBtn = (LinearLayout)view.findViewById(R.id.ll_tablet_payment);
         addToCartBtn.setOnClickListener(this);
 
     }
@@ -126,7 +126,7 @@ public class TabletDetailFragment extends BaseFragment implements Serializable, 
                 Log.i(TAG, "Entered Product Detail Specification");
                 showTabletComments(paramView);
                 break;
-            case R.id.ll_payment :
+            case R.id.ll_tablet_payment :
                 Log.i(TAG, "Entered Add To Cart");
                 if (tabletDetail.getProductStore() == null || tabletDetail.getProductStore().size() == 0){
                     Toast.makeText(getActivity(), getString(R.string.str_empty_store), Toast.LENGTH_SHORT).show();
@@ -309,18 +309,6 @@ public class TabletDetailFragment extends BaseFragment implements Serializable, 
             {
                 success = false;
             }
-//            if (localMobileMarketApplication.getDataCart().isAdd(this.productDetailsData.getId(), this.store_id))
-//            {
-//                System.out.println("doInBackground 3");
-//                return Boolean.valueOf(false);
-//            }
-//            if ((this.listDataLichSuGiaoDich == null) || (this.listDataLichSuGiaoDich.size() == 0))
-//            {
-//                str1 = LoadAPI35LichSuMuaHang.LICHSU_MUAHANG_URL;
-//                arrayOfObject = new Object[1];
-//                arrayOfObject[0] = localMobileMarketApplication.getUserId();
-//                str2 = String.format(str1, arrayOfObject);
-//            }
         }
 
         if (orderType == 1 && (tabletDetail.getStatus().equals("4") || tabletDetail.getStatus().equals("2"))){
@@ -328,9 +316,9 @@ public class TabletDetailFragment extends BaseFragment implements Serializable, 
         }
 
         if(success){
-//            ((OneMarketApplication)getActivity().getApplication()).addDataCart(tabletDetail, storeId);
-//            Toast.makeText(getActivity(), "This product will be added to cart!", Toast.LENGTH_SHORT).show();
-//            ((MainActivity)getActivity()).mFootMenu.updateCartCount();
+            ((OneMarketApplication)getActivity().getApplication()).addDataCart(tabletDetail, storeId);
+            Toast.makeText(getActivity(), "This product will be added to cart!", Toast.LENGTH_SHORT).show();
+            ((MainActivity)getActivity()).mFootMenu.updateCartCount();
         }else{
             Toast.makeText(getActivity(), "This product can't purchased now!", Toast.LENGTH_SHORT).show();
         }

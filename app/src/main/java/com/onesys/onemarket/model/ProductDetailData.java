@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class ProductDetailData
-        implements Serializable{
+        implements Serializable, Product{
 
     private static final long serialVersionUID = 1L;
 
