@@ -229,10 +229,13 @@ public class MainActivity extends FragmentActivity
 //                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + CART_VIEW);
                 break;
             case STORE_VIEW:
-
-
-                fragment = new StoreFragment();
-                fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + STORE_VIEW);
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.STORE_VIEW);
+                if (fragment == null) {
+                    fragment = new StoreFragment();
+                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + STORE_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
+                }
 
                 break;
             case PHONE_VIEW:

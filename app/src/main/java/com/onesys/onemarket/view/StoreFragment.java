@@ -45,25 +45,25 @@ public class StoreFragment extends BaseFragment {
             return;
         }
 
-        final LatLng HAMBURG = new LatLng(53.558, 9.927);
-        final LatLng KIEL = new LatLng(53.551, 9.993);
+        final LatLng HOCHIMINH = new LatLng(10.773425, 106.685299);
+        final LatLng DGW = new LatLng(10.773403, 106.687247);
         GoogleMap map;
         map = ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map)).getMap();
 //        map = getMapFragment().getMap();
 
-        Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
-                .title("Hamburg"));
-        Marker kiel = map.addMarker(new MarkerOptions()
-                .position(KIEL)
-                .title("Kiel")
-                .snippet("Kiel is cool")
+        Marker hochiminh = map.addMarker(new MarkerOptions().position(HOCHIMINH)
+                .title("Ho Chi Minh"));
+        Marker dgw = map.addMarker(new MarkerOptions()
+                .position(DGW)
+                .title("DGW")
+                .snippet("Digiworld")
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.mipmap.ic_launcher)));
 
-        // Move the camera instantly to hamburg with a zoom of 15.
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
+        // Move the camera instantly to hochiminh with a zoom of 15.
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(DGW, 15));
 
         // Zoom in, animating the camera.
-        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        map.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
     }
 }
