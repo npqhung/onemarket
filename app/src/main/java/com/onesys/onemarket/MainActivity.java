@@ -25,6 +25,7 @@ import com.onesys.onemarket.utils.FooterFragment;
 import com.onesys.onemarket.view.CartFragment;
 import com.onesys.onemarket.view.HomeFragment;
 import com.onesys.onemarket.view.LaptopFragment;
+import com.onesys.onemarket.view.NewsFragment;
 import com.onesys.onemarket.view.PhoneFragment;
 import com.onesys.onemarket.view.SearchFragment;
 import com.onesys.onemarket.view.StoreFragment;
@@ -37,13 +38,13 @@ public class MainActivity extends FragmentActivity
 
     private static final String TAG = "OneMarket";
 
-    public static final int HOME_VIEW = 6;
-    public static final int SEARCH_VIEW = 7;
+    public static final int HOME_VIEW = 7;
     public static final int CART_VIEW = 8;
     public static final int PROMOTION_VIEW = 9;
     public static final int MORE_VIEW = 10;
     public static final int PRODUCT_DETAIL_VIEW = 10;
     public static final int USER_INFO_CONFIRMATION_VIEW = 11;
+    public static final int SEARCH_VIEW = 12;
 
     public static final int STORE_VIEW = 0;
     public static final int PHONE_VIEW = 1;
@@ -51,6 +52,7 @@ public class MainActivity extends FragmentActivity
     public static final int TABLET_VIEW = 3;
     public static final int GAME_VIEW = 4;
     public static final int ACCESSORIES_VIEW = 5;
+    public static final int NEWS_VIEW = 6;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -104,19 +106,20 @@ public class MainActivity extends FragmentActivity
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
         // adding nav drawer items to array
-        // Home
+        //Store
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // Find People
+        //Phone
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Photos
+        //Laptop
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Communities, Will add a counter here
+        //Tablet
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-        // Pages
+        //Game
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // What's hot, We  will add a counter here
+        //Accessories
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
-
+        //News
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -271,6 +274,14 @@ public class MainActivity extends FragmentActivity
                 if (fragment == null) {
                     fragment = new UserInfoConfirmationFragment();
                     fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + MainActivity.USER_INFO_CONFIRMATION_VIEW);
+                }else{
+                    ((BaseFragment)fragment).onFragmentSelected();
+                }
+            case NEWS_VIEW :
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.NEWS_VIEW);
+                if (fragment == null) {
+                    fragment = new NewsFragment();
+                    fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + MainActivity.NEWS_VIEW);
                 }else{
                     ((BaseFragment)fragment).onFragmentSelected();
                 }

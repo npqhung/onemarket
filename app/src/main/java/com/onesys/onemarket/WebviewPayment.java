@@ -16,7 +16,7 @@ import com.onesys.onemarket.utils.Constants;
  * Created by Hung Nguyen on 4/19/2015.
  */
 
-public class Webview extends Activity {
+public class WebviewPayment extends Activity {
     private static final String RESPONSE_URL = Constants.DOMAIN + "/Order/StatusPayment?";
     public static String URL_STRING = "_load_url_thanh_toan";
 

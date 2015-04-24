@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import android.util.Log;
 
+import com.onesys.onemarket.model.News;
 import com.onesys.onemarket.model.OnlinePayment;
 import com.onesys.onemarket.model.Payment;
 import com.onesys.onemarket.model.ProductComment;
@@ -21,6 +22,7 @@ import com.onesys.onemarket.model.ProductData;
 import com.onesys.onemarket.model.ProductDetailData;
 import com.onesys.onemarket.model.Tablet;
 import com.onesys.onemarket.model.TabletDetail;
+import com.onesys.onemarket.utils.response.NewsListResponse;
 import com.onesys.onemarket.utils.response.OnlinePaymentResponse;
 import com.onesys.onemarket.utils.response.PaymentResponse;
 import com.onesys.onemarket.utils.response.ProductCommentResponse;
@@ -294,6 +296,36 @@ public class ServerManager {
         } catch (ResourceAccessException e) {
             TabletDetailResponse emptyResponse = new TabletDetailResponse();
             emptyResponse.setData(new TabletDetail());
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        }
+    }
+
+    public NewsListResponse getAllNewsList() {
+        RestTemplate restTemplate = getRestTemplate();
+        // The URL for making the GET request
+        Log.d(this.getClass().getName(), " url is " + restUrl);
+
+        try {
+            NewsListResponse productResponse = restTemplate.getForObject(restUrl, NewsListResponse.class,"");
+            Log.d(TAG, "server contacted received status code " + productResponse.getCode());
+            return productResponse;
+        } catch (HttpServerErrorException e) {
+            NewsListResponse emptyResponse = new NewsListResponse();
+            emptyResponse.setData(new News[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (HttpClientErrorException e) {
+            NewsListResponse emptyResponse = new NewsListResponse();
+            emptyResponse.setData(new News[0]);
+            emptyResponse.setMessage(e.getMessage());
+            Log.e(TAG, "error" + e.getMessage());
+            return emptyResponse;
+        } catch (ResourceAccessException e) {
+            NewsListResponse emptyResponse = new NewsListResponse();
+            emptyResponse.setData(new News[0]);
             emptyResponse.setMessage(e.getMessage());
             Log.e(TAG, "error" + e.getMessage());
             return emptyResponse;
