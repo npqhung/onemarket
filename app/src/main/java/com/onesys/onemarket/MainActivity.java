@@ -53,6 +53,7 @@ public class MainActivity extends FragmentActivity
     public static final int GAME_VIEW = 4;
     public static final int ACCESSORIES_VIEW = 5;
     public static final int NEWS_VIEW = 6;
+    public static final int NEWS_DETAIL_VIEW = 13;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;

@@ -12,4 +12,6 @@ public class Constants {
     public static final String SHARED_PREFS_NAME = "onemarket_sharePrefs";
 
     public static final String DATA_CART = "data_cart";
+
+    public static final String NEWS_STRING = "news";
 }

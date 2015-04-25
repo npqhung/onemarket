@@ -24,23 +24,24 @@ import com.onesys.onemarket.utils.BaseFragment;
 
 public class StoreFragment extends BaseFragment {
     private static final String TAG = "OneMarket";
-	
-	public StoreFragment(){}
-	
-	@Override
+
+    public StoreFragment() {
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
- 
+                             Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_store, container, false);
-         
+
         initMap();
 
         return rootView;
     }
 
-    public  void initMap(){
+    public void initMap() {
         int i = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-        if (i != 0){
+        if (i != 0) {
             GooglePlayServicesUtil.getErrorDialog(i, getActivity(), 10).show();
             return;
         }
@@ -48,8 +49,14 @@ public class StoreFragment extends BaseFragment {
         final LatLng HOCHIMINH = new LatLng(10.773425, 106.685299);
         final LatLng DGW = new LatLng(10.773403, 106.687247);
         GoogleMap map;
-        map = ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map)).getMap();
-//        map = getMapFragment().getMap();
+//        map = ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map)).getMap();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            Log.d(TAG, "using getFragmentManager");
+            map = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        } else {
+            Log.d(TAG, "using getChildFragmentManager");
+            map = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
+        }
 
         Marker hochiminh = map.addMarker(new MarkerOptions().position(HOCHIMINH)
                 .title("Ho Chi Minh"));

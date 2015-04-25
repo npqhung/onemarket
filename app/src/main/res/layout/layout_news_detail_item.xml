@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <WebView
+        android:id="@+id/wv_newsdetail_tittle"
+        android:padding="5.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip" />
+
+    <TextView
+        android:textSize="13.0sp"
+        android:textColor="@color/dark_text_color"
+        android:id="@+id/tv_newsdetail_time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="5.0dip"
+        android:text="08/08/2014"
+        android:maxLines="2" />
+
+    <View
+        android:background="@color/red"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/ll_news_detail"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <WebView
+                android:id="@+id/wv_newsdetail_content"
+                android:padding="5.0dip"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginRight="5.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

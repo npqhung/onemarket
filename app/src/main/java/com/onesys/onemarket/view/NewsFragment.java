@@ -14,9 +14,9 @@ import com.onesys.onemarket.adapter.NewsAdapter;
 import com.onesys.onemarket.application.OneMarketApplication;
 import com.onesys.onemarket.model.News;
 import com.onesys.onemarket.model.ProductData;
+import com.onesys.onemarket.task.LoadNewsDetailTask;
 import com.onesys.onemarket.task.LoadNewsListTask;
 import com.onesys.onemarket.utils.BaseFragment;
-import com.onesys.onemarket.utils.response.ProductListResponse;
 
 public class NewsFragment extends BaseFragment {
 
@@ -51,7 +51,7 @@ public class NewsFragment extends BaseFragment {
                                     int position, long id) {
                 //show product_detail view
                 News news = (News) newsListView.getAdapter().getItem(position);
-//                showProductDetailView(product);
+                showNewsDetailView(news);
             }
         });
 
@@ -64,6 +64,16 @@ public class NewsFragment extends BaseFragment {
         if (application.isOnline()) {
             new LoadNewsListTask(getActivity(), newsAdapter, null){
             }.execute();
+        } else {
+            Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void showNewsDetailView(News news) {
+
+        OneMarketApplication application = (OneMarketApplication) getActivity().getApplication();
+        if (application.isOnline()) {
+            new LoadNewsDetailTask((MainActivity) getActivity(), news.getId()).execute();
         } else {
             Toast.makeText(this.getActivity(), " Network not available. Please check if you have enabled internet connectivity", Toast.LENGTH_LONG).show();
         }

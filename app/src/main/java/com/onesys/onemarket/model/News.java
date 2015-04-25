@@ -2,10 +2,12 @@ package com.onesys.onemarket.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * Created by Hung on 24/04/2015.
  */
-public class News {
+public class News implements Serializable {
     @JsonProperty("category_id")
     private String categoryId;
     private String content;
@@ -23,6 +25,8 @@ public class News {
     private String iosTitle;
     @JsonProperty("ios_short_content")
     private String iosShortContent;
+    @JsonProperty("ios_content")
+    private String iosContent;
 
     public String getCategoryId() {
         return categoryId;
@@ -102,5 +106,13 @@ public class News {
 
     public void setIosShortContent(String iosShortContent) {
         this.iosShortContent = iosShortContent;
+    }
+
+    public String getIosContent() {
+        return iosContent;
+    }
+
+    public void setIosContent(String iosContent) {
+        this.iosContent = iosContent;
     }
 }

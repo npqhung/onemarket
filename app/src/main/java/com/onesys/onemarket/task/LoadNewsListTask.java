@@ -11,6 +11,7 @@ import com.onesys.onemarket.MainActivity;
 import com.onesys.onemarket.adapter.NewsAdapter;
 import com.onesys.onemarket.adapter.ProductAdapter;
 import com.onesys.onemarket.model.News;
+import com.onesys.onemarket.service.NewsServerManager;
 import com.onesys.onemarket.service.ServerManager;
 import com.onesys.onemarket.utils.Constants;
 import com.onesys.onemarket.utils.response.NewsListResponse;
@@ -41,7 +42,7 @@ public class LoadNewsListTask extends AsyncTask<String, Integer, NewsListRespons
         this.progressDialog.setProgressStyle(0);
         this.progressDialog.setMessage("Loading ...");
 
-        this.context = (MainActivity)context;
+        this.context = (MainActivity) context;
     }
 
     protected NewsListResponse[] doInBackground(String... param) {
@@ -49,7 +50,7 @@ public class LoadNewsListTask extends AsyncTask<String, Integer, NewsListRespons
         Log.d(TAG, "Get All Product");
 
         NewsListResponse[] products = null;
-        ServerManager server = new ServerManager(newsListURL);
+        NewsServerManager server = new NewsServerManager(newsListURL);
 
         try {
             Log.d(this.getClass().getName(), "calling remote server to get News list");
@@ -104,13 +105,14 @@ public class LoadNewsListTask extends AsyncTask<String, Integer, NewsListRespons
             newsAdapter.addData(newsList);
         }
     }
-    private void dismissProgressDialog()    {
+
+    private void dismissProgressDialog() {
         if (this.progressDialog != null) {
             this.progressDialog.dismiss();
         }
     }
 
-    private void showProgressDialog()    {
+    private void showProgressDialog() {
         this.progressDialog.setCancelable(false);
         this.progressDialog.show();
     }

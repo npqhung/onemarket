@@ -65,36 +65,37 @@ public class NewsAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (convertView == null)
-            convertView = inflater.inflate(R.layout.layout_news_listview_item, null);
+        View detailView = new View(context);
 
-        ImageView img = (ImageView)convertView.findViewById(R.id.news_listitem_img);
-        ImageLoader imgLoader = new ImageLoader(convertView.getContext());
+        detailView = inflater.inflate(R.layout.layout_news_listview_item, null);
+
+        ImageView img = (ImageView) detailView.findViewById(R.id.news_listitem_img);
+        ImageLoader imgLoader = new ImageLoader(detailView.getContext());
         imgLoader.DisplayImage(newsList.get(position).getCover(), img);
 
-        WebView titleWebView = (WebView)convertView.findViewById(R.id.news_listitem_title);
-        titleWebView.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View paramAnonymousView, MotionEvent paramAnonymousMotionEvent) {
-//                if (paramAnonymousMotionEvent.getAction() == 0)
-//                    TinAdapter.this.mListener.showMore(paramInt);
-                return false;
-            }
-        });
+        WebView titleWebView = (WebView) detailView.findViewById(R.id.news_listitem_title);
+//        titleWebView.setOnTouchListener(new View.OnTouchListener() {
+//            public boolean onTouch(View paramAnonymousView, MotionEvent paramAnonymousMotionEvent) {
+////                if (paramAnonymousMotionEvent.getAction() == 0)
+////                    TinAdapter.this.mListener.showMore(paramInt);
+//                return false;
+//            }
+//        });
 
         titleWebView.loadDataWithBaseURL("x-data://base", newsList.get(position).getTitle(), "text/html", "UTF-8", null);
 
-        TextView tv_time = (TextView)convertView.findViewById(R.id.news_listitem_time);
+        TextView tv_time = (TextView) detailView.findViewById(R.id.news_listitem_time);
         tv_time.setText((newsList.get(position)).getCreatedDate());
 
-        convertView.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-//                TinAdapter.this.mListener.showMore(paramInt);
-            }
-        });
+//        detailView.setOnClickListener(new View.OnClickListener()
+//        {
+//            public void onClick(View paramAnonymousView)
+//            {
+////                TinAdapter.this.mListener.showMore(paramInt);
+//            }
+//        });
 
-        return convertView;
+        return detailView;
     }
 
     public void clearData()
