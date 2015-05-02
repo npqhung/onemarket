@@ -34,4 +34,7 @@
     <color name="bg_cart1">#ffe6e6e6</color>
     <color name="bg_cart2">#fff3f3f3</color>
 
+    <!-- search -->
+    <color name="editext_color">#ff4a4a4a</color>
+
 </resources>

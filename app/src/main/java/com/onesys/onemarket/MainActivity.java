@@ -54,6 +54,7 @@ public class MainActivity extends FragmentActivity
     public static final int ACCESSORIES_VIEW = 5;
     public static final int NEWS_VIEW = 6;
     public static final int NEWS_DETAIL_VIEW = 13;
+    public static final int SEARCH_RESULT_VIEW = 14;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -217,7 +218,16 @@ public class MainActivity extends FragmentActivity
                 fragmentTransaction.add(R.id.frame_container, (Fragment)fragment, "" + HOME_VIEW);
                 break;
             case SEARCH_VIEW:
-                fragment = new SearchFragment();
+//                fragment = new SearchFragment();
+                fragment = fragmentManager.findFragmentByTag("" + MainActivity.SEARCH_VIEW);
+                if (fragment == null) {
+                    Log.i(TAG, "MainActivity - new CartFragment object ");
+                    fragment = new SearchFragment();
+                    fragmentTransaction.add(R.id.frame_container, fragment, "" + SEARCH_VIEW);
+                } else {
+                    ((BaseFragment) fragment).onFragmentSelected();
+                }
+
                 break;
             case CART_VIEW:
                 fragment = fragmentManager.findFragmentByTag("" + MainActivity.CART_VIEW);

@@ -14,4 +14,6 @@ public class Constants {
     public static final String DATA_CART = "data_cart";
 
     public static final String NEWS_STRING = "news";
+
+    public static final String KEY_SEARCH_CRITERIA = "key_search";
 }
